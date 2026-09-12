@@ -1,0 +1,105 @@
+# ============================================
+# Sistema Operacional
+# ============================================
+.DS_Store                   # macOS
+Thumbs.db                   # Windows
+.Thumbs.db                  # Windows
+ehthumbs.db                 # Windows
+
+# ============================================
+# IDEs e Editores
+# ============================================
+.vscode/                    # Visual Studio Code
+.idea/                      # IntelliJ IDEA
+*.sublime-project           # Sublime Text
+*.sublime-workspace         # Sublime Text
+.atom/                      # Atom
+.project                    # Eclipse
+.classpath                  # Eclipse
+*.swp                       # Vim
+*.swo                       # Vim
+*~                          # Vim
+.env.local                  # Variáveis de ambiente locais
+
+# ============================================
+# Node.js e NPM
+# ============================================
+node_modules/               # Dependências npm
+npm-debug.log               # Logs do npm
+npm-debug.log*              # Logs do npm
+yarn-error.log              # Logs do yarn
+.npm                        # Cache npm
+package-lock.json           # Opcional - para projetos comunitários
+
+# ============================================
+# Bundlers e Compiladores
+# ============================================
+dist/                       # Arquivos compilados/bundled
+build/                      # Arquivos de build
+.webpack/                   # Webpack cache
+.parcel-cache/              # Parcel cache
+.next/                      # Next.js
+.nuxt/                      # Nuxt.js
+out/                        # Saída de build
+
+# ============================================
+# Testes
+# ============================================
+coverage/                   # Cobertura de testes
+.nyc_output/                # NYC coverage
+
+# ============================================
+# Arquivos Temporários
+# ============================================
+*.tmp                       # Arquivos temporários
+*.temp                      # Arquivos temporários
+*.log                       # Arquivos de log
+.DS_Store                   # macOS
+.cache/                     # Cache
+
+# ============================================
+# Variáveis de Ambiente
+# ============================================
+.env                        # Arquivo .env
+.env.local                  # .env local
+.env.*.local                # .env específicos
+.env.production.local       # .env produção
+
+# ============================================
+# Arquivos Compilados
+# ============================================
+*.class                     # Java
+*.pyc                       # Python
+*.pyo                       # Python
+*.so                        # Bibliotecas compartilhadas
+
+# ============================================
+# Arquivos de Sistema
+# ============================================
+.LSOverride                 # macOS
+._*                         # macOS
+.AppleDouble                # macOS
+.AppleDB                    # macOS
+desktop.ini                 # Windows
+
+# ============================================
+# Diretórios Específicos de Projetos
+# ============================================
+.venv/                      # Python virtual env
+venv/                       # Python virtual env
+ENV/                        # Python virtual env
+.venv                       # Python virtual env
+__pycache__/                # Python cache
+.Python                     # Python
+
+# ============================================
+# Ferramentas de Desenvolvimento
+# ============================================
+.eslintcache                # ESLint cache
+.prettierignore             # Prettier ignore
+
+# ============================================
+# Documentação Gerada
+# ============================================
+docs/api/                   # Documentação gerada
+site/                       # Documentação do site
