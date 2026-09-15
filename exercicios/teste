@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br"> 
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Minha Disciplina Favorita</title>
+    </head>
+
+    <body>
+        <h1>Programção em Java</h1>
+        
+        <h2>Porque eu gosto?</h2>
+        <p>Eu gosto porque eu faça estrutura de conexão ao bando de dados, dentro do sistema</p>
+
+        <h2>O que eu aprendo?</h2>
+        <p>Eu aprendo a desenvolver e relacionamento entre entidade, e também a desenvolver sistema completo.</p>
+
+        <h3>Meu professor</h3>
+        <p>Bruno Vicente</p>
+        
+    </body>
+
+</html>
