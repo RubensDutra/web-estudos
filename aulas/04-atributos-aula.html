@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--
+  AULA 04 — Atributos HTML
+  =========================
+  Atributos são informações extras adicionadas às tags HTML.
+  Eles ficam DENTRO da tag de abertura e seguem o formato:
+  
+      nome="valor"
+  
+  Exemplos:
+      <img src="foto.jpg" alt="Minha foto" width="300" />
+      <a href="https://google.com" target="_blank">Google</a>
+  
+  Regras:
+  - Sempre dentro da tag de abertura
+  - Valor entre aspas duplas (recomendado)
+  - Uma tag pode ter vários atributos
+  - A ordem dos atributos não importa
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 04 — Atributos HTML</title>
+</head>
+<body>
+
+  <h1>Atributos HTML</h1>
+
+
+  <!-- ==============================
+    ATRIBUTOS GLOBAIS
+    São atributos que funcionam em QUALQUER tag HTML.
+  ============================== -->
+  <h2>Atributos Globais</h2>
+
+
+  <!--
+    id — identificador ÚNICO da página inteira
+    - Cada id deve aparecer apenas UMA vez
+    - Usado para: âncoras, CSS (#id) e JavaScript (getElementById)
+  -->
+  <h3>id</h3>
+  <p id="introducao">
+    Este parágrafo tem id="introducao". Ele pode ser referenciado
+    por links internos, CSS e JavaScript.
+  </p>
+  <!-- Link usando o id como âncora -->
+  <a href="#introducao">Ir para o parágrafo de introdução</a>
+
+
+  <!--
+    class — classificação reutilizável
+    - Diferente do id, a class PODE se repetir em vários elementos
+    - Um elemento pode ter várias classes separadas por espaço
+    - Usado principalmente para aplicar estilos CSS
+  -->
+  <h3>class</h3>
+  <p class="destaque">Este parágrafo tem class="destaque".</p>
+  <p class="destaque">Este também tem class="destaque" — pode repetir!</p>
+  <p class="destaque importante">
+    Este tem duas classes: "destaque" e "importante".
+  </p>
+
+
+  <!--
+    style — CSS inline (diretamente na tag)
+    - Aplica estilo visual direto no elemento
+    - Útil para testes rápidos, mas prefira arquivos .css externos
+  -->
+  <h3>style</h3>
+  <p style="color: blue; font-size: 20px; font-weight: bold;">
+    Este parágrafo tem cor azul, tamanho 20px e negrito via style inline.
+  </p>
+
+
+  <!--
+    title — texto de tooltip (dica ao passar o mouse)
+    - Aparece como uma caixinha quando o mouse fica sobre o elemento
+  -->
+  <h3>title</h3>
+  <p title="Esta é uma dica que aparece ao passar o mouse!">
+    Passe o mouse sobre este texto para ver o tooltip.
+  </p>
+
+
+  <!--
+    lang — idioma do conteúdo
+    - Já vimos no <html lang="pt-BR">
+    - Pode ser usado em qualquer elemento para mudar o idioma local
+  -->
+  <h3>lang</h3>
+  <p>
+    Texto em português.
+    <span lang="en">This part is in English.</span>
+    Voltando ao português.
+  </p>
+
+
+  <!--
+    hidden — esconde o elemento visualmente
+    - O elemento existe no HTML mas não é exibido
+    - Equivale a display:none no CSS
+  -->
+  <h3>hidden</h3>
+  <p hidden>Este parágrafo está escondido — você não consegue ver ele na página!</p>
+  <p>O parágrafo acima existe no código, mas está invisível (atributo hidden).</p>
+
+
+  <!-- ==============================
+    ATRIBUTOS ESPECÍFICOS DE TAGS
+    Cada tag tem seus próprios atributos que só funcionam nela.
+  ============================== -->
+  <h2>Atributos Específicos por Tag</h2>
+
+
+  <!--
+    <a> — link
+    href     = URL de destino
+    target   = onde abrir (_blank = nova aba, _self = mesma aba)
+    rel      = relação com o destino (noopener noreferrer = segurança)
+    download = faz download ao clicar
+  -->
+  <h3>Tag &lt;a&gt;</h3>
+  <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">
+    MDN (abre em nova aba com segurança)
+  </a>
+  <br />
+  <a href="https://via.placeholder.com/200" download>
+    Baixar imagem (atributo download)
+  </a>
+
+
+  <!--
+    <img> — imagem
+    src    = caminho ou URL da imagem (obrigatório)
+    alt    = texto alternativo (obrigatório para acessibilidade)
+    width  = largura em pixels
+    height = altura em pixels
+    loading= "lazy" carrega a imagem só quando aparecer na tela
+  -->
+  <h3>Tag &lt;img&gt;</h3>
+  <img
+    src="https://via.placeholder.com/250x120?text=Atributos+img"
+    alt="Exemplo de imagem com atributos"
+    width="250"
+    height="120"
+    loading="lazy"
+    title="Esta imagem usa vários atributos!"
+  />
+
+
+  <!--
+    Atributos booleanos
+    - Não precisam de valor — só a presença já ativa o comportamento
+    - Exemplos: hidden, disabled, checked, required, readonly, autoplay
+  -->
+  <h3>Atributos Booleanos</h3>
+  <p>
+    Atributos booleanos funcionam só com a presença do nome,
+    sem precisar de valor:
+  </p>
+  <pre><code>
+&lt;input disabled /&gt;       ← campo desabilitado
+&lt;input checked /&gt;        ← checkbox marcado
+&lt;input required /&gt;       ← campo obrigatório
+&lt;input readonly /&gt;       ← somente leitura
+&lt;video autoplay /&gt;       ← vídeo toca automaticamente
+&lt;p hidden&gt;...&lt;/p&gt;       ← elemento invisível
+  </code></pre>
+
+  <!-- Exemplos visuais de atributos booleanos -->
+  <input type="text" value="Campo normal" />
+  <br /><br />
+  <input type="text" value="Campo desabilitado" disabled />
+  <br /><br />
+  <input type="checkbox" checked /> Checkbox já marcado
+
+
+  <!-- ==============================
+    ATRIBUTOS DE DADOS PERSONALIZADOS: data-*
+    - Permitem armazenar informação extra em qualquer elemento
+    - O nome pode ser qualquer coisa após "data-"
+    - Muito usado com JavaScript
+  ============================== -->
+  <h2>Atributos data-*</h2>
+
+  <p data-usuario="rubens" data-nivel="iniciante">
+    Este parágrafo tem dados personalizados no código-fonte.
+    Inspecione o elemento para ver os atributos data-usuario e data-nivel.
+  </p>
+
+  <button data-acao="salvar" data-id="42">
+    Botão com data-acao e data-id
+  </button>
+
+
+  <!-- ==============================
+    RESUMO
+  ============================== -->
+  <h2>Resumo</h2>
+  <pre><code>
+Atributos globais (funcionam em qualquer tag):
+  id="unico"              → identificador único
+  class="nome"            → classe reutilizável
+  style="css: valor"      → estilo inline
+  title="dica"            → tooltip ao passar o mouse
+  lang="pt-BR"            → idioma do conteúdo
+  hidden                  → esconde o elemento
+
+Atributos específicos (exemplos):
+  &lt;a href="" target="" rel=""&gt;
+  &lt;img src="" alt="" width="" height="" loading=""&gt;
+
+Atributos booleanos (só a presença já ativa):
+  disabled, checked, required, readonly, hidden, autoplay
+
+Atributos personalizados:
+  data-qualquercoisa="valor"
+  </code></pre>
+
+</body>
+</html>
