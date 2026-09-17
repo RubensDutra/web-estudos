@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Pratica</title>
+</head>
+<body>
+
+    <h1>Curso</h1>
+    <p>O curso em <strong><em>Análise e Desenvolvimento de Sistemas</em></strong>, é um curso completo e nos dá uma visão de como funciona o mundo da tecnologia e suas ferramentas de trabalho.</p>
+
+
+    <!-- =====================================================
+        TÓPICO 1 — Lista ordenada <ol type="A"> com 4 disciplinas
+    ===================================================== -->
+
+    <h2>Disciplinas do Curso</h2>
+
+    <ol type="A">
+        <li>Banco de Dados</li>
+        <li>Java</li>
+        <li>Web I</li>
+        <li>Aprendizado de Máquinas</li>
+    </ol>
+
+
+    <!-- =====================================================
+        TÓPICO 2 — Lista aninhada <ul> com 3 tópicos,
+        cada um com subtópicos dentro
+    ===================================================== -->
+
+    <h2>Conteúdos por Disciplina</h2>
+
+    <ul>
+        <li>Banco de Dados
+            <ul>
+                <li>Modelagem Entidade-Relacionamento</li>
+                <li>SQL básico</li>
+                <li>Normalização</li>
+            </ul>
+        </li>
+        <li>Java
+            <ul>
+                <li>Orientação a Objetos</li>
+                <li>Estruturas de controle</li>
+                <li>Coleções e arrays</li>
+            </ul>
+        </li>
+        <li>Web I
+            <ul>
+                <li>HTML estrutural</li>
+                <li>CSS básico</li>
+                <li>Formulários e inputs</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <!-- =====================================================
+        TÓPICO 3 — Lista de definição <dl> <dt> <dd>
+        com 2 ementas de disciplinas
+    ===================================================== -->
+
+    <h2>Ementas</h2>
+
+    <dl>
+        <dt>Banco de Dados</dt>
+        <dd>
+            Estuda os conceitos fundamentais de banco de dados relacionais,
+            modelagem de dados, linguagem SQL, normalização e integridade
+            referencial com foco em sistemas de informação reais.
+        </dd>
+
+        <dt>Aprendizado de Máquinas</dt>
+        <dd>
+            Aborda os principais algoritmos de aprendizado supervisionado e
+            não supervisionado, técnicas de pré-processamento de dados,
+            avaliação de modelos e aplicações práticas com Python.
+        </dd>
+    </dl>
+
+
+    <!-- =====================================================
+        TÓPICO 4 — Menu de navegação com <a href="#id">
+        apontando para seções da própria página
+    ===================================================== -->
+
+    <h2>Menu de Navegação</h2>
+
+    <nav>
+        <a href="#disciplinas">Disciplinas</a> |
+        <a href="#conteudos">Conteúdos</a> |
+        <a href="#ementas">Ementas</a>
+    </nav>
+
+
+    <!-- Seções com id para receber os links do menu -->
+
+    <h2 id="disciplinas">Disciplinas do Curso</h2>
+    <p>Seção com a lista de disciplinas do semestre.</p>
+
+    <h2 id="conteudos">Conteúdos por Disciplina</h2>
+    <p>Seção detalhando os conteúdos abordados em cada disciplina.</p>
+
+    <h2 id="ementas">Ementas</h2>
+    <p>Seção com as descrições oficiais das ementas.</p>
+
+
+</body>
+</html>
