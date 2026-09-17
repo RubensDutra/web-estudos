@@ -3,19 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atividade Pratica</title>
+    <title>Atividade Prática</title>
 </head>
 <body>
 
     <h1>Curso</h1>
     <p>O curso em <strong><em>Análise e Desenvolvimento de Sistemas</em></strong>, é um curso completo e nos dá uma visão de como funciona o mundo da tecnologia e suas ferramentas de trabalho.</p>
 
+    <!-- =====================================================
+        TÓPICO 4 — Menu de navegação com <a href="#id">
+        apontando para as seções abaixo
+    ===================================================== -->
+
+    <nav>
+        <a href="#disciplinas">Disciplinas</a> |
+        <a href="#conteudos">Conteúdos</a> |
+        <a href="#ementas">Ementas</a>
+    </nav>
+
+    <hr>
+
 
     <!-- =====================================================
         TÓPICO 1 — Lista ordenada <ol type="A"> com 4 disciplinas
     ===================================================== -->
 
-    <h2>Disciplinas do Curso</h2>
+    <h2 id="disciplinas">Disciplinas do Curso</h2>
+
+    <p>
+        O curso de Análise e Desenvolvimento de Sistemas contempla disciplinas
+        que cobrem desde a programação orientada a objetos até o desenvolvimento
+        de sistemas web modernos, banco de dados e inteligência artificial.
+        Cada disciplina foi pensada para preparar o aluno para o mercado de trabalho,
+        combinando teoria e prática em projetos reais ao longo do semestre.
+    </p>
 
     <ol type="A">
         <li>Banco de Dados</li>
@@ -24,13 +45,24 @@
         <li>Aprendizado de Máquinas</li>
     </ol>
 
+    <hr>
+
 
     <!-- =====================================================
         TÓPICO 2 — Lista aninhada <ul> com 3 tópicos,
         cada um com subtópicos dentro
     ===================================================== -->
 
-    <h2>Conteúdos por Disciplina</h2>
+    <h2 id="conteudos">Conteúdos por Disciplina</h2>
+
+    <p>
+        Cada disciplina abrange um conjunto de conteúdos complementares entre si.
+        O aluno é incentivado a conectar os conhecimentos adquiridos em cada área,
+        percebendo como banco de dados, programação, web e inteligência artificial
+        se integram na construção de sistemas completos e escaláveis.
+        A prática constante por meio de exercícios e projetos é fundamental
+        para a fixação dos conceitos apresentados em sala de aula.
+    </p>
 
     <ul>
         <li>Banco de Dados
@@ -56,13 +88,24 @@
         </li>
     </ul>
 
+    <hr>
+
 
     <!-- =====================================================
         TÓPICO 3 — Lista de definição <dl> <dt> <dd>
         com 2 ementas de disciplinas
     ===================================================== -->
 
-    <h2>Ementas</h2>
+    <h2 id="ementas">Ementas</h2>
+
+    <p>
+        As ementas oficiais descrevem os objetivos e conteúdos programáticos
+        de cada disciplina conforme aprovado pelo colegiado do curso.
+        Elas servem como guia tanto para o professor organizar as aulas
+        quanto para o aluno entender o que será exigido ao longo do semestre.
+        Conhecer a ementa ajuda no planejamento dos estudos e na antecipação
+        dos temas que exigem maior dedicação e aprofundamento.
+    </p>
 
     <dl>
         <dt>Banco de Dados</dt>
@@ -79,32 +122,6 @@
             avaliação de modelos e aplicações práticas com Python.
         </dd>
     </dl>
-
-
-    <!-- =====================================================
-        TÓPICO 4 — Menu de navegação com <a href="#id">
-        apontando para seções da própria página
-    ===================================================== -->
-
-    <h2>Menu de Navegação</h2>
-
-    <nav>
-        <a href="#disciplinas">Disciplinas</a> |
-        <a href="#conteudos">Conteúdos</a> |
-        <a href="#ementas">Ementas</a>
-    </nav>
-
-
-    <!-- Seções com id para receber os links do menu -->
-
-    <h2 id="disciplinas">Disciplinas do Curso</h2>
-    <p>Seção com a lista de disciplinas do semestre.</p>
-
-    <h2 id="conteudos">Conteúdos por Disciplina</h2>
-    <p>Seção detalhando os conteúdos abordados em cada disciplina.</p>
-
-    <h2 id="ementas">Ementas</h2>
-    <p>Seção com as descrições oficiais das ementas.</p>
 
 
 </body>
