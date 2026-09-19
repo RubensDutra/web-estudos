@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--
+  AULA 05 — Links
+  ================
+  Links permitem navegar entre páginas, seções e recursos.
+  A tag usada é o <a> (anchor = âncora).
+  
+  Formato básico:
+      <a href="destino">texto clicável</a>
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 05 — Links</title>
+</head>
+<body>
+
+  <h1 id="topo">Links em HTML</h1>
+
+
+  <!-- ==============================
+    LINK EXTERNO
+    - href aponta para outro site
+    - target="_blank" abre em nova aba
+    - rel="noopener noreferrer" é segurança obrigatória
+      quando usar target="_blank"
+  ============================== -->
+  <h2>Link Externo</h2>
+
+  <!-- Mesma aba -->
+  <a href="https://www.google.com">Ir para o Google (mesma aba)</a>
+
+  <br /><br />
+
+  <!-- Nova aba com segurança -->
+  <a href="https://www.github.com" target="_blank" rel="noopener noreferrer">
+    Ir para o GitHub (nova aba)
+  </a>
+
+
+  <!-- ==============================
+    LINK INTERNO
+    - Navega para outra página do mesmo projeto
+    - O href aponta para o caminho do arquivo
+  ============================== -->
+  <h2>Link Interno</h2>
+
+  <a href="index.html">Ir para a página inicial</a>
+  <br />
+  <a href="../exercicios/05-links-exercicio.html">Ir para o exercício desta aula</a>
+
+
+  <!-- ==============================
+    LINK ÂNCORA
+    - Navega para um elemento específico na mesma página
+    - O href usa # seguido do id do elemento destino
+    - O elemento destino precisa ter o atributo id correspondente
+  ============================== -->
+  <h2>Link Âncora (mesma página)</h2>
+
+  <a href="#rodape">Ir direto para o rodapé</a>
+  <br />
+  <a href="#topo">Voltar ao topo</a>
+
+  <!--
+    O id="topo" está no <h1> lá em cima.
+    O id="rodape" está no <footer> lá em baixo.
+    Ao clicar, a página rola até o elemento com aquele id.
+  -->
+
+
+  <!-- ==============================
+    LINK DE E-MAIL
+    - href="mailto:" abre o cliente de e-mail do usuário
+    - Pode pré-preencher assunto e corpo
+  ============================== -->
+  <h2>Link de E-mail</h2>
+
+  <!-- E-mail simples -->
+  <a href="mailto:contato@exemplo.com">Enviar e-mail</a>
+
+  <br /><br />
+
+  <!-- E-mail com assunto e corpo pré-preenchidos -->
+  <a href="mailto:contato@exemplo.com?subject=Dúvida&body=Olá, tenho uma dúvida sobre...">
+    Enviar e-mail com assunto
+  </a>
+
+
+  <!-- ==============================
+    LINK DE TELEFONE
+    - href="tel:" inicia uma ligação em dispositivos móveis
+    - O número deve estar no formato internacional
+  ============================== -->
+  <h2>Link de Telefone</h2>
+
+  <a href="tel:+5598999999999">Ligar: (98) 99999-9999</a>
+
+
+  <!-- ==============================
+    LINK DE DOWNLOAD
+    - O atributo download faz o navegador baixar o arquivo
+      em vez de abrir
+    - Pode receber um valor para definir o nome do arquivo salvo
+  ============================== -->
+  <h2>Link de Download</h2>
+
+  <a href="arquivos/apostila.pdf" download>Baixar apostila</a>
+  <br />
+  <a href="arquivos/apostila.pdf" download="apostila-web-i.pdf">
+    Baixar apostila com nome definido
+  </a>
+
+
+  <!-- ==============================
+    IMAGEM COMO LINK
+    - Basta envolver o <img> com o <a>
+    - A imagem inteira vira clicável
+    - O alt da imagem descreve o destino do link
+  ============================== -->
+  <h2>Imagem como Link</h2>
+
+  <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+    <img
+      src="https://via.placeholder.com/220x70?text=Ir+para+o+GitHub"
+      alt="Botão que leva ao GitHub"
+      width="220"
+      height="70"
+    />
+  </a>
+
+
+  <!-- ==============================
+    RESUMO
+  ============================== -->
+  <h2>Resumo</h2>
+  <pre><code>
+Link externo (mesma aba):
+  &lt;a href="https://site.com"&gt;texto&lt;/a&gt;
+
+Link externo (nova aba):
+  &lt;a href="https://site.com" target="_blank"
+     rel="noopener noreferrer"&gt;texto&lt;/a&gt;
+
+Link interno:
+  &lt;a href="outra-pagina.html"&gt;texto&lt;/a&gt;
+
+Link âncora:
+  &lt;a href="#id-do-elemento"&gt;texto&lt;/a&gt;
+
+Link e-mail:
+  &lt;a href="mailto:email@exemplo.com"&gt;texto&lt;/a&gt;
+
+Link telefone:
+  &lt;a href="tel:+5598999999999"&gt;texto&lt;/a&gt;
+
+Link download:
+  &lt;a href="arquivo.pdf" download&gt;texto&lt;/a&gt;
+
+Imagem clicável:
+  &lt;a href="url"&gt;
+    &lt;img src="imagem.jpg" alt="descrição" /&gt;
+  &lt;/a&gt;
+  </code></pre>
+
+
+  <hr />
+  <footer id="rodape">
+    <p><small>Aula 05 — Links | Web I</small></p>
+  </footer>
+
+</body>
+</html>
