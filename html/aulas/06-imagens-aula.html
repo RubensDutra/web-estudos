@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--
+  AULA 06 — Imagens
+  ==================
+  A tag <img> insere imagens na página.
+  É uma tag auto-fechada — não tem </img>.
+  
+  Formato básico:
+      <img src="caminho-da-imagem" alt="descrição" />
+  
+  src e alt são OBRIGATÓRIOS.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 06 — Imagens</title>
+</head>
+<body>
+
+  <h1>Imagens em HTML</h1>
+
+
+  <!-- ==============================
+    ATRIBUTOS OBRIGATÓRIOS
+    src → caminho ou URL da imagem
+    alt → texto alternativo (acessibilidade)
+  ============================== -->
+  <h2>Atributos Obrigatórios: src e alt</h2>
+
+  <img
+    src="https://via.placeholder.com/300x150?text=src+e+alt"
+    alt="Imagem de exemplo mostrando src e alt"
+  />
+
+  <p>
+    O <strong>alt</strong> é exibido quando a imagem não carrega
+    e é lido por leitores de tela para pessoas com deficiência visual.
+    Sempre descreva o conteúdo real da imagem.
+  </p>
+
+  <!-- Imagem com src inválido — o alt aparece no lugar -->
+  <img src="imagem-que-nao-existe.jpg" alt="Foto de um pôr do sol na praia" />
+
+
+  <!-- ==============================
+    DIMENSÕES: width e height
+    - Definem largura e altura em pixels
+    - Recomendado sempre definir para evitar
+      "pulos" de layout enquanto a imagem carrega
+  ============================== -->
+  <h2>Dimensões: width e height</h2>
+
+  <img
+    src="https://via.placeholder.com/400x200?text=400x200"
+    alt="Imagem larga de 400 por 200 pixels"
+    width="400"
+    height="200"
+  />
+
+  <br /><br />
+
+  <img
+    src="https://via.placeholder.com/150x150?text=150x150"
+    alt="Imagem quadrada de 150 por 150 pixels"
+    width="150"
+    height="150"
+  />
+
+
+  <!-- ==============================
+    CAMINHOS DE IMAGEM
+    - URL externa: http:// ou https://
+    - Arquivo local: caminho relativo ao arquivo HTML
+  ============================== -->
+  <h2>Caminhos de Imagem</h2>
+
+  <pre><code>
+URL externa:
+  &lt;img src="https://site.com/foto.jpg" alt="..." /&gt;
+
+Mesma pasta do HTML:
+  &lt;img src="foto.jpg" alt="..." /&gt;
+
+Subpasta:
+  &lt;img src="imagens/foto.jpg" alt="..." /&gt;
+
+Pasta acima:
+  &lt;img src="../foto.jpg" alt="..." /&gt;
+
+Dois níveis acima:
+  &lt;img src="../../foto.jpg" alt="..." /&gt;
+  </code></pre>
+
+
+  <!-- ==============================
+    LAZY LOADING
+    - loading="lazy" → a imagem só é baixada
+      quando o usuário rolar até ela
+    - Melhora a performance da página
+    - loading="eager" → carrega imediatamente (padrão)
+  ============================== -->
+  <h2>Lazy Loading</h2>
+
+  <img
+    src="https://via.placeholder.com/300x150?text=Lazy+Loading"
+    alt="Imagem com carregamento lazy"
+    width="300"
+    height="150"
+    loading="lazy"
+  />
+
+  <p>Use <code>loading="lazy"</code> em imagens que ficam abaixo da dobra da página.</p>
+
+
+  <!-- ==============================
+    BOAS PRÁTICAS DO ALT
+    - Imagem com conteúdo: descreva o que ela mostra
+    - Imagem decorativa: use alt="" (vazio)
+    - Nunca use alt="imagem" ou alt="foto" — não ajuda ninguém
+  ============================== -->
+  <h2>Boas Práticas do Alt</h2>
+
+  <!-- Alt descritivo e útil -->
+  <img
+    src="https://via.placeholder.com/250x120?text=Cachorro"
+    alt="Cachorro golden retriever deitado em um tapete azul"
+    width="250"
+    height="120"
+  />
+  <p><strong>✅ Correto:</strong> alt descreve o conteúdo real da imagem.</p>
+
+  <br />
+
+  <!-- Alt vazio para imagem decorativa -->
+  <img
+    src="https://via.placeholder.com/250x10?text=linha+decorativa"
+    alt=""
+    width="250"
+    height="10"
+  />
+  <p><strong>✅ Correto:</strong> alt="" para imagem puramente decorativa.</p>
+
+  <br />
+
+  <!-- Exemplo de alt ruim (apenas para estudo) -->
+  <p><strong>❌ Evite:</strong> <code>alt="imagem"</code>, <code>alt="foto"</code> ou sem alt.</p>
+
+
+  <!-- ==============================
+    TITLE NA IMAGEM
+    - Exibe um tooltip ao passar o mouse
+    - Não substitui o alt
+  ============================== -->
+  <h2>Atributo title</h2>
+
+  <img
+    src="https://via.placeholder.com/200x100?text=Passe+o+mouse"
+    alt="Imagem demonstrando o atributo title"
+    width="200"
+    height="100"
+    title="Este texto aparece ao passar o mouse sobre a imagem"
+  />
+
+
+  <!-- ==============================
+    RESUMO
+  ============================== -->
+  <h2>Resumo</h2>
+  <pre><code>
+Imagem básica (obrigatório):
+  &lt;img src="url" alt="descrição" /&gt;
+
+Com dimensões:
+  &lt;img src="url" alt="descrição" width="300" height="150" /&gt;
+
+Com lazy loading:
+  &lt;img src="url" alt="descrição" loading="lazy" /&gt;
+
+Com tooltip:
+  &lt;img src="url" alt="descrição" title="dica ao passar o mouse" /&gt;
+
+Decorativa (alt vazio):
+  &lt;img src="url" alt="" /&gt;
+  </code></pre>
+
+  <hr />
+  <footer>
+    <p><small>Aula 06 — Imagens | Web I</small></p>
+  </footer>
+
+</body>
+</html>
