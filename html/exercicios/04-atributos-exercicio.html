@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--
+  EXERCÍCIO 04 — Atributos HTML
+  ================================
+  Instruções:
+  - Complete o código onde indicado com: <!-- COMPLETE AQUI -->
+  - Abra no navegador após cada exercício para verificar o resultado
+  - Use o Inspecionar Elemento (F12) para ver os atributos no DOM
+  - Consulte a aula 04 se tiver dúvidas
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercício 04 — Atributos</title>
+</head>
+<body>
+
+  <h1>Exercício 04 — Atributos HTML</h1>
+  <hr />
+
+
+  <!-- ============================================================
+    EXERCÍCIO 1 — id e âncora
+    Tarefa:
+    1. Adicione id="topo" no <h1> acima
+    2. Crie 3 seções com id único cada: "secao-a", "secao-b", "secao-c"
+    3. Adicione um link "Voltar ao topo" no final de cada seção
+       que leve de volta ao h1 com id="topo"
+    
+    Dica: um link interno usa href="#id-do-elemento"
+  ============================================================ -->
+
+  <h2>Exercício 1 — id e Âncoras Internas</h2>
+
+  <!-- COMPLETE AQUI: seção A com id, conteúdo e link "Voltar ao topo" -->
+  <h3>Seção A</h3>
+  <p>Conteúdo da seção A.</p>
+
+
+  <!-- COMPLETE AQUI: seção B -->
+  <h3>Seção B</h3>
+  <p>Conteúdo da seção B.</p>
+
+
+  <!-- COMPLETE AQUI: seção C -->
+  <h3>Seção C</h3>
+  <p>Conteúdo da seção C.</p>
+
+  <hr />
+
+
+  <!-- ============================================================
+    EXERCÍCIO 2 — class
+    Tarefa: Os parágrafos abaixo precisam de classes.
+    1. Adicione class="aviso" nos parágrafos de aviso
+    2. Adicione class="dica" nos parágrafos de dica
+    3. No último parágrafo, adicione DUAS classes: "aviso" e "urgente"
+    
+    (Não se preocupe com visual agora — o CSS vem depois.
+     O exercício é praticar a sintaxe correta das classes.)
+  ============================================================ -->
+
+  <h2>Exercício 2 — Classes</h2>
+
+  <!-- COMPLETE AQUI: adicione class="aviso" -->
+  <p>⚠️ Atenção: verifique seus dados antes de continuar.</p>
+
+  <!-- COMPLETE AQUI: adicione class="dica" -->
+  <p>💡 Dica: use o atalho Ctrl+S para salvar o arquivo.</p>
+
+  <!-- COMPLETE AQUI: adicione class="dica" -->
+  <p>💡 Dica: o F12 abre as ferramentas do desenvolvedor.</p>
+
+  <!-- COMPLETE AQUI: adicione class="aviso" -->
+  <p>⚠️ Atenção: esta ação não pode ser desfeita.</p>
+
+  <!-- COMPLETE AQUI: adicione as classes "aviso" E "urgente" -->
+  <p>🚨 URGENTE: faça backup dos seus dados agora!</p>
+
+  <hr />
+
+
+  <!-- ============================================================
+    EXERCÍCIO 3 — style inline
+    Tarefa: Aplique estilos inline nos elementos abaixo:
+    1. Parágrafo 1: texto vermelho, tamanho 18px
+    2. Parágrafo 2: fundo amarelo, texto azul escuro (#003366)
+    3. Parágrafo 3: texto centralizado, negrito, tamanho 22px
+    4. Link abaixo: sem sublinhado (text-decoration: none) e cor verde
+  ============================================================ -->
+
+  <h2>Exercício 3 — Style Inline</h2>
+
+  <!-- COMPLETE AQUI: texto vermelho, 18px -->
+  <p>Este texto deve ficar vermelho com tamanho 18px.</p>
+
+  <!-- COMPLETE AQUI: fundo amarelo, texto azul escuro -->
+  <p>Este texto deve ter fundo amarelo e cor azul escura.</p>
+
+  <!-- COMPLETE AQUI: centralizado, negrito, 22px -->
+  <p>Este texto deve ficar centralizado, em negrito e com 22px.</p>
+
+  <!-- COMPLETE AQUI: sem sublinhado, cor verde -->
+  <a href="#">Link sem sublinhado e na cor verde</a>
+
+  <hr />
+
+
+  <!-- ============================================================
+    EXERCÍCIO 4 — title (tooltip)
+    Tarefa: Adicione o atributo title nos elementos abaixo
+    com uma descrição útil. Passe o mouse para testar.
+    1. Na imagem: descreva o que a imagem mostra
+    2. No link: avise que abre em nova aba
+    3. No botão: explique o que o botão faz
+    4. Na abreviação: explique o significado completo
+  ============================================================ -->
+
+  <h2>Exercício 4 — Tooltip com title</h2>
+
+  <!-- COMPLETE AQUI: adicione title descritivo -->
+  <img src="https://via.placeholder.com/150x80?text=Foto" alt="Foto exemplo" width="150" />
+
+  <br /><br />
+
+  <!-- COMPLETE AQUI: adicione title avisando que abre em nova aba -->
+  <a href="https://github.com" target="_blank">GitHub</a>
+
+  <br /><br />
+
+  <!-- COMPLETE AQUI: adicione title explicando a ação -->
+  <button>Enviar formulário</button>
+
+  <br /><br />
+
+  <!-- COMPLETE AQUI: adicione title com o significado completo -->
+  <p>Aprendi <abbr>HTML</abbr> e <abbr>CSS</abbr> este semestre.</p>
+
+  <hr />
+
+
+  <!-- ============================================================
+    EXERCÍCIO 5 — Atributos booleanos
+    Tarefa: Adicione os atributos booleanos corretos:
+    1. Primeiro input: deve estar desabilitado (disabled)
+    2. Segundo input: deve ser somente leitura (readonly)
+    3. Terceiro input: deve ser obrigatório (required)
+    4. O checkbox: deve já vir marcado (checked)
+    5. O textarea: deve já vir com o foco ativo (autofocus)
+  ============================================================ -->
+
+  <h2>Exercício 5 — Atributos Booleanos</h2>
+
+  <p>Campo desabilitado:</p>
+  <!-- COMPLETE AQUI: adicione disabled -->
+  <input type="text" value="Não pode editar" />
+
+  <p>Campo somente leitura:</p>
+  <!-- COMPLETE AQUI: adicione readonly -->
+  <input type="text" value="Pode selecionar mas não editar" />
+
+  <p>Campo obrigatório (tente enviar sem preencher):</p>
+  <!-- COMPLETE AQUI: adicione required -->
+  <input type="text" placeholder="Campo obrigatório" />
+
+  <p>Checkbox pré-marcado:</p>
+  <!-- COMPLETE AQUI: adicione checked -->
+  <input type="checkbox" /> Aceito os termos
+
+  <p>Textarea com foco automático:</p>
+  <!-- COMPLETE AQUI: adicione autofocus -->
+  <textarea rows="3" cols="40" placeholder="Este campo recebe foco ao carregar a página"></textarea>
+
+  <hr />
+
+
+  <!-- ============================================================
+    EXERCÍCIO 6 — data-* personalizados
+    Tarefa: Adicione atributos data-* nos elementos abaixo:
+    1. No card de produto: data-id, data-categoria, data-preco
+    2. Nos botões: data-acao com valores "adicionar", "remover", "editar"
+    3. Depois abra o F12 → Elements e verifique os atributos
+  ============================================================ -->
+
+  <h2>Exercício 6 — Atributos data-*</h2>
+
+  <!-- COMPLETE AQUI: adicione data-id="001", data-categoria="eletronico", data-preco="1299.90" -->
+  <div>
+    <h3>Notebook Pro</h3>
+    <p>O melhor notebook para desenvolvedores.</p>
+  </div>
+
+  <br />
+
+  <!-- COMPLETE AQUI: adicione data-acao="adicionar" -->
+  <button>Adicionar ao carrinho</button>
+
+  <!-- COMPLETE AQUI: adicione data-acao="remover" -->
+  <button>Remover</button>
+
+  <!-- COMPLETE AQUI: adicione data-acao="editar" -->
+  <button>Editar</button>
+
+  <hr />
+
+
+  <!-- ============================================================
+    EXERCÍCIO 7 — Desafio: Cartão de perfil
+    Tarefa: Crie um cartão de perfil usando TODOS os atributos
+    aprendidos. Deve conter:
+    - Um <div> com id="cartao-perfil" e data-usuario com seu nome
+    - Uma <img> com src, alt, width, height, title e loading="lazy"
+    - Um <h2> com seu nome e class="nome-perfil"
+    - Um <p> com sua bio e class="bio" e style com cor de texto
+    - Um <a> para seu GitHub com target="_blank", rel="noopener noreferrer" e title
+    - Um <p hidden> com uma mensagem secreta (escondida!)
+  ============================================================ -->
+
+  <h2>Exercício 7 — Desafio: Cartão de Perfil</h2>
+
+  <!-- COMPLETE AQUI: monte o cartão de perfil completo -->
+
+
+</body>
+</html>
