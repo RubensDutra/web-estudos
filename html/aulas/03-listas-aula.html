@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+  AULA 03 — Listas em HTML
+  =========================
+  HTML tem três tipos de lista:
+  1. Lista não ordenada  <ul> — marcadores (bolinhas, quadrados)
+  2. Lista ordenada      <ol> — numeração (1, 2, 3 ou a, b, c)
+  3. Lista de definição  <dl> — termos e suas descrições
+  
+  Em qualquer lista, cada item é marcado com <li>.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 03 — Listas</title>
+</head>
+<body>
+
+  <h1>Listas em HTML</h1>
+
+
+  <!-- ==============================
+    LISTA NÃO ORDENADA: <ul>
+    - "ul" = Unordered List
+    - Cada item é um <li> (List Item)
+    - O navegador exibe marcadores (• por padrão)
+    - Use quando a ORDEM dos itens NÃO importa
+  ============================== -->
+  <h2>Lista Não Ordenada — &lt;ul&gt;</h2>
+
+  <!-- Exemplo: lista de ingredientes (ordem não importa) -->
+  <ul>
+    <li>Farinha de trigo</li>
+    <li>Açúcar</li>
+    <li>Ovos</li>
+    <li>Manteiga</li>
+    <li>Leite</li>
+  </ul>
+
+  <!--
+    O atributo "type" no <ul> pode mudar o marcador (não recomendado —
+    use CSS em vez disso):
+    type="disc"   → bolinha preenchida (padrão)
+    type="circle" → bolinha vazia
+    type="square" → quadrado
+  -->
+  <p>Marcador quadrado (type="square" — prefira usar CSS):</p>
+  <ul type="square">
+    <li>Item com quadrado</li>
+    <li>Outro item</li>
+  </ul>
+
+
+  <!-- ==============================
+    LISTA ORDENADA: <ol>
+    - "ol" = Ordered List
+    - Cada item é um <li>
+    - O navegador exibe números (1, 2, 3...) por padrão
+    - Use quando a ORDEM dos itens IMPORTA
+    
+    Atributos do <ol>:
+    - type="1"  → números (padrão)
+    - type="A"  → letras maiúsculas
+    - type="a"  → letras minúsculas
+    - type="I"  → algarismos romanos maiúsculos
+    - type="i"  → algarismos romanos minúsculos
+    - start="5" → começa a contagem no número 5
+    - reversed  → conta de trás pra frente
+  ============================== -->
+  <h2>Lista Ordenada — &lt;ol&gt;</h2>
+
+  <!-- Exemplo: passos de uma receita (ordem importa!) -->
+  <p>Modo de preparo:</p>
+  <ol>
+    <li>Pré-aqueça o forno a 180°C</li>
+    <li>Misture os ingredientes secos</li>
+    <li>Adicione os ovos e a manteiga</li>
+    <li>Despeje na forma untada</li>
+    <li>Asse por 35 minutos</li>
+  </ol>
+
+  <!-- Lista com letras maiúsculas -->
+  <p>Lista com letras (type="A"):</p>
+  <ol type="A">
+    <li>Opção A</li>
+    <li>Opção B</li>
+    <li>Opção C</li>
+  </ol>
+
+  <!-- Lista começando em número diferente -->
+  <p>Lista começando no 5 (start="5"):</p>
+  <ol start="5">
+    <li>Quinto item</li>
+    <li>Sexto item</li>
+    <li>Sétimo item</li>
+  </ol>
+
+
+  <!-- ==============================
+    LISTAS ANINHADAS (nested lists)
+    - Listas dentro de listas
+    - A lista filha vai DENTRO do <li> pai
+    - Pode misturar <ul> e <ol>
+  ============================== -->
+  <h2>Listas Aninhadas</h2>
+
+  <ul>
+    <li>Frutas
+      <!-- Lista <ul> dentro de um <li> -->
+      <ul>
+        <li>Maçã</li>
+        <li>Banana</li>
+        <li>Manga</li>
+      </ul>
+    </li>
+    <li>Verduras
+      <ul>
+        <li>Alface</li>
+        <li>Espinafre</li>
+      </ul>
+    </li>
+    <li>Legumes
+      <!-- Aqui misturamos com <ol> -->
+      <ol>
+        <li>Cenoura (mais consumida)</li>
+        <li>Batata</li>
+        <li>Chuchu</li>
+      </ol>
+    </li>
+  </ul>
+
+
+  <!-- ==============================
+    LISTA DE DEFINIÇÃO: <dl>
+    - "dl" = Definition List
+    - <dt> = Definition Term (o termo a ser definido)
+    - <dd> = Definition Description (a descrição/explicação)
+    - Ótima para glossários, FAQs, dicionários
+  ============================== -->
+  <h2>Lista de Definição — &lt;dl&gt;</h2>
+
+  <dl>
+    <dt>HTML</dt>
+    <dd>HyperText Markup Language — linguagem de marcação para criar páginas web.</dd>
+
+    <dt>CSS</dt>
+    <dd>Cascading Style Sheets — linguagem para estilizar páginas HTML.</dd>
+
+    <dt>JavaScript</dt>
+    <dd>Linguagem de programação que adiciona interatividade às páginas web.</dd>
+  </dl>
+
+
+  <!-- ==============================
+    RESUMO
+  ============================== -->
+  <h2>Resumo</h2>
+  <pre><code>
+Lista não ordenada (ordem não importa):
+  &lt;ul&gt;
+    &lt;li&gt;Item&lt;/li&gt;
+  &lt;/ul&gt;
+
+Lista ordenada (ordem importa):
+  &lt;ol&gt;
+    &lt;li&gt;Passo 1&lt;/li&gt;
+  &lt;/ol&gt;
+
+Lista de definição (glossário):
+  &lt;dl&gt;
+    &lt;dt&gt;Termo&lt;/dt&gt;
+    &lt;dd&gt;Definição do termo.&lt;/dd&gt;
+  &lt;/dl&gt;
+
+Lista aninhada (lista dentro de lista):
+  &lt;ul&gt;
+    &lt;li&gt;Item pai
+      &lt;ul&gt;
+        &lt;li&gt;Item filho&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  </code></pre>
+
+</body>
+</html>
