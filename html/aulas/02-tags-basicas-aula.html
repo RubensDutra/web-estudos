@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+  AULA 02 — Tags Básicas do HTML
+  ================================
+  Nesta aula você aprende as tags mais usadas no dia a dia:
+  títulos, parágrafos, links, imagens, negrito, itálico,
+  quebra de linha, linha horizontal e comentários.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 02 — Tags Básicas</title>
+</head>
+<body>
+
+  <!-- ==============================
+    TÍTULOS: <h1> até <h6>
+    - <h1> é o título principal da página (use apenas 1 por página)
+    - <h2> são subtítulos de seção
+    - <h3> a <h6> são subdivisões menores
+    - O tamanho visual diminui do h1 ao h6
+  ============================== -->
+  <h1>Título Principal (h1)</h1>
+  <h2>Subtítulo de Seção (h2)</h2>
+  <h3>Subtítulo Menor (h3)</h3>
+  <h4>h4 — menos comum</h4>
+  <h5>h5 — raramente usado</h5>
+  <h6>h6 — o menor nível</h6>
+
+
+  <!-- ==============================
+    PARÁGRAFO: <p>
+    - Cria um bloco de texto com espaçamento automático
+    - O navegador ignora quebras de linha dentro do HTML
+    - Para quebrar linha visualmente, use <br />
+  ============================== -->
+  <h2>Parágrafos</h2>
+
+  <p>
+    Este é um parágrafo normal. O navegador adiciona automaticamente
+    um espaço antes e depois de cada parágrafo.
+  </p>
+
+  <p>
+    Este é o segundo parágrafo. Mesmo que você quebre
+    a linha aqui no código,
+    o navegador junta tudo em uma linha só.
+  </p>
+
+  <!-- <br /> quebra a linha SEM criar um novo parágrafo -->
+  <p>
+    Esta linha termina aqui.<br />
+    Esta linha começa logo abaixo, sem espaçamento extra.
+  </p>
+
+
+  <!-- ==============================
+    FORMATAÇÃO DE TEXTO
+    - <strong> = negrito (semanticamente "importante")
+    - <em> = itálico (semanticamente "ênfase")
+    - <u> = sublinhado (evite — confunde com links)
+    - <mark> = destaque amarelo
+    - <small> = texto menor
+    - <del> = texto riscado (deletado)
+    - <sup> = sobrescrito  ex: x²
+    - <sub> = subscrito    ex: H₂O
+  ============================== -->
+  <h2>Formatação de Texto</h2>
+
+  <p><strong>Texto em negrito</strong> — use para informações importantes.</p>
+  <p><em>Texto em itálico</em> — use para ênfase ou termos técnicos.</p>
+  <p><u>Texto sublinhado</u> — evite, pois parece link.</p>
+  <p><mark>Texto destacado</mark> — ótimo para chamar atenção.</p>
+  <p><small>Texto pequeno</small> — para rodapés e notas.</p>
+  <p><del>Texto riscado</del> — indica algo removido ou desatualizado.</p>
+  <p>Fórmula: H<sub>2</sub>O &nbsp;&nbsp; Potência: x<sup>2</sup></p>
+
+
+  <!-- ==============================
+    LINKS: <a>
+    - href = URL de destino
+    - target="_blank" = abre em nova aba
+    - Links para e-mail: href="mailto:email@exemplo.com"
+    - Links internos: href="#id-do-elemento"
+  ============================== -->
+  <h2>Links</h2>
+
+  <!-- Link externo -->
+  <p>
+    <a href="https://developer.mozilla.org/pt-BR/" target="_blank">
+      MDN Web Docs — a melhor referência de HTML (abre em nova aba)
+    </a>
+  </p>
+
+  <!-- Link de e-mail -->
+  <p>
+    <a href="mailto:contato@exemplo.com">Enviar e-mail</a>
+  </p>
+
+  <!-- Link interno (âncora) — leva ao elemento com id="titulos" -->
+  <p>
+    <a href="#titulos-ancora">Voltar ao topo desta página</a>
+  </p>
+
+  <!-- Marcador de âncora — destino do link interno acima -->
+  <h1 id="titulos-ancora" style="display:none;">Âncora de topo</h1>
+
+
+  <!-- ==============================
+    IMAGENS: <img />
+    - src = caminho ou URL da imagem
+    - alt = texto alternativo (OBRIGATÓRIO para acessibilidade)
+    - width / height = dimensões em pixels
+    - É uma tag auto-fechada (não tem </img>)
+  ============================== -->
+  <h2>Imagens</h2>
+
+  <!-- Imagem de URL externa -->
+  <img
+    src="https://via.placeholder.com/300x150?text=Imagem+de+Exemplo"
+    alt="Imagem de exemplo com fundo cinza e texto"
+    width="300"
+    height="150"
+  />
+
+  <p>
+    O atributo <strong>alt</strong> é exibido quando a imagem não carrega
+    e é lido por leitores de tela para pessoas com deficiência visual.
+  </p>
+
+
+  <!-- ==============================
+    LINHA HORIZONTAL: <hr />
+    - Cria uma linha divisória visual
+    - Tag auto-fechada
+  ============================== -->
+  <h2>Linha Horizontal</h2>
+  <p>O conteúdo acima fica separado do conteúdo abaixo:</p>
+  <hr />
+  <p>Conteúdo após a linha.</p>
+
+
+  <!-- ==============================
+    RESUMO DAS TAGS VISTAS
+  ============================== -->
+  <h2>Resumo</h2>
+  <pre><code>
+Títulos:      &lt;h1&gt; até &lt;h6&gt;
+Parágrafo:    &lt;p&gt;
+Quebra linha: &lt;br /&gt;
+Negrito:      &lt;strong&gt;
+Itálico:      &lt;em&gt;
+Destaque:     &lt;mark&gt;
+Link:         &lt;a href="url"&gt;
+Imagem:       &lt;img src="url" alt="descrição" /&gt;
+Linha:        &lt;hr /&gt;
+  </code></pre>
+
+</body>
+</html>
