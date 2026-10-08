@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 09 - Seletores CSS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #27ae60; padding-bottom: 8px; }
+        h2 { color: #27ae60; margin-top: 30px; }
+        .destaque {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        #rodape { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+        pre { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 0.9em; }
+        code { background: #ecf0f1; color: #c0392b; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+
+        /* ===== DEMOS DOS SELETORES ===== */
+
+        /* Seletor de tag */
+        .demo-tag p { color: #8e44ad; }
+
+        /* Seletor de classe */
+        .cor-verde { color: #27ae60; font-weight: bold; }
+
+        /* Seletor de ID */
+        #unico { background: #fef9e7; border: 2px solid #f39c12; padding: 8px; border-radius: 4px; }
+
+        /* Seletor universal */
+        .demo-universal * { border: 1px dashed #3498db; margin: 4px; padding: 4px; }
+
+        /* Seletor de descendente */
+        .container-desc p { color: #e74c3c; }
+
+        /* Seletor filho direto */
+        .container-filho > p { color: #2980b9; font-weight: bold; }
+
+        /* Seletor de atributo */
+        input[type="text"] { border: 2px solid #27ae60; padding: 5px; border-radius: 4px; }
+        input[type="email"] { border: 2px solid #e74c3c; padding: 5px; border-radius: 4px; }
+
+        /* Pseudo-classe */
+        .lista-hover li:hover { background: #d5f5e3; cursor: pointer; }
+        .lista-hover li:first-child { font-weight: bold; color: #27ae60; }
+        .lista-hover li:last-child { font-style: italic; color: #888; }
+
+        /* Pseudo-elemento */
+        .demo-pseudo p::first-letter { font-size: 2em; color: #e74c3c; font-weight: bold; }
+        .demo-pseudo p::before { content: "▶ "; color: #3498db; }
+
+        /* Agrupamento */
+        h3, h4 { color: #8e44ad; }
+
+        /* Tabela comparativa */
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #27ae60; color: white; }
+        tr:nth-child(even) { background: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h1>Aula 09 — Seletores CSS</h1>
+
+    <p>
+        Os <strong>seletores</strong> definem <em>quais elementos HTML</em> receberão um estilo.
+        Dominar os seletores é fundamental para escrever CSS eficiente e organizado.
+    </p>
+
+    <!-- =====================================================
+        1. SELETOR DE TAG (TIPO)
+    ===================================================== -->
+    <h2>1. Seletor de Tag (Tipo)</h2>
+    <p>Seleciona todos os elementos de um determinado tipo HTML.</p>
+    <pre>
+/* Aplica a TODOS os parágrafos */
+p {
+    color: purple;
+}
+
+/* Aplica a TODOS os h2 */
+h2 {
+    color: green;
+}</pre>
+
+    <div class="destaque">
+        Uso: estilizar elementos de forma global no documento.
+    </div>
+
+    <div class="demo-tag">
+        <p>Parágrafo 1 — seletor de tag aplicado (cor roxa)</p>
+        <p>Parágrafo 2 — mesmo seletor, mesmo estilo</p>
+    </div>
+
+    <!-- =====================================================
+        2. SELETOR DE CLASSE
+    ===================================================== -->
+    <h2>2. Seletor de Classe (<code>.classe</code>)</h2>
+    <p>Seleciona todos os elementos que possuem um determinado <code>class</code>.</p>
+    <pre>
+/* No CSS */
+.cor-verde {
+    color: green;
+    font-weight: bold;
+}
+
+&lt;!-- No HTML --&gt;
+&lt;p class="cor-verde"&gt;Verde e negrito&lt;/p&gt;
+&lt;span class="cor-verde"&gt;Também verde!&lt;/span&gt;</pre>
+
+    <div class="destaque">
+        ✅ <strong>Reutilizável:</strong> a mesma classe pode ser aplicada em vários elementos.
+        <br>✅ Um elemento pode ter <strong>múltiplas classes</strong>: <code>class="cor-verde destaque"</code>
+    </div>
+
+    <p class="cor-verde">Este parágrafo tem class="cor-verde"</p>
+    <span class="cor-verde">Este span também tem class="cor-verde"</span>
+
+    <!-- =====================================================
+        3. SELETOR DE ID
+    ===================================================== -->
+    <h2>3. Seletor de ID (<code>#id</code>)</h2>
+    <p>Seleciona o elemento que possui um determinado <code>id</code>. O ID deve ser <strong>único</strong> na página.</p>
+    <pre>
+/* No CSS */
+#unico {
+    background: yellow;
+    border: 2px solid orange;
+}
+
+&lt;!-- No HTML --&gt;
+&lt;p id="unico"&gt;Elemento único&lt;/p&gt;</pre>
+
+    <div class="destaque">
+        ⚠️ Use IDs para identificar elementos únicos (cabeçalho, rodapé, menu).
+        Para estilização reutilizável, prefira classes.
+    </div>
+
+    <p id="unico">Este parágrafo tem id="unico" — fundo amarelo e borda laranja</p>
+
+    <!-- =====================================================
+        4. SELETOR UNIVERSAL
+    ===================================================== -->
+    <h2>4. Seletor Universal (<code>*</code>)</h2>
+    <p>Seleciona <strong>todos</strong> os elementos do documento (ou de um contexto).</p>
+    <pre>
+/* Aplica a tudo */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Aplica a tudo dentro de .container */
+.container * {
+    border: 1px dashed blue;
+}</pre>
+
+    <div class="demo-universal">
+        <p>Dentro do container</p>
+        <span>Span aqui</span>
+        <strong>Negrito aqui</strong>
+    </div>
+
+    <!-- =====================================================
+        5. SELETORES DE COMBINAÇÃO
+    ===================================================== -->
+    <h2>5. Seletores de Combinação</h2>
+
+    <h3>5.1 Descendente (espaço)</h3>
+    <p>Seleciona elementos dentro de outro, em qualquer nível.</p>
+    <pre>.container p { color: red; }  /* qualquer &lt;p&gt; dentro de .container */</pre>
+
+    <div class="container-desc">
+        <p>Parágrafo direto — cor vermelha</p>
+        <div>
+            <p>Parágrafo aninhado — também vermelho (é descendente)</p>
+        </div>
+    </div>
+
+    <h3>5.2 Filho Direto (<code>&gt;</code>)</h3>
+    <p>Seleciona apenas filhos <strong>diretos</strong>, não os aninhados.</p>
+    <pre>.container > p { color: blue; }  /* apenas &lt;p&gt; filhos diretos */</pre>
+
+    <div class="container-filho">
+        <p>Filho direto — azul e negrito ✅</p>
+        <div>
+            <p>Neto (não filho direto) — NÃO recebe o estilo ❌</p>
+        </div>
+    </div>
+
+    <!-- =====================================================
+        6. SELETOR DE ATRIBUTO
+    ===================================================== -->
+    <h2>6. Seletor de Atributo</h2>
+    <p>Seleciona elementos com base em seus atributos HTML.</p>
+    <pre>
+input[type="text"]  { border: 2px solid green; }
+input[type="email"] { border: 2px solid red; }
+a[href]             { color: purple; }          /* qualquer link com href */
+a[href^="https"]    { color: green; }           /* links que começam com https */</pre>
+
+    <p>
+        <label>Texto: <input type="text" placeholder="borda verde"></label>
+        &nbsp;&nbsp;
+        <label>E-mail: <input type="email" placeholder="borda vermelha"></label>
+    </p>
+
+    <!-- =====================================================
+        7. PSEUDO-CLASSES
+    ===================================================== -->
+    <h2>7. Pseudo-classes (<code>:</code>)</h2>
+    <p>Selecionam elementos em um <strong>estado específico</strong>.</p>
+    <pre>
+a:hover      { color: red; }          /* mouse sobre o link */
+li:first-child { font-weight: bold; } /* primeiro item da lista */
+li:last-child  { color: gray; }       /* último item */
+li:nth-child(2){ color: blue; }       /* segundo item */
+input:focus    { outline: 2px solid blue; } /* input em foco */</pre>
+
+    <div class="destaque">Passe o mouse sobre os itens da lista abaixo:</div>
+
+    <ul class="lista-hover">
+        <li>Primeiro item (negrito verde)</li>
+        <li>Segundo item</li>
+        <li>Terceiro item</li>
+        <li>Quarto item (itálico cinza)</li>
+    </ul>
+
+    <!-- =====================================================
+        8. PSEUDO-ELEMENTOS
+    ===================================================== -->
+    <h2>8. Pseudo-elementos (<code>::</code>)</h2>
+    <p>Estilizam <strong>partes</strong> de um elemento.</p>
+    <pre>
+p::first-letter { font-size: 2em; color: red; }  /* primeira letra */
+p::first-line   { font-weight: bold; }            /* primeira linha */
+p::before       { content: "▶ "; color: blue; }  /* conteúdo antes */
+p::after        { content: " ✓"; color: green; } /* conteúdo depois */</pre>
+
+    <div class="demo-pseudo">
+        <p>Parágrafo com pseudo-elementos: a primeira letra é grande e vermelha, e antes do texto há uma seta azul.</p>
+    </div>
+
+    <!-- =====================================================
+        9. AGRUPAMENTO
+    ===================================================== -->
+    <h2>9. Agrupamento de Seletores</h2>
+    <p>Aplique o mesmo estilo a vários seletores separando-os por vírgula.</p>
+    <pre>
+/* Sem agrupamento */
+h1 { color: purple; }
+h2 { color: purple; }
+h3 { color: purple; }
+
+/* Com agrupamento */
+h1, h2, h3 { color: purple; }</pre>
+
+    <h3>h3 com agrupamento — cor roxa</h3>
+    <h4>h4 com agrupamento — cor roxa</h4>
+
+    <!-- =====================================================
+        TABELA RESUMO
+    ===================================================== -->
+    <h2>Resumo dos Seletores</h2>
+
+    <table>
+        <tr>
+            <th>Seletor</th>
+            <th>Sintaxe</th>
+            <th>O que seleciona</th>
+        </tr>
+        <tr><td>Tag</td><td><code>p { }</code></td><td>Todos os &lt;p&gt;</td></tr>
+        <tr><td>Classe</td><td><code>.nome { }</code></td><td>Todos com class="nome"</td></tr>
+        <tr><td>ID</td><td><code>#nome { }</code></td><td>O elemento com id="nome"</td></tr>
+        <tr><td>Universal</td><td><code>* { }</code></td><td>Todos os elementos</td></tr>
+        <tr><td>Descendente</td><td><code>.pai p { }</code></td><td>&lt;p&gt; dentro de .pai (qualquer nível)</td></tr>
+        <tr><td>Filho direto</td><td><code>.pai > p { }</code></td><td>&lt;p&gt; filho direto de .pai</td></tr>
+        <tr><td>Atributo</td><td><code>input[type="text"]</code></td><td>inputs do tipo texto</td></tr>
+        <tr><td>Pseudo-classe</td><td><code>a:hover { }</code></td><td>Link com mouse em cima</td></tr>
+        <tr><td>Pseudo-elemento</td><td><code>p::first-letter</code></td><td>Primeira letra do &lt;p&gt;</td></tr>
+        <tr><td>Agrupamento</td><td><code>h1, h2, h3 { }</code></td><td>h1, h2 e h3 juntos</td></tr>
+    </table>
+
+    <div id="rodape">
+        Aula 09 — Seletores CSS | Análise e Desenvolvimento de Sistemas
+    </div>
+
+</body>
+</html>
