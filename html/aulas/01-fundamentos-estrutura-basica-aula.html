@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+  AULA 01 — Fundamentos e Estrutura Básica do HTML
+  ================================================
+  O HTML (HyperText Markup Language) é a linguagem de marcação
+  usada para criar páginas web. Todo arquivo HTML segue uma
+  estrutura padrão que o navegador sabe interpretar.
+-->
+<html lang="pt-BR">
+  <!--
+    A tag <html> é o elemento raiz — ela envolve TODO o conteúdo
+    da página. O atributo lang="pt-BR" indica o idioma da página,
+    o que ajuda leitores de tela e mecanismos de busca.
+  -->
+
+  <head>
+    <!--
+      <head> contém informações SOBRE a página (metadados).
+      O conteúdo aqui NÃO aparece visualmente na tela,
+      mas é essencial para o funcionamento correto da página.
+    -->
+
+    <!-- Define o conjunto de caracteres — UTF-8 suporta acentos e símbolos -->
+    <meta charset="UTF-8" />
+
+    <!-- Garante que a página seja responsiva em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Descrição da página para mecanismos de busca (SEO) -->
+    <meta name="description" content="Aula sobre fundamentos e estrutura básica do HTML" />
+
+    <!--
+      <title> define o texto que aparece na aba do navegador
+      e nos resultados de pesquisa do Google.
+    -->
+    <title>Aula 01 — Fundamentos HTML</title>
+  </head>
+
+  <body>
+    <!--
+      <body> contém TODO o conteúdo visível da página:
+      textos, imagens, links, botões, tabelas, etc.
+      Tudo que o usuário vê está dentro do <body>.
+    -->
+
+    <!-- Títulos: <h1> é o mais importante, <h6> o menos -->
+    <h1>Fundamentos do HTML</h1>
+
+    <!-- Parágrafo de texto comum -->
+    <p>
+      HTML significa <strong>HyperText Markup Language</strong>.
+      É a base de toda página web — define a estrutura e o conteúdo.
+    </p>
+
+    <h2>Como o navegador lê um arquivo HTML?</h2>
+    <p>
+      O navegador lê o arquivo de cima para baixo, interpretando
+      cada tag e exibindo o conteúdo na tela para o usuário.
+    </p>
+
+    <h2>Regras importantes</h2>
+    <p>
+      <!-- <strong> deixa o texto em negrito E marca como importante -->
+      <strong>1.</strong> Todo arquivo HTML começa com &lt;!DOCTYPE html&gt; — isso
+      avisa ao navegador que é um documento HTML5 moderno.
+    </p>
+    <p>
+      <strong>2.</strong> As tags geralmente vêm em pares: abertura &lt;tag&gt; e
+      fechamento &lt;/tag&gt;. Algumas são auto-fechadas, como &lt;meta /&gt; e &lt;br /&gt;.
+    </p>
+    <p>
+      <strong>3.</strong> A indentação (recuo) não é obrigatória, mas é essencial
+      para deixar o código organizado e legível.
+    </p>
+
+    <h2>Resumo da estrutura</h2>
+    <!--
+      <pre> preserva espaços e quebras de linha — ótimo para exibir código.
+      <code> indica que o conteúdo é código de programação.
+    -->
+    <pre><code>
+&lt;!DOCTYPE html&gt;          ← declara HTML5
+&lt;html lang="pt-BR"&gt;     ← elemento raiz
+  &lt;head&gt;               ← metadados (invisíveis)
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;title&gt;Título&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;               ← conteúdo visível
+    &lt;h1&gt;Olá, mundo!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+
+  </body>
+</html>
