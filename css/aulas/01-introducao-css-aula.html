@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 08 - Introdução ao CSS</title>
+
+    <!--
+        CSS INTERNO: definido dentro da tag <style> no <head>
+        Aplica estilos apenas neste documento HTML
+    -->
+    <style>
+        /* Seletor de tag */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+
+        /* Seletor de classe */
+        .destaque {
+            background-color: #eaf4fb;
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        /* Seletor de ID */
+        #rodape {
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            font-size: 0.85em;
+            color: #888;
+            text-align: center;
+        }
+
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+
+        code {
+            background-color: #ecf0f1;
+            color: #c0392b;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Aula 08 — Introdução ao CSS</h1>
+
+    <!-- =====================================================
+        1. O QUE É CSS?
+    ===================================================== -->
+    <h2>1. O que é CSS?</h2>
+
+    <p>
+        <strong>CSS</strong> (Cascading Style Sheets) é a linguagem usada para
+        <em>estilizar</em> documentos HTML: cores, fontes, tamanhos, espaçamentos e layout.
+    </p>
+
+    <div class="destaque">
+        <strong>Regra básica:</strong> HTML define a <em>estrutura</em>; CSS define a <em>aparência</em>.
+    </div>
+
+    <!-- =====================================================
+        2. SINTAXE
+    ===================================================== -->
+    <h2>2. Sintaxe</h2>
+
+    <p>Uma regra CSS é composta por <strong>seletor</strong>, <strong>propriedade</strong> e <strong>valor</strong>:</p>
+
+    <pre>
+seletor {
+    propriedade: valor;
+}
+
+/* Exemplo */
+h1 {
+    color: blue;
+    font-size: 32px;
+}</pre>
+
+    <ul>
+        <li><code>seletor</code> — qual elemento será estilizado (ex: <code>h1</code>, <code>.classe</code>, <code>#id</code>)</li>
+        <li><code>propriedade</code> — o que será alterado (ex: <code>color</code>, <code>font-size</code>)</li>
+        <li><code>valor</code> — o novo valor (ex: <code>blue</code>, <code>32px</code>)</li>
+    </ul>
+
+    <!-- =====================================================
+        3. TRÊS FORMAS DE USAR CSS
+    ===================================================== -->
+    <h2>3. Três formas de usar CSS</h2>
+
+    <h3>3.1 CSS Inline</h3>
+    <p>Aplicado diretamente no atributo <code>style</code> do elemento.</p>
+    <pre>&lt;p style="color: red; font-weight: bold;"&gt;Texto vermelho&lt;/p&gt;</pre>
+    <p style="color: red; font-weight: bold;">Demonstração: CSS inline aplicado aqui.</p>
+    <div class="destaque">⚠️ Difícil de manter — use apenas em casos específicos.</div>
+
+    <h3>3.2 CSS Interno</h3>
+    <p>Declarado dentro da tag <code>&lt;style&gt;</code> no <code>&lt;head&gt;</code>.</p>
+    <pre>&lt;style&gt;
+    p { color: blue; }
+&lt;/style&gt;</pre>
+    <div class="destaque">✅ Centraliza estilos no arquivo. ⚠️ Não se aplica a outros HTMLs.</div>
+
+    <h3>3.3 CSS Externo</h3>
+    <p>Arquivo <code>.css</code> separado, vinculado com <code>&lt;link&gt;</code>.</p>
+    <pre>&lt;link rel="stylesheet" href="estilos.css"&gt;</pre>
+    <div class="destaque">✅ <strong>Melhor prática!</strong> Um arquivo CSS estiliza vários HTMLs.</div>
+
+    <!-- =====================================================
+        4. CASCATA E ESPECIFICIDADE
+    ===================================================== -->
+    <h2>4. Cascata e Especificidade</h2>
+
+    <p>Quando duas regras conflitam, o navegador usa a <strong>especificidade</strong> para decidir qual prevalece.</p>
+
+    <table>
+        <tr>
+            <th>Tipo</th>
+            <th>Exemplo</th>
+            <th>Prioridade</th>
+        </tr>
+        <tr>
+            <td>CSS Inline</td>
+            <td><code>style="color: red"</code></td>
+            <td>⭐⭐⭐⭐ (maior)</td>
+        </tr>
+        <tr>
+            <td>Seletor de ID</td>
+            <td><code>#titulo { color: blue; }</code></td>
+            <td>⭐⭐⭐</td>
+        </tr>
+        <tr>
+            <td>Seletor de Classe</td>
+            <td><code>.destaque { color: green; }</code></td>
+            <td>⭐⭐</td>
+        </tr>
+        <tr>
+            <td>Seletor de Tag</td>
+            <td><code>h1 { color: gray; }</code></td>
+            <td>⭐ (menor)</td>
+        </tr>
+    </table>
+
+    <!-- =====================================================
+        5. PROPRIEDADES ESSENCIAIS
+    ===================================================== -->
+    <h2>5. Propriedades Essenciais</h2>
+
+    <h3>Cor e Fundo</h3>
+    <pre>color: red;                   /* cor do texto */
+background-color: #f0f0f0;   /* cor de fundo */</pre>
+
+    <h3>Tipografia</h3>
+    <pre>font-family: Arial, sans-serif;
+font-size: 16px;
+font-weight: bold;
+font-style: italic;
+text-align: center;
+text-decoration: underline;</pre>
+
+    <h3>Espaçamento</h3>
+    <pre>margin: 10px;    /* espaço EXTERNO */
+padding: 10px;   /* espaço INTERNO */</pre>
+
+    <h3>Borda</h3>
+    <pre>border: 1px solid black;
+border-radius: 8px;</pre>
+
+    <!-- =====================================================
+        RESUMO
+    ===================================================== -->
+    <h2>Resumo</h2>
+    <div class="destaque">
+        <ul>
+            <li>CSS estiliza o HTML (cores, fontes, espaçamentos)</li>
+            <li>Sintaxe: <code>seletor { propriedade: valor; }</code></li>
+            <li>3 formas: inline, interno (&lt;style&gt;), externo (.css)</li>
+            <li>Cascata: inline &gt; #id &gt; .classe &gt; tag</li>
+        </ul>
+    </div>
+
+    <div id="rodape">
+        Aula 08 — Introdução ao CSS | Análise e Desenvolvimento de Sistemas
+    </div>
+
+</body>
+</html>
