@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 04 - Tipografia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:ital@0;1&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #8e44ad; padding-bottom: 8px; }
+        h2 { color: #8e44ad; margin-top: 30px; }
+        h3 { color: #555; margin-top: 20px; }
+        .destaque { background: #f5eef8; border-left: 4px solid #8e44ad; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+        pre { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-size: 0.9em; overflow-x: auto; }
+        code { background: #ecf0f1; color: #8e44ad; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #8e44ad; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .demo-box { border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin: 10px 0; background: white; }
+        #rodape { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+<h1>Aula 04 — Tipografia</h1>
+
+<p>Tipografia é o conjunto de propriedades CSS que controlam <strong>fontes, tamanhos, espaçamento e aparência do texto</strong>.</p>
+
+<!-- =====================================================
+    1. FONT-FAMILY
+===================================================== -->
+<h2>1. font-family</h2>
+<p>Define a família de fonte. Sempre indique uma <strong>fonte genérica</strong> como fallback.</p>
+<pre>
+font-family: Arial, Helvetica, sans-serif;
+font-family: Georgia, "Times New Roman", serif;
+font-family: "Courier New", Courier, monospace;
+font-family: Verdana, Geneva, sans-serif;
+</pre>
+
+<h3>Famílias genéricas</h3>
+<table>
+    <tr><th>Família</th><th>Características</th><th>Exemplos</th></tr>
+    <tr><td><code>serif</code></td><td>Com serifa (tracinhos nas letras)</td><td>Georgia, Times New Roman</td></tr>
+    <tr><td><code>sans-serif</code></td><td>Sem serifa — mais limpa, moderna</td><td>Arial, Roboto, Helvetica</td></tr>
+    <tr><td><code>monospace</code></td><td>Largura fixa — ideal para código</td><td>Courier New, Source Code Pro</td></tr>
+    <tr><td><code>cursive</code></td><td>Estilo manuscrito</td><td>Pacifico, Dancing Script</td></tr>
+    <tr><td><code>fantasy</code></td><td>Decorativa</td><td>Impact</td></tr>
+</table>
+
+<div class="demo-box">
+    <p style="font-family:Georgia,serif;">Georgia, serif — texto com serifa</p>
+    <p style="font-family:Arial,sans-serif;">Arial, sans-serif — texto sem serifa</p>
+    <p style="font-family:Courier
