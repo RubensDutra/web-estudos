@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 06 - Display</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #2980b9; padding-bottom: 8px; }
+        h2 { color: #2980b9; margin-top: 35px; }
+        .enunciado { background: #eaf4fb; border-left: 4px solid #2980b9; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+        .dica { background: #fef9e7; border-left: 4px solid #f39c12; padding: 8px 14px; margin: 10px 0; border-radius: 4px; font-size: 0.9em; }
+        .area { background: #fff; border: 2px dashed #bbb; padding: 15px; border-radius: 6px; margin-top: 12px; }
+        #rodape { margin-top: 50px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+
+        /* ===================================================
+           EXERCÍCIO 1 — block / inline / inline-block
+        =================================================== */
+        /* TODO ex1: transforme os itens da lista em inline-block */
+        .ex1-menu li {
+            /* display: inline-block; */
+            background: #2980b9;
+            color: white;
+            padding: 8px 20px;
+            margin: 3px;
+            border-radius: 4px;
+            list-style: none;
+            cursor: pointer;
+        }
+        .ex1-menu {
+            padding: 0;
+        }
+
+        /* ===================================================
+           EXERCÍCIO 2 — display: none vs visibility: hidden
+        =================================================== */
+        .ex2-caixa {
+            display: inline-block;
+            width: 120px;
+            height: 80px;
+            background: #3498db;
+            color: white;
+            text-align: center;
+            line-height: 80px;
+            margin: 5px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        /* TODO ex2a: esconda a caixa 2 sem tirar do fluxo */
+        .ex2-caixa.invisivel {
+            /* visibility: hidden; */
+        }
+        /* TODO ex2b: esconda a caixa 3 retirando do fluxo */
+        .ex2-caixa.removida {
+            /* display: none; */
+        }
+
+        /* ===================================================
+           EXERCÍCIO 3 — Flexbox: menu de navegação
+        =================================================== */
+        /* TODO ex3: transforme .ex3-nav em flex-container horizontal
+           com itens espaçados e centralizados verticalmente */
+        .ex3-nav {
+            background: #2c3e50;
+            padding: 15px;
+            /* display: flex; */
+            /* justify-content: space-between; */
+            /* align-items: center; */
+            border-radius: 6px;
+        }
+        .ex3-logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .ex3-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            /* display: flex; */
+            /* gap: 20px; */
+        }
+        .ex3-links li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+        .ex3-links li a:hover {
+            color: white;
+        }
+
+        /* ===================================================
+           EXERCÍCIO 4 — Flexbox: galeria de cards
+        =================================================== */
+        /* TODO ex4: faça .ex4-galeria exibir os cards em flex
+           com wrap, gap de 15px, e cada card com flex base de 200px */
+        .ex4-galeria {
+            /* display: flex; */
+            /* flex-wrap: wrap; */
+            /* gap: 15px; */
+        }
+        .ex4-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            /* flex: 1 1 200px; */
+        }
+        .ex4-card-img {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+        }
+        .ex4-card-body { padding: 12px; }
+        .ex4-card-body h3 { margin: 0 0 6px; font-size: 1em; color: #2c3e50; }
+        .ex4-card-body p  { margin: 0; font-size: 0.85em; color: #666; }
+
+        /* ===================================================
+           EXERCÍCIO 5 — Grid: layout de página
+        =================================================== */
+        /* TODO ex5: implemente o layout abaixo com CSS Grid
+           Estrutura esperada:
+           ┌──────────────────────┐
+           │       header         │
+           ├────────┬─────────────┤
+           │sidebar │    main     │
+           ├────────┴─────────────┤
+           │       footer         │
+           └──────────────────────┘
+        */
+        .ex5-layout {
+            /* display: grid; */
+            /* grid-template-columns: 220px 1fr; */
+            /* grid-template-rows: auto 1fr auto; */
+            /* grid-template-areas:
+                "header  header"
+                "sidebar main"
+                "footer  footer"; */
+            /* gap: 10px; */
+            min-height: 300px;
+            border: 2px dashed #ccc;
+            padding: 10px;
+        }
+        .ex5-header  {
+            /* grid-area: header; */
+            background: #2c3e50; color: white; padding: 14px;
+            border-radius: 4px; text-align: center; font-weight: bold;
+        }
+        .ex5-sidebar {
+            /* grid-area: sidebar; */
+            background: #7f8c8d; color: white; padding: 14px;
+            border-radius: 4px;
+        }
+        .ex5-main {
+            /* grid-area: main; */
+            background: #ecf0f1; padding: 14px;
+            border-radius: 4px;
+        }
+        .ex5-footer {
+            /* grid-area: footer; */
+            background: #2c3e50; color: white; padding: 12px;
+            border-radius: 4px; text-align: center; font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Exercício 06 — Display</h1>
+
+<!-- ===========================================
+     EXERCÍCIO 1
+=========================================== -->
+<h2>Exercício 1 — Convertendo lista em menu horizontal</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Transforme a lista abaixo em um menu horizontal.
+    Adicione <code>display: inline-block</code> aos itens <code>&lt;li&gt;</code>
+    para que fiquem lado a lado.
+</div>
+<div class="dica">
+    💡 Remova o comentário em <code>.ex1-menu li { /* display: inline-block */ }</code>
+</div>
+<div class="area">
+    <ul class="ex1-menu">
+        <li>Início</li>
+        <li>Sobre</li>
+        <li>Portfólio</li>
+        <li>Contato</li>
+    </ul>
+</div>
+
+<!-- ===========================================
+     EXERCÍCIO 2
+=========================================== -->
+<h2>Exercício 2 — none vs visibility: hidden</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Observe a diferença entre as duas formas de esconder elementos.
+    <ol>
+        <li>Adicione <code>visibility: hidden</code> à caixa 2 (ela deve sumir mas <em>manter seu espaço</em>).</li>
+        <li>Adicione <code>display: none</code> à caixa 3 (ela deve sumir <em>e o espaço desaparece</em>).</li>
+    </ol>
+</div>
+<div class="dica">
+    💡 Ative os comentários em <code>.ex2-caixa.invisivel</code> e <code>.ex2-caixa.removida</code>
+</div>
+<div class="area">
+    <div class="ex2-caixa">Caixa 1</div>
+    <div class="ex2-caixa invisivel">Caixa 2</div>
+    <div class="ex2-caixa removida">Caixa 3</div>
+    <div class="ex2-caixa">Caixa 4</div>
+    <p style="margin-top: 12px; font-size: 0.85em; color: #888;">
+        Com <code>visibility:hidden</code>: lacuna visível entre Caixa 1 e Caixa 4<br>
+        Com <code>display:none</code>: Caixa 4 avança para o lugar da Caixa 3
+    </p>
+</div>
+
+<!-- ===========================================
+     EXERCÍCIO 3
+=========================================== -->
+<h2>Exercício 3 — Flexbox: barra de navegação</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Monte a barra de navegação usando Flexbox.
+    <ul>
+        <li>O <code>.ex3-nav</code> deve ser um flex container com <code>justify-content: space-between</code>.</li>
+        <li>Os links (<code>.ex3-links</code>) também devem ser flex com <code>gap: 20px</code>.</li>
+        <li>Use <code>align-items: center</code> no nav para alinhar logo e links verticalmente.</li>
+    </ul>
+</div>
+<div class="dica">
+    💡 Ative os comentários nas classes <code>.ex3-nav</code>, <code>.ex3-links</code>
+</div>
+<div class="area">
+    <nav class="ex3-nav">
+        <span class="ex3-logo">🎓 Web I</span>
+        <ul class="ex3-links">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Aulas</a></li>
+            <li><a href="#">Exercícios</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- ===========================================
+     EXERCÍCIO 4
+=========================================== -->
+<h2>Exercício 4 — Flexbox: galeria de cards</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Crie uma galeria responsiva com Flexbox.
+    <ul>
+        <li>Aplique <code>display: flex; flex-wrap: wrap; gap: 15px;</code> no container.</li>
+        <li>Cada card deve ter <code>flex: 1 1 200px</code> — cresce, encolhe, base de 200px.</li>
+    </ul>
+</div>
+<div class="dica">
+    💡 Ative os comentários em <code>.ex4-galeria</code> e <code>.ex4-card</code>
+</div>
+<div class="area">
+    <div class="ex4-galeria">
+        <div class="ex4-card">
+            <div class="ex4-card-img">🎨</div>
+            <div class="ex4-card-body"><h3>Design</h3><p>Criação visual e identidade</p></div>
+        </div>
+        <div class="ex4-card">
+            <div class="ex4-card-img" style="background: linear-gradient(135deg,#e74c3c,#f39c12);">💻</div>
+            <div class="ex4-card-body"><h3>Código</h3><p>HTML, CSS e JavaScript</p></div>
+        </div>
+        <div class="ex4-card">
+            <div class="ex4-card-img" style="background: linear-gradient(135deg,#9b59b6,#3498db);">📱</div>
+            <div class="ex4-card-body"><h3>Mobile</h3><p>Apps responsivos</p></div>
+        </div>
+        <div class="ex4-card">
+            <div class="ex4-card-img" style="background: linear-gradient(135deg,#1abc9c,#2ecc71);">🚀</div>
+            <div class="ex4-card-body"><h3>Deploy</h3><p>Publicação e hospedagem</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===========================================
+     EXERCÍCIO 5
+=========================================== -->
+<h2>Exercício 5 — Grid: layout completo de página</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Implemente o layout clássico de página usando CSS Grid com <code>grid-template-areas</code>.
+    <ul>
+        <li>Colunas: sidebar de 220px + main flexível (1fr)</li>
+        <li>Linhas: header automático, conteúdo flexível, footer automático</li>
+        <li>Nomeie as áreas: <code>header</code>, <code>sidebar</code>, <code>main</code>, <code>footer</code></li>
+    </ul>
+</div>
+<div class="dica">
+    💡 Ative todos os comentários nas classes <code>.ex5-layout</code> e nas 4 áreas filhas
+</div>
+<div class="area">
+    <div class="ex5-layout">
+        <div class="ex5-header">Header — cabeçalho do site</div>
+        <div class="ex5-sidebar">
+            <strong>Sidebar</strong><br>
+            Menu lateral<br>
+            Navegação<br>
+            Filtros
+        </div>
+        <div class="ex5-main">
+            <strong>Main Content</strong><br>
+            Conteúdo principal da página.<br>
+            Esta área cresce para preencher o espaço disponível.
+        </div>
+        <div class="ex5-footer">Footer — rodapé do site &copy; 2025</div>
+    </div>
+</div>
+
+<div id="rodape">Exercício 06 — Display | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
