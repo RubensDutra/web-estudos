@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 06 - Display</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #2980b9; padding-bottom: 8px; }
+        h2 { color: #2980b9; margin-top: 30px; }
+        h3 { color: #444; margin-top: 20px; }
+        .destaque { background: #eaf4fb; border-left: 4px solid #2980b9; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+        pre { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-size: 0.9em; overflow-x: auto; }
+        code { background: #ecf0f1; color: #2980b9; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #2980b9; color: white; }
+        tr:nth-child(even) { background: #f2f2f2; }
+        .demo-area { background: #fff; border: 2px dashed #ccc; padding: 15px; border-radius: 6px; margin: 15px 0; }
+        #rodape { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+
+        /* ===== DEMOS BLOCK ===== */
+        .demo-block-items div {
+            background: #d6eaf8;
+            border: 2px solid #3498db;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        /* ===== DEMOS INLINE ===== */
+        .demo-inline-items span {
+            background: #fdebd0;
+            border: 2px solid #e67e22;
+            padding: 5px 10px;
+        }
+
+        /* ===== DEMOS INLINE-BLOCK ===== */
+        .demo-iblock-items div {
+            display: inline-block;
+            background: #d5f5e3;
+            border: 2px solid #27ae60;
+            padding: 15px;
+            margin: 5px;
+            width: 130px;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        /* ===== FLEXBOX ===== */
+        .flex-container {
+            display: flex;
+            background: #eaf4fb;
+            border: 2px solid #2980b9;
+            padding: 10px;
+            gap: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .flex-item {
+            background: #2980b9;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* flex-direction */
+        .flex-row { flex-direction: row; }
+        .flex-column { flex-direction: column; }
+
+        /* justify-content */
+        .j-start   { justify-content: flex-start; }
+        .j-center  { justify-content: center; }
+        .j-end     { justify-content: flex-end; }
+        .j-between { justify-content: space-between; }
+        .j-around  { justify-content: space-around; }
+
+        /* align-items */
+        .flex-alto { height: 100px; align-items: flex-start; }
+        .flex-meio { height: 100px; align-items: center; }
+        .flex-base { height: 100px; align-items: flex-end; }
+
+        /* flex-wrap */
+        .flex-wrap-demo { flex-wrap: wrap; }
+        .flex-wrap-demo .flex-item { width: 120px; }
+
+        /* flex nos filhos */
+        .flex-grow-demo .item-grow { flex: 1; }
+        .flex-grow-demo .item-fixo { flex: none; width: 80px; }
+
+        /* ===== GRID ===== */
+        .grid-basico {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            background: #f5eef8;
+            border: 2px solid #8e44ad;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .grid-item {
+            background: #8e44ad;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .grid-colunas-mistas {
+            grid-template-columns: 2fr 1fr;
+        }
+        .grid-com-areas {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "header  header"
+                "sidebar main"
+                "footer  footer";
+            gap: 8px;
+            min-height: 200px;
+        }
+        .area-header  { grid-area: header;  background: #2c3e50; color: white; padding: 12px; border-radius: 4px; text-align: center; }
+        .area-sidebar { grid-area: sidebar; background: #7f8c8d; color: white; padding: 12px; border-radius: 4px; }
+        .area-main    { grid-area: main;    background: #bdc3c7; padding: 12px; border-radius: 4px; }
+        .area-footer  { grid-area: footer;  background: #2c3e50; color: white; padding: 12px; border-radius: 4px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<h1>Aula 06 — Display</h1>
+
+<p>
+    A propriedade <strong><code>display</code></strong> define como um elemento se comporta
+    no fluxo da página e como seus filhos são organizados.
+    É a base de qualquer layout CSS.
+</p>
+
+<!-- =====================================================
+    1. VALORES PRINCIPAIS
+===================================================== -->
+<h2>1. Valores Principais</h2>
+
+<table>
+    <tr><th>Valor</th><th>Comportamento</th><th>Exemplos de elementos</th></tr>
+    <tr><td><code>block</code></td><td>Ocupa toda a largura, vai para nova linha</td><td>div, p, h1–h6, section</td></tr>
+    <tr><td><code>inline</code></td><td>Flui no texto, não aceita width/height</td><td>span, a, strong, em</td></tr>
+    <tr><td><code>inline-block</code></td><td>Flui no texto, mas aceita width/height</td><td>img (padrão), botões</td></tr>
+    <tr><td><code>none</code></td><td>Remove o elemento da tela e do fluxo</td><td>— (aplicado via CSS)</td></tr>
+    <tr><td><code>flex</code></td><td>Ativa Flexbox no container</td><td>— (aplicado via CSS)</td></tr>
+    <tr><td><code>grid</code></td><td>Ativa Grid no container</td><td>— (aplicado via CSS)</td></tr>
+</table>
+
+<!-- =====================================================
+    2. BLOCK
+===================================================== -->
+<h2>2. display: block</h2>
+<p>Elementos block ocupam <strong>toda a largura disponível</strong> e sempre começam em uma nova linha.</p>
+<pre>
+div, p, h1, section {
+    display: block; /* padrão desses elementos */
+}
+</pre>
+<div class="demo-area demo-block-items">
+    <div>div 1 — bloco, ocupa a linha toda</div>
+    <div>div 2 — vai para a próxima linha automaticamente</div>
+    <div>div 3 — mesmo sem conteúdo, ocupa a largura</div>
+</div>
+
+<!-- =====================================================
+    3. INLINE
+===================================================== -->
+<h2>3. display: inline</h2>
+<p>Elementos inline <strong>fluem junto com o texto</strong>. Não aceitam <code>width</code> ou <code>height</code>.</p>
+<pre>
+span, a, strong {
+    display: inline; /* padrão desses elementos */
+}
+</pre>
+<div class="demo-area demo-inline-items">
+    <span>span 1</span>
+    <span>span 2</span>
+    <span>span 3 — todos ficam na mesma linha</span>
+</div>
+<div class="destaque">
+    ⚠️ <code>width</code> e <code>height</code> não funcionam em elementos inline.
+    Use <code>inline-block</code> se precisar definir dimensões.
+</div>
+
+<!-- =====================================================
+    4. INLINE-BLOCK
+===================================================== -->
+<h2>4. display: inline-block</h2>
+<p>Combina o melhor dos dois: <strong>flui horizontalmente</strong> como inline, mas aceita <code>width</code> e <code>height</code>.</p>
+<pre>
+.cartao {
+    display: inline-block;
+    width: 130px;
+    padding: 15px;
+    text-align: center;
+}
+</pre>
+<div class="demo-area demo-iblock-items">
+    <div>Card 1</div>
+    <div>Card 2</div>
+    <div>Card 3</div>
+    <div>Card 4</div>
+</div>
+
+<!-- =====================================================
+    5. FLEXBOX
+===================================================== -->
+<h2>5. display: flex (Flexbox)</h2>
+<p>
+    O <strong>Flexbox</strong> é um sistema de layout unidimensional — organiza elementos
+    em <em>uma direção</em> (linha ou coluna). É ideal para menus, cards e componentes.
+</p>
+
+<h3>Ativando o Flexbox</h3>
+<pre>
+.container {
+    display: flex;
+}
+</pre>
+<div class="flex-container flex-row">
+    <div class="flex-item">Item 1</div>
+    <div class="flex-item">Item 2</div>
+    <div class="flex-item">Item 3</div>
+</div>
+
+<h3>flex-direction</h3>
+<p>Define a direção principal dos itens.</p>
+<pre>
+flex-direction: row;     /* → padrão: esquerda para direita */
+flex-direction: column;  /* ↓ de cima para baixo */
+flex-direction: row-reverse;    /* ← direita para esquerda */
+flex-direction: column-reverse; /* ↑ de baixo para cima */
+</pre>
+<p><strong>row (padrão):</strong></p>
+<div class="flex-container flex-row">
+    <div class="flex-item">A</div>
+    <div class="flex-item">B</div>
+    <div class="flex-item">C</div>
+</div>
+<p><strong>column:</strong></p>
+<div class="flex-container flex-column" style="width:200px;">
+    <div class="flex-item">A</div>
+    <div class="flex-item">B</div>
+    <div class="flex-item">C</div>
+</div>
+
+<h3>justify-content — alinhamento no eixo principal</h3>
+<pre>
+justify-content: flex-start;    /* início (padrão) */
+justify-content: center;        /* centro */
+justify-content: flex-end;      /* fim */
+justify-content: space-between; /* espaço entre os itens */
+justify-content: space-around;  /* espaço ao redor dos itens */
+</pre>
+<p><strong>flex-start:</strong></p>
+<div class="flex-container j-start">
+    <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div>
+</div>
+<p><strong>center:</strong></p>
+<div class="flex-container j-center">
+    <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div>
+</div>
+<p><strong>space-between:</strong></p>
+<div class="flex-container j-between">
+    <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div>
+</div>
+<p><strong>space-around:</strong></p>
+<div class="flex-container j-around">
+    <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div>
+</div>
+
+<h3>align-items — alinhamento no eixo cruzado</h3>
+<pre>
+align-items: flex-start;  /* topo */
+align-items: center;      /* centro vertical */
+align-items: flex-end;    /* base */
+align-items: stretch;     /* estica para preencher (padrão) */
+</pre>
+<p><strong>flex-start (topo):</strong></p>
+<div class="flex-container flex-alto">
+    <div class="flex-item">A</div>
+    <div class="flex-item" style="font-size:1.4em;">B</div>
+    <div class="flex-item">C</div>
+</div>
+<p><strong>center (meio):</strong></p>
+<div class="flex-container flex-meio">
+    <div class="flex-item">A</div>
+    <div class="flex-item" style="font-size:1.4em;">B</div>
+    <div class="flex-item">C</div>
+</div>
+<p><strong>flex-end (base):</strong></p>
+<div class="flex-container flex-base">
+    <div class="flex-item">A</div>
+    <div class="flex-item" style="font-size:1.4em;">B</div>
+    <div class="flex-item">C</div>
+</div>
+
+<h3>flex-wrap</h3>
+<pre>
+flex-wrap: nowrap;  /* padrão: itens ficam em uma linha */
+flex-wrap: wrap;    /* quebra para a próxima linha se necessário */
+</pre>
+<div class="flex-container flex-wrap-demo">
+    <div class="flex-item">Item 1</div>
+    <div class="flex-item">Item 2</div>
+    <div class="flex-item">Item 3</div>
+    <div class="flex-item">Item 4</div>
+    <div class="flex-item">Item 5</div>
+    <div class="flex-item">Item 6</div>
+</div>
+
+<h3>gap</h3>
+<pre>
+gap: 10px;         /* espaço entre todos os itens */
+gap: 10px 20px;    /* linha | coluna */
+</pre>
+
+<h3>flex nos filhos</h3>
+<pre>
+flex: 1;      /* item cresce para preencher o espaço disponível */
+flex: 2;      /* cresce o dobro em relação a flex: 1 */
+flex: none;   /* tamanho fixo, não cresce */
+</pre>
+<div class="flex-container flex-grow-demo">
+    <div class="flex-item item-fixo">Fixo 80px</div>
+    <div class="flex-item item-grow">Cresce (flex: 1)</div>
+    <div class="flex-item item-fixo">Fixo 80px</div>
+</div>
+
+<!-- =====================================================
+    6. GRID
+===================================================== -->
+<h2>6. display: grid (Grid Layout)</h2>
+<p>
+    O <strong>Grid</strong> é um sistema de layout bidimensional — organiza elementos
+    em <em>linhas e colunas</em> ao mesmo tempo. Ideal para layouts de páginas inteiras.
+</p>
+<pre>
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  /* 3 colunas iguais */
+    gap: 10px;
+}
+</pre>
+<div class="grid-basico">
+    <div class="grid-item">1</div>
+    <div class="grid-item">2</div>
+    <div class="grid-item">3</div>
+    <div class="grid-item">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item">6</div>
+</div>
+
+<h3>grid-template-columns</h3>
+<pre>
+grid-template-columns: 200px 1fr;        /* fixo + flexível */
+grid-template-columns: 1fr 1fr 1fr;      /* 3 colunas iguais */
+grid-template-columns: repeat(3, 1fr);   /* mesmo que acima */
+grid-template-columns: 2fr 1fr;          /* proporção 2:1 */
+</pre>
+<div class="grid-basico grid-colunas-mistas">
+    <div class="grid-item">2fr (maior)</div>
+    <div class="grid-item">1fr</div>
+    <div class="grid-item">2fr (maior)</div>
+    <div class="grid-item">1fr</div>
+</div>
+
+<h3>grid-template-areas — layout nomeado</h3>
+<pre>
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+        "header  header"
+        "sidebar main"
+        "footer  footer";
+}
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main    { grid-area: main; }
+.footer  { grid-area: footer; }
+</pre>
+<div class="grid-com-areas">
+    <div class="area-header">Header</div>
+    <div class="area-sidebar">Sidebar</div>
+    <div class="area-main">Main Content</div>
+    <div class="area-footer">Footer</div>
+</div>
+
+<div class="destaque">
+    <strong>Flexbox vs Grid:</strong><br>
+    Use <strong>Flexbox</strong> para layouts em <em>uma direção</em> (menu, linha de cards, barra de botões).<br>
+    Use <strong>Grid</strong> para layouts em <em>duas direções</em> (estrutura da página, galerias, tabelas visuais).
+</div>
+
+<!-- =====================================================
+    7. DISPLAY: NONE VS VISIBILITY: HIDDEN
+===================================================== -->
+<h2>7. display: none vs visibility: hidden</h2>
+<pre>
+display: none;          /* remove da tela E do fluxo (não ocupa espaço) */
+visibility: hidden;     /* fica invisível MAS continua ocupando espaço */
+</pre>
+<div class="demo-area">
+    <p>Parágrafo antes</p>
+    <p style="display:none;">Este parágrafo tem display:none — sumiu do fluxo</p>
+    <p style="visibility:hidden;">Este tem visibility:hidden — invisível, mas ocupa espaço</p>
+    <p>Parágrafo depois — note a lacuna acima (visibility:hidden)</p>
+</div>
+
+<!-- =====================================================
+    RESUMO
+===================================================== -->
+<h2>Resumo</h2>
+<table>
+    <tr><th>display</th><th>Quando usar</th></tr>
+    <tr><td><code>block</code></td><td>Elementos que devem ocupar a linha toda</td></tr>
+    <tr><td><code>inline</code></td><td>Texto e elementos que fluem no conteúdo</td></tr>
+    <tr><td><code>inline-block</code></td><td>Elementos lado a lado com dimensões definidas</td></tr>
+    <tr><td><code>flex</code></td><td>Layout em uma direção (linha ou coluna)</td></tr>
+    <tr><td><code>grid</code></td><td>Layout em duas direções (linhas e colunas)</td></tr>
+    <tr><td><code>none</code></td><td>Esconder elemento completamente</td></tr>
+</table>
+
+<div id="rodape">Aula 06 — Display | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
