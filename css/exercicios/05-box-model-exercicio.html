@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 05 - Box Model</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #27ae60; padding-bottom: 8px; }
+        h2 { color: #27ae60; margin-top: 30px; }
+        .instrucao { background: #eafaf1; border-left: 4px solid #27ae60; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+        code { background: #ecf0f1; color: #27ae60; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        #rodape { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+<h1>Exercício 05 — Box Model</h1>
+
+<!-- =====================================================
+    EXERCÍCIO 1 — PADDING E MARGIN
+===================================================== -->
+<h2>Exercício 1 — padding e margin</h2>
+<div class="instrucao">
+    Adicione regras CSS para os elementos abaixo:
+    <ul>
+        <li><code>#caixa-a</code>: background #3498db, color white, padding 20px, margin 30px, border-radius 6px</li>
+        <li><code>#caixa-b</code>: background #e74c3c, color white, padding 10px 40px, margin 0 auto, width 300px, text-align center</li>
+        <li><code>#caixa-c</code>: background #f39c12, padding-top 30px, padding-bottom 30px, padding-left 10px, padding-right 50px</li>
+    </ul>
+    Depois, responda nos comentários: qual a diferença entre padding e margin?
+</div>
+
+<div id="caixa-a">Caixa A — padding 20px, margin 30px</div>
+<div id="caixa-b">Caixa B — centralizada</div>
+<div id="caixa-c">Caixa C — padding assimétrico</div>
+<!-- Resposta: -->
+
+<!-- =====================================================
+    EXERCÍCIO 2 — BORDER
+===================================================== -->
+<h2>Exercício 2 — border</h2>
+<div class="instrucao">
+    Adicione bordas diferentes em cada elemento:
+    <ul>
+        <li><code>#b1</code>: border 3px solid #27ae60, padding 15px</li>
+        <li><code>#b2</code>: border 3px dashed #e74c3c, padding 15px</li>
+        <li><code>#b3</code>: border 3px dotted #3498db, padding 15px, border-radius 50px</li>
+        <li><code>#b4</code>: border-top 4px solid #8e44ad, border-bottom 4px solid #8e44ad, padding 15px (sem bordas laterais)</li>
+        <li><code>#b5</code>: sem border, padding 15px, border-radius 50%, width 100px, height 100px, background #f39c12, color white, text-align center, line-height 100px</li>
+    </ul>
+</div>
+
+<div id="b1">Borda sólida verde</div><br>
+<div id="b2">Borda tracejada vermelha</div><br>
+<div id="b3">Borda pontilhada azul com border-radius</div><br>
+<div id="b4">Apenas bordas superior e inferior</div><br>
+<div id="b5">Círculo</div>
+
+<!-- =====================================================
+    EXERCÍCIO 3 — BOX-SIZING
+===================================================== -->
+<h2>Exercício 3 — box-sizing</h2>
+<div class="instrucao">
+    Crie dois elementos com <strong>exatamente as mesmas propriedades</strong>, mas com box-sizing diferente:
+    <ul>
+        <li>Ambos: width 250px, padding 25px, border 5px solid, margin 10px 0</li>
+        <li><code>#content-box</code>: box-sizing content-box, background #fdf2f2, border-color #e74c3c</li>
+        <li><code>#border-box</code>: box-sizing border-box, background #eafaf1, border-color #27ae60</li>
+    </ul>
+    Depois, responda nos comentários: qual deles tem 250px de largura total? Por quê?
+</div>
+
+<div id="content-box">content-box: width 250px + padding + border = ???px total</div>
+<div id="border-box">border-box: width 250px (inclui tudo) = 250px total</div>
+<!-- Resposta: -->
+
+<!-- =====================================================
+    EXERCÍCIO 4 — DISPLAY
+===================================================== -->
+<h2>Exercício 4 — display</h2>
+<div class="instrucao">
+    Altere o display dos elementos conforme indicado:
+    <ul>
+        <li><code>.torna-block</code>: display block, background #d6eaf8, padding 8px, margin 4px 0</li>
+        <li><code>.torna-inline</code>: display inline, background #fdebd0, padding 4px 8px</li>
+        <li><code>.torna-inline-block</code>: display inline-block, background #d5f5e3, padding 10px, width 150px, text-align center, border-radius 4px, margin 4px</li>
+        <li><code>#sumiu</code>: display none</li>
+    </ul>
+</div>
+
+<!-- Spans viram block -->
+<span class="torna-block">Span 1 — vira bloco</span>
+<span class="torna-block">Span 2 — vira bloco</span>
+
+<!-- Divs viram inline -->
+<div class="torna-inline">Div 1 — vira inline</div>
+<div class="torna-inline">Div 2 — vira inline</div>
+<div class="torna-inline">Div 3 — vira inline</div>
+
+<br><br>
+
+<!-- inline-block -->
+<div class="torna-inline-block">Card 1</div>
+<div class="torna-inline-block">Card 2</div>
+<div class="torna-inline-block">Card 3</div>
+
+<!-- some da tela -->
+<p id="sumiu">Este parágrafo deve sumir com display: none.</p>
+
+<!-- =====================================================
+    EXERCÍCIO 5 — LAYOUT COM BOX MODEL
+===================================================== -->
+<h2>Exercício 5 — Layout com Box Model</h2>
+<div class="instrucao">
+    Monte o layout de um card de perfil estilizando apenas no CSS:
+    <ul>
+        <li><code>#perfil</code>: width 280px, margin 0 auto, border 1px solid #ddd, border-radius 12px, overflow hidden, background white</li>
+        <li><code>#perfil .avatar</code>: display block, width 80px, height 80px, border-radius 50%, background #3498db, margin 20px auto 10px, line-height 80px, text-align center, color white, font-size 28px, font-weight bold</li>
+        <li><code>#perfil .nome</code>: text-align center, font-size 20px, font-weight bold, color #2c3e50, margin 0 0 5px</li>
+        <li><code>#perfil .cargo</code>: text-align center, color #888, font-size 14px, margin 0 0 20px</li>
+        <li><code>#perfil .stats</code>: display flex (pesquise sobre flexbox!), border-top 1px solid #eee</li>
+        <li><code>#perfil .stat</code>: flex 1, text-align center, padding 15px 0</li>
+        <li><code>#perfil .stat strong</code>: display block, font-size 18px, color #2c3e50</li>
+        <li><code>#perfil .stat span</code>: font-size 12px, color #888</li>
+    </ul>
+</div>
+
+<div id="perfil">
+    <div class="avatar">R</div>
+    <p class="nome">Rubens Dutra</p>
+    <p class="cargo">Estudante de ADS</p>
+    <div class="stats">
+        <div class="stat">
+            <strong>7</strong>
+            <span>Aulas HTML</span>
+        </div>
+        <div class="stat">
+            <strong>5</strong>
+            <span>Aulas CSS</span>
+        </div>
+        <div class="stat">
+            <strong>12</strong>
+            <span>Commits</span>
+        </div>
+    </div>
+</div>
+
+<div id="rodape">Exercício 05 — Box Model | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
