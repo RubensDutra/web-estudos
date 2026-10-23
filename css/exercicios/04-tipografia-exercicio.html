@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 04 - Tipografia</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #8e44ad; padding-bottom: 8px; }
+        h2 { color: #8e44ad; margin-top: 30px; }
+        .instrucao { background: #f5eef8; border-left: 4px solid #8e44ad; padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+        code { background: #ecf0f1; color: #8e44ad; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        #rodape { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+<h1>Exercício 04 — Tipografia</h1>
+
+<!-- =====================================================
+    EXERCÍCIO 1 — FONT-FAMILY
+===================================================== -->
+<h2>Exercício 1 — font-family</h2>
+<div class="instrucao">
+    Adicione regras no <code>&lt;style&gt;</code> para aplicar fontes diferentes:
+    <ul>
+        <li><code>#texto-serif</code>: font-family Georgia, serif</li>
+        <li><code>#texto-sans</code>: font-family Arial, sans-serif</li>
+        <li><code>#texto-mono</code>: font-family "Courier New", monospace</li>
+        <li><code>#texto-google</code>: importe uma fonte do Google Fonts e aplique aqui</li>
+    </ul>
+</div>
+
+<p id="texto-serif">Texto com fonte serif (Georgia) — clássica e elegante.</p>
+<p id="texto-sans">Texto com fonte sans-serif (Arial) — moderna e limpa.</p>
+<p id="texto-mono">Texto com fonte monospace (Courier New) — como código.</p>
+<p id="texto-google">Texto com Google Font — escolha uma em fonts.google.com</p>
+
+<!-- =====================================================
+    EXERCÍCIO 2 — TAMANHO E PESO
+===================================================== -->
+<h2>Exercício 2 — font-size e font-weight</h2>
+<div class="instrucao">
+    Crie regras CSS para cada parágrafo com os valores indicados:
+    <ul>
+        <li><code>.pequeno</code>: font-size 12px</li>
+        <li><code>.normal</code>: font-size 16px, font-weight 400</li>
+        <li><code>.medio</code>: font-size 20px, font-weight 600</li>
+        <li><code>.grande</code>: font-size 28px, font-weight 700</li>
+        <li><code>.destaque-tipo</code>: font-size 1.2rem, font-weight bold, font-style italic</li>
+    </ul>
+</div>
+
+<p class="pequeno">Texto pequeno — 12px</p>
+<p class="normal">Texto normal — 16px, weight 400</p>
+<p class="medio">Texto médio — 20px, weight 600</p>
+<p class="grande">Texto grande — 28px, bold</p>
+<p class="destaque-tipo">Texto destaque — 1.2rem, bold, italic</p>
+
+<!-- =====================================================
+    EXERCÍCIO 3 — ALINHAMENTO E DECORAÇÃO
+===================================================== -->
+<h2>Exercício 3 — text-align, text-decoration, text-transform</h2>
+<div class="instrucao">
+    Estilize cada parágrafo conforme indicado no comentário HTML interno:
+</div>
+
+<!-- text-align: center -->
+<p id="centralizado">Este texto deve estar centralizado na tela.</p>
+
+<!-- text-align: right -->
+<p id="direita">Este texto deve estar alinhado à direita.</p>
+
+<!-- text-align: justify -->
+<p id="justificado">Este texto deve estar justificado. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+<!-- text-decoration: line-through -->
+<p id="tachado">Este texto deve aparecer tachado (riscado).</p>
+
+<!-- text-transform: uppercase -->
+<p id="maiusculo">este texto deve aparecer em letras maiúsculas.</p>
+
+<!-- text-transform: capitalize -->
+<p id="capitalizado">cada palavra deste texto deve ter a primeira letra maiúscula.</p>
+
+<!-- =====================================================
+    EXERCÍCIO 4 — LINE-HEIGHT E LETTER-SPACING
+===================================================== -->
+<h2>Exercício 4 — Espaçamento</h2>
+<div class="instrucao">
+    Compare os dois parágrafos abaixo e aplique os espaçamentos corretos:
+    <ul>
+        <li><code>#apertado</code>: line-height 1, letter-spacing -1px</li>
+        <li><code>#arejado</code>: line-height 2, letter-spacing 3px, word-spacing 8px</li>
+    </ul>
+    Depois, escreva nos comentários: qual dos dois é mais fácil de ler? Por quê?
+</div>
+
+<p id="apertado">Texto apertado. A leitura fica mais difícil quando as linhas estão muito próximas e as letras muito juntas. Lorem ipsum dolor sit amet consectetur.</p>
+
+<p id="arejado">Texto arejado. A leitura melhora com mais espaço entre as linhas e as letras. Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+<!-- Resposta: -->
+
+<!-- =====================================================
+    EXERCÍCIO 5 — BLOCO DE TEXTO COMPLETO
+===================================================== -->
+<h2>Exercício 5 — Artigo Tipografado</h2>
+<div class="instrucao">
+    Estilize o artigo abaixo no CSS para que fique bem legível:
+    <ul>
+        <li><code>#artigo h2</code>: font-family Georgia serif, font-size 28px, color #2c3e50, margin-bottom 5px</li>
+        <li><code>#artigo .subtitulo</code>: font-size 14px, color #888, font-style italic, margin-bottom 20px</li>
+        <li><code>#artigo p</code>: font-family Arial sans-serif, font-size 16px, line-height 1.7, color #444, text-align justify</li>
+        <li><code>#artigo strong</code>: color #8e44ad</li>
+    </ul>
+</div>
+
+<article id="artigo">
+    <h2>A Importância da Tipografia na Web</h2>
+    <p class="subtitulo">Por Rubens Dutra · outubro de 2026</p>
+    <p>
+        A tipografia é um dos elementos mais importantes do design web.
+        Uma boa escolha de fonte, tamanho e espaçamento pode fazer toda a diferença
+        na <strong>experiência do usuário</strong> e na legibilidade do conteúdo.
+    </p>
+    <p>
+        Estudos mostram que textos com <strong>line-height entre 1.4 e 1.8</strong>
+        são significativamente mais fáceis de ler em telas. Fontes sans-serif como
+        Arial e Roboto são geralmente preferidas para corpo de texto digital, enquanto
+        fontes serif como Georgia são usadas em títulos para criar hierarquia visual.
+    </p>
+</article>
+
+<div id="rodape">Exercício 04 — Tipografia | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
