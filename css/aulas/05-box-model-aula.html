@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 05 - Box Model</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #27ae60; padding-bottom: 8px; }
+        h2 { color: #27ae60; margin-top: 30px; }
+        h3 { color: #444; margin-top: 20px; }
+        .destaque { background: #eafaf1; border-left: 4px solid #27ae60; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+        pre { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-size: 0.9em; overflow-x: auto; }
+        code { background: #ecf0f1; color: #27ae60; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #27ae60; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        #rodape { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+
+        /* ===== DEMOS DO BOX MODEL ===== */
+        .demo-box {
+            background: #d5f5e3;
+            width: 300px;
+            padding: 30px;
+            border: 5px solid #27ae60;
+            margin: 20px auto;
+            text-align: center;
+            font-weight: bold;
+        }
+        .demo-margin { background: #fdebd0; padding: 20px; border: 3px solid #e67e22; margin: 30px; }
+        .demo-padding { background: #d6eaf8; border: 3px solid #3498db; padding: 40px; }
+        .demo-sem-padding { background: #d6eaf8; border: 3px solid #3498db; padding: 0; }
+
+        /* box-sizing demo */
+        .content-box { box-sizing: content-box; width: 200px; padding: 20px; border: 5px solid #e74c3c; background: #fdf2f2; margin: 10px 0; }
+        .border-box  { box-sizing: border-box;  width: 200px; padding: 20px; border: 5px solid #27ae60; background: #eafaf1; margin: 10px 0; }
+
+        /* display demo */
+        .demo-inline span { background: #fdebd0; border: 2px solid #e67e22; padding: 5px 10px; margin: 5px; }
+        .demo-block div { background: #d6eaf8; border: 2px solid #3498db; padding: 10px; margin: 5px 0; }
+        .demo-inline-block div { display: inline-block; background: #d5f5e3; border: 2px solid #27ae60; padding: 10px; margin: 5px; width: 120px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<h1>Aula 05 — Box Model</h1>
+
+<p>
+    O <strong>Box Model</strong> (modelo de caixa) é o conceito fundamental do CSS:
+    todo elemento HTML é tratado como uma caixa retangular composta por 4 camadas.
+</p>
+
+<!-- =====================================================
+    1. AS 4 CAMADAS
+===================================================== -->
+<h2>1. As 4 Camadas do Box Model</h2>
+
+<pre>
+┌─────────────────────────────────┐  ← MARGIN (espaço externo)
+│  ┌───────────────────────────┐  │
+│  │  BORDER (borda)           │  │
+│  │  ┌─────────────────────┐  │  │
+│  │  │  PADDING (interno)  │  │  │
+│  │  │  ┌───────────────┐  │  │  │
+│  │  │  │   CONTENT     │  │  │  │
+│  │  │  │  (conteúdo)   │  │  │  │
+│  │  │  └───────────────┘  │  │  │
+│  │  └─────────────────────┘  │  │
+│  └───────────────────────────┘  │
+└─────────────────────────────────┘
+</pre>
+
+<table>
+    <tr><th>Camada</th><th>O que é</th><th>Propriedade CSS</th></tr>
+    <tr><td><strong>content</strong></td><td>O conteúdo (texto, imagem)</td><td><code>width</code>, <code>height</code></td></tr>
+    <tr><td><strong>padding</strong></td><td>Espaço interno entre conteúdo e borda</td><td><code>padding</code></td></tr>
+    <tr><td><strong>border</strong></td><td>A borda do elemento</td><td><code>border</code></td></tr>
+    <tr><td><strong>margin</strong></td><td>Espaço externo (entre elementos)</td><td><code>margin</code></td></tr>
+</table>
+
+<div class="demo-box">
+    Conteúdo (content)<br>
+    <small>padding: 30px | border: 5px solid | margin: 20px</small>
+</div>
+
+<!-- =====================================================
+    2. WIDTH E HEIGHT
+===================================================== -->
+<h2>2. width e height</h2>
+<pre>
+width: 300px;       /* largura do conteúdo */
+height: 150px;      /* altura do conteúdo */
+max-width: 100%;    /* largura máxima */
+min-height: 200px;  /* altura mínima */
+</pre>
+<div class="destaque">
+    Por padrão, <code>width</code> e <code>height</code> definem o tamanho do <em>conteúdo</em>,
+    sem incluir padding e border (isso muda com <code>box-sizing</code>).
+</div>
+
+<!-- =====================================================
+    3. PADDING
+===================================================== -->
+<h2>3. padding</h2>
+<p>Espaço <strong>interno</strong> entre o conteúdo e a borda.</p>
+<pre>
+padding: 20px;                   /* todos os lados iguais */
+padding: 10px 20px;              /* vertical | horizontal */
+padding: 10px 20px 15px 5px;    /* top | right | bottom | left */
+
+/* Lados individuais */
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 15px;
+padding-left: 5px;
+</pre>
+
+<div style="margin:15px 0;">
+    <div class="demo-sem-padding" style="margin-bottom:10px;">Sem padding — texto colado na borda</div>
+    <div class="demo-padding">Com padding: 40px — texto afastado da borda</div>
+</div>
+
+<!-- =====================================================
+    4. MARGIN
+===================================================== -->
+<h2>4. margin</h2>
+<p>Espaço <strong>externo</strong> ao redor do elemento.</p>
+<pre>
+margin: 20px;                    /* todos os lados */
+margin: 10px 20px;               /* vertical | horizontal */
+margin: 10px 20px 15px 5px;     /* top | right | bottom | left */
+margin: 0 auto;                  /* centraliza horizontalmente */
+
+/* Lados individuais */
+margin-top: 10px;
+margin-right: auto;   /* empurra para a esquerda */
+</pre>
+
+<div class="destaque">
+    <strong>margin: 0 auto</strong> é o truque clássico para centralizar um elemento de bloco
+    (quando ele tem <code>width</code> definido).
+</div>
+
+<div style="background:#f0f0f0;padding:5px;">
+    <div class="demo-margin">margin: 30px — observe o espaço ao redor desta caixa</div>
+</div>
+
+<!-- =====================================================
+    5. BORDER
+===================================================== -->
+<h2>5. border</h2>
+<pre>
+border: 2px solid #333;       /* largura estilo cor */
+border: 1px dashed red;
+border: 3px dotted blue;
+
+/* Lados individuais */
+border-top: 2px solid #27ae60;
+border-bottom: none;
+
+/* Propriedades separadas */
+border-width: 2px;
+border-style: solid;   /* solid | dashed | dotted | double | none */
+border-color: #333;
+
+/* Bordas arredondadas */
+border-radius: 8px;         /* todos os cantos */
+border-radius: 50%;         /* círculo (para elemento quadrado) */
+border-radius: 10px 0;      /* top-left/bottom-right | top-right/bottom-left */
+</pre>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin:15px 0;">
+    <div style="border:3px solid #27ae60;padding:10px;border-radius:4px;">solid</div>
+    <div style="border:3px dashed #e74c3c;padding:10px;border-radius:4px;">dashed</div>
+    <div style="border:3px dotted #3498db;padding:10px;border-radius:4px;">dotted</div>
+    <div style="border:3px double #8e44ad;padding:10px;border-radius:4px;">double</div>
+    <div style="border:3px solid #f39c12;padding:10px;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;">50%</div>
+</div>
+
+<!-- =====================================================
+    6. BOX-SIZING
+===================================================== -->
+<h2>6. box-sizing</h2>
+<p>Define como <code>width</code> e <code>height</code> são calculados.</p>
+
+<h3>content-box (padrão)</h3>
+<p>width define só o conteúdo. Padding e border são somados por fora.</p>
+<pre>
+.elemento {
+    box-sizing: content-box;  /* padrão */
+    width: 200px;
+    padding: 20px;
+    border: 5px solid red;
+    /* tamanho total = 200 + 20+20 + 5+5 = 250px */
+}
+</pre>
+
+<h3>border-box (recomendado)</h3>
+<p>width inclui padding e border. O conteúdo encolhe para caber.</p>
+<pre>
+.elemento {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 20px;
+    border: 5px solid green;
+    /* tamanho total = 200px (sempre!) */
+}
+</pre>
+
+<div class="content-box">content-box: width 200px<br><small>real: 250px</small></div>
+<div class="border-box">border-box: width 200px<br><small>real: 200px</small></div>
+
+<div class="destaque">
+    <strong>Boa prática:</strong> aplique <code>box-sizing: border-box</code> em tudo:
+    <pre style="margin:8px 0 0;">
+*, *::before, *::after {
+    box-sizing: border-box;
+}</pre>
+</div>
+
+<!-- =====================================================
+    7. DISPLAY
+===================================================== -->
+<h2>7. display</h2>
+<p>Controla como o elemento se comporta no fluxo da página.</p>
+<pre>
+display: block;         /* ocupa linha inteira */
+display: inline;        /* flui junto com o texto, não aceita width/height */
+display: inline-block;  /* flui como inline, mas aceita width/height */
+display: none;          /* remove o elemento da tela */
+</pre>
+
+<h3>block</h3>
+<div class="demo-block">
+    <div>div 1 — ocupa toda a largura</div>
+    <div>div 2 — vai para a próxima linha</div>
+</div>
+
+<h3>inline</h3>
+<div class="demo-inline">
+    <span>span 1</span>
+    <span>span 2</span>
+    <span>span 3 — fluem lado a lado</span>
+</div>
+
+<h3>inline-block</h3>
+<div class="demo-inline-block">
+    <div>Caixa 1</div>
+    <div>Caixa 2</div>
+    <div>Caixa 3</div>
+</div>
+
+<!-- =====================================================
+    RESUMO
+===================================================== -->
+<h2>Resumo</h2>
+<table>
+    <tr><th>Propriedade</th><th>O que controla</th></tr>
+    <tr><td><code>width / height</code></td><td>Tamanho do conteúdo</td></tr>
+    <tr><td><code>padding</code></td><td>Espaço interno (conteúdo ↔ borda)</td></tr>
+    <tr><td><code>border</code></td><td>Borda do elemento</td></tr>
+    <tr><td><code>margin</code></td><td>Espaço externo (entre elementos)</td></tr>
+    <tr><td><code>box-sizing: border-box</code></td><td>width inclui padding e border</td></tr>
+    <tr><td><code>display</code></td><td>Comportamento no fluxo (block / inline / inline-block)</td></tr>
+</table>
+
+<div id="rodape">Aula 05 — Box Model | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
