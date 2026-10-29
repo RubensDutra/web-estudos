@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Web I — Projeto CSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* BLOCO 1 — INTRODUÇÃO: variáveis CSS */
+        :root {
+            --cor-primaria: #2c3e50;
+            --cor-acento:   #e74c3c;
+            --cor-acento2:  #3498db;
+            --cor-verde:    #27ae60;
+            --cor-amarelo:  #f39c12;
+            --cor-fundo:    #f4f6f8;
+            --cor-card:     #ffffff;
+            --cor-texto:    #333333;
+            --cor-suave:    #7f8c8d;
+            --raio:         8px;
+            --sombra:       0 2px 12px rgba(0,0,0,0.10);
+        }
+
+        /* BLOCO 4 — TIPOGRAFIA */
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+        }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; line-height: 1.2; }
+        h1 { font-size: 2.4rem; }
+        h2 { font-size: 1.7rem; }
+        h3 { font-size: 1.1rem; }
+        p  { margin-bottom: 1rem; }
+        a  { color: var(--cor-acento2); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cor-suave); }
+
+        /* BLOCO 3 — CORES E FUNDO */
+        .hero {
+            background: linear-gradient(135deg, var(--cor-primaria) 0%, #1a252f 60%, #2980b9 100%);
+            color: white;
+            padding: 70px 24px 80px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(231,76,60,0.85);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .hero h1 { color: white; margin-bottom: 14px; }
+        .hero p { color: rgba(255,255,255,0.80); max-width: 580px; margin: 0 auto 28px; font-size: 1.05rem; }
+        .hero-btn {
+            display: inline-block;
+            background: var(--cor-acento);
+            color: white;
+            padding: 12px 28px;
+            border-radius: var(--raio);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .secao-titulo {
+            background: var(--cor-primaria);
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* BLOCO 5 — BOX MODEL */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .secao     { padding: 60px 0; }
+        .card {
+            background: var(--cor-card);
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+            overflow: hidden;
+            border: 1px solid #e8e8e8;
+        }
+        .card-body { padding: 20px; }
+        .card-body h3 { color: var(--cor-primaria); margin-bottom: 8px; }
+        .card-body p  { color: var(--cor-suave); font-size: 0.9rem; margin-bottom: 0; }
+        .card-img { width: 100%; height: 130px; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-top: 10px; border: 1.5px solid currentColor; }
+        .tag-css { color: #2980b9; border-color: #2980b9; }
+
+        /* BLOCO 6 — DISPLAY */
+        .badge-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .badge { display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: white; }
+        .badge-vermelho { background: var(--cor-acento); }
+        .badge-azul     { background: var(--cor-acento2); }
+        .badge-verde    { background: var(--cor-verde); }
+        .badge-amarelo  { background: var(--cor-amarelo); }
+        .badge-cinza    { background: var(--cor-suave); }
+
+        /* BLOCO 7 — FLEXBOX */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            background: var(--cor-primaria);
+            padding: 14px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .navbar-logo { color: white; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+        .navbar-links { display: flex; gap: 6px; list-style: none; }
+        .navbar-links a { color: rgba(255,255,255,0.75); padding: 6px 12px; border-radius: 5px; font-size: 0.88rem; }
+        .navbar-links a:hover { background: rgba(255,255,255,0.12); color: white; text-decoration: none; }
+        .navbar-cta { background: var(--cor-acento); color: white !important; padding: 7px 16px; border-radius: var(--raio); font-weight: 600; }
+
+        .cards-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+        .cards-grid .card { flex: 1 1 220px; }
+
+        .layout-dois { display: flex; gap: 24px; align-items: flex-start; }
+
+        .sidebar { flex: 0 0 240px; background: var(--cor-card); border-radius: var(--raio); box-shadow: var(--sombra); overflow: hidden; border: 1px solid #e8e8e8; }
+        .sidebar-item { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #f0f0f0; color: var(--cor-texto); font-size: 0.9rem; cursor: pointer; }
+        .sidebar-item:last-child { border-bottom: none; }
+        .sidebar-item:hover { background: #f8f8f8; }
+        .sidebar-item.ativo { background: #fef0ef; color: var(--cor-acento); font-weight: 600; border-left: 3px solid var(--cor-acento); }
+
+        .conteudo-principal { flex: 1; min-width: 0; }
+
+        .progresso-lista { display: flex; flex-direction: column; gap: 14px; }
+        .progresso-item  { display: flex; align-items: center; gap: 12px; }
+        .progresso-label { flex: 0 0 130px; font-size: 0.88rem; }
+        .barra-fundo     { flex: 1; height: 10px; background: #e8e8e8; border-radius: 99px; overflow: hidden; }
+        .barra-fill      { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--cor-acento2), var(--cor-acento)); }
+        .progresso-pct   { flex: 0 0 36px; text-align: right; font-size: 0.82rem; font-weight: 600; color: var(--cor-primaria); }
+
+        .stats-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+        .stat-card { flex: 1 1 140px; background: var(--cor-card); border-radius: var(--raio); box-shadow: var(--sombra); padding: 20px; text-align: center; border: 1px solid #e8e8e8; }
+        .stat-numero { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700; color: var(--cor-acento); line-height: 1; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+        .stat-desc   { font-size: 0.82rem; color: var(--cor-suave); }
+
+        .paleta   { display: flex; flex-wrap: wrap; gap: 12px; }
+        .cor-item { flex: 1 1 100px; border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra); border: 1px solid #e8e8e8; }
+        .cor-bloco { height: 70px; }
+        .cor-info  { background: white; padding: 8px 10px; font-size: 0.75rem; }
+        .cor-info strong { display: block; color: var(--cor-primaria); }
+        .cor-info span   { color: var(--cor-suave); }
+
+        .timeline { display: flex; flex-direction: column; gap: 0; }
+        .timeline-item { display: flex; gap: 18px; align-items: flex-start; }
+        .timeline-esq { display: flex; flex-direction: column; align-items: center; flex: 0 0 auto; }
+        .timeline-dot  { width: 14px; height: 14px; border-radius: 50%; background: var(--cor-acento); border: 3px solid white; box-shadow: 0 0 0 2px var(--cor-acento); margin-top: 4px; flex-shrink: 0; }
+        .timeline-linha { width: 2px; flex: 1; background: #e0e0e0; min-height: 30px; }
+        .timeline-item:last-child .timeline-linha { display: none; }
+        .timeline-conteudo { padding-bottom: 24px; flex: 1; }
+        .timeline-conteudo h4 { color: var(--cor-primaria); margin-bottom: 4px; }
+        .timeline-conteudo p  { font-size: 0.88rem; color: var(--cor-suave); margin: 0; }
+
+        .form-grupo { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+        .form-grupo label { font-size: 0.85rem; font-weight: 600; color: var(--cor-primaria); }
+        .form-grupo input,
+        .form-grupo textarea,
+        .form-grupo select {
+            padding: 10px 14px;
+            border: 1.5px solid #ddd;
+            border-radius: var(--raio);
+            font-family: inherit;
+            font-size: 0.92rem;
+            color: var(--cor-texto);
+        }
+        .form-grupo input:focus,
+        .form-grupo textarea:focus,
+        .form-grupo select:focus { outline: none; border-color: var(--cor-acento2); }
+        .form-grupo textarea { resize: vertical; min-height: 100px; }
+        .form-linha { display: flex; gap: 16px; }
+        .form-linha .form-grupo { flex: 1; }
+        .btn { padding: 11px 24px; border: none; border-radius: var(--raio); font-family: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer; }
+        .btn-primario   { background: var(--cor-acento); color: white; }
+        .btn-secundario { background: var(--cor-acento2); color: white; }
+
+        .footer { background: var(--cor-primaria); color: rgba(255,255,255,0.75); padding: 32px 24px; text-align: center; }
+        .footer strong { color: white; }
+        .divisor { border: none; border-top: 2px solid #e8e8e8; }
+        .h2-secao { color: var(--cor-primaria); margin-bottom: 6px; }
+        .subtitulo { color: var(--cor-suave); font-size: 0.95rem; margin-bottom: 28px; }
+    </style>
+</head>
+<body>
+
+<!-- FLEXBOX: navbar com justify-content space-between e align-items center -->
+<nav class="navbar">
+    <a href="#" class="navbar-logo">🎓 Web I</a>
+    <ul class="navbar-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="#" class="navbar-cta">GitHub</a></li>
+    </ul>
+</nav>
+
+<!-- CORES E FUNDO: gradiente linear no hero -->
+<section class="hero" id="sobre">
+    <span class="hero-badge">Projeto Final CSS</span>
+    <h1>Portfólio Web I</h1>
+    <p>Projeto integrado cobrindo todos os tópicos CSS estudados: Introdução, Seletores, Cores, Tipografia, Box Model, Display e Flexbox.</p>
+    <a href="#habilidades" class="hero-btn">Ver conteúdo estudado</a>
+</section>
+
+<!-- STATS + PROGRESSO -->
+<div class="container">
+    <section class="secao" id="habilidades">
+
+        <!-- BOX MODEL + FLEXBOX: stats cards -->
+        <div class="stats-row">
+            <div class="stat-card"><div class="stat-numero">7</div><div class="stat-desc">Tópicos HTML</div></div>
+            <div class="stat-card"><div class="stat-numero">7</div><div class="stat-desc">Tópicos CSS</div></div>
+            <div class="stat-card"><div class="stat-numero">28</div><div class="stat-desc">Arquivos criados</div></div>
+            <div class="stat-card"><div class="stat-numero">100%</div><div class="stat-desc">CSS Básico</div></div>
+        </div>
+
+        <!-- TIPOGRAFIA + DISPLAY + FLEXBOX: barras de progresso -->
+        <div class="card" style="margin-bottom: 32px;">
+            <div class="secao-titulo">📊 Bloco 3 — Cores e Fundo · Bloco 4 — Tipografia · Bloco 6 — Display</div>
+            <div class="card-body">
+                <h2 class="h2-secao">Progresso por tópico</h2>
+                <p class="subtitulo">CSS: do básico ao avançado</p>
+                <div class="progresso-lista">
+                    <div class="progresso-item"><span class="progresso-label">01 Introdução</span><div class="barra-fundo"><div class="barra-fill" style="width:100%"></div></div><span class="progresso-pct">100%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">02 Seletores</span><div class="barra-fundo"><div class="barra-fill" style="width:100%"></div></div><span class="progresso-pct">100%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">03 Cores e Fundo</span><div class="barra-fundo"><div class="barra-fill" style="width:100%"></div></div><span class="progresso-pct">100%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">04 Tipografia</span><div class="barra-fundo"><div class="barra-fill" style="width:100%"></div></div><span class="progresso-pct">100%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">05 Box Model</span><div class="barra-fundo"><div class="barra-fill" style="width:100%"></div></div><span class="progresso-pct">100%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">06 Display</span><div class="barra-fundo"><div class="barra-fill" style="width:100%"></div></div><span class="progresso-pct">100%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">07 Flexbox</span><div class="barra-fundo"><div class="barra-fill" style="width:100%"></div></div><span class="progresso-pct">100%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">08 Grid Layout</span><div class="barra-fundo"><div class="barra-fill" style="width:0%"></div></div><span class="progresso-pct">0%</span></div>
+                    <div class="progresso-item"><span class="progresso-label">09 Responsivo</span><div class="barra-fundo"><div class="barra-fill" style="width:0%"></div></div><span class="progresso-pct">0%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CORES E FUNDO: paleta de cores do projeto -->
+        <div class="card" style="margin-bottom: 32px;">
+            <div class="secao-titulo">🎨 Bloco 3 — Cores e Fundo</div>
+            <div class="card-body">
+                <h2 class="h2-secao">Paleta do projeto</h2>
+                <p class="subtitulo">Cores definidas como variáveis CSS em :root</p>
+                <div class="paleta">
+                    <div class="cor-item"><div class="cor-bloco" style="background:#2c3e50;"></div><div class="cor-info"><strong>Primária</strong><span>#2c3e50</span></div></div>
+                    <div class="cor-item"><div class="cor-bloco" style="background:#e74c3c;"></div><div class="cor-info"><strong>Acento</strong><span>#e74c3c</span></div></div>
+                    <div class="cor-item"><div class="cor-bloco" style="background:#3498db;"></div><div class="cor-info"><strong>Azul</strong><span>#3498db</span></div></div>
+                    <div class="cor-item"><div class="cor-bloco" style="background:#27ae60;"></div><div class="cor-info"><strong>Verde</strong><span>#27ae60</span></div></div>
+                    <div class="cor-item"><div class="cor-bloco" style="background:#f39c12;"></div><div class="cor-info"><strong>Amarelo</strong><span>#f39c12</span></div></div>
+                    <div class="cor-item"><div class="cor-bloco" style="background:#f4f6f8; border:1px solid #ddd;"></div><div class="cor-info"><strong>Fundo</strong><span>#f4f6f8</span></div></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<hr class="divisor">
+
+<!-- LAYOUT SIDEBAR + CONTEÚDO: Flexbox -->
+<div class="container">
+    <section class="secao" id="projetos">
+        <div class="layout-dois">
+
+            <aside class="sidebar">
+                <div class="secao-titulo" style="border-radius:0;">📂 Bloco 7 — Flexbox</div>
+                <div class="sidebar-item ativo"><span>📁</span> Todos os tópicos</div>
+                <div class="sidebar-item"><span>🌐</span> HTML</div>
+                <div class="sidebar-item"><span>🎨</span> CSS</div>
+                <div class="sidebar-item"><span>⭐</span> Favoritos</div>
+                <div class="sidebar-item"><span>📊</span> Progresso</div>
+            </aside>
+
+            <div class="conteudo-principal">
+
+                <!-- TIMELINE: flex-direction column -->
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="secao-titulo">⏱️ Bloco 1 — Introdução · Bloco 7 — Flexbox</div>
+                    <div class="card-body">
+                        <h2 class="h2-secao">Jornada de estudos CSS</h2>
+                        <p class="subtitulo">Do básico ao intermediário</p>
+                        <div class="timeline">
+                            <div class="timeline-item"><div class="timeline-esq"><div class="timeline-dot"></div><div class="timeline-linha"></div></div><div class="timeline-conteudo"><h4>01 — Introdução ao CSS</h4><p>Seletores básicos, especificidade e herança.</p></div></div>
+                            <div class="timeline-item"><div class="timeline-esq"><div class="timeline-dot"></div><div class="timeline-linha"></div></div><div class="timeline-conteudo"><h4>02 — Seletores</h4><p>Classe, ID, atributo, pseudo-classes e combinadores.</p></div></div>
+                            <div class="timeline-item"><div class="timeline-esq"><div class="timeline-dot"></div><div class="timeline-linha"></div></div><div class="timeline-conteudo"><h4>03 — Cores e Fundo</h4><p>Hex, RGB, HSL, gradientes e background.</p></div></div>
+                            <div class="timeline-item"><div class="timeline-esq"><div class="timeline-dot"></div><div class="timeline-linha"></div></div><div class="timeline-conteudo"><h4>04 — Tipografia</h4><p>font-family, font-size, font-weight, line-height e Google Fonts.</p></div></div>
+                            <div class="timeline-item"><div class="timeline-esq"><div class="timeline-dot"></div><div class="timeline-linha"></div></div><div class="timeline-conteudo"><h4>05 — Box Model</h4><p>Content, padding, border, margin e box-sizing.</p></div></div>
+                            <div class="timeline-item"><div class="timeline-esq"><div class="timeline-dot"></div><div class="timeline-linha"></div></div><div class="timeline-conteudo"><h4>06 — Display</h4><p>block, inline, inline-block, none, flex e grid.</p></div></div>
+                            <div class="timeline-item"><div class="timeline-esq"><div class="timeline-dot"></div><div class="timeline-linha"></div></div><div class="timeline-conteudo"><h4>07 — Flexbox</h4><p>flex-direction, justify-content, align-items, gap e flex.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARDS: Box Model + Flexbox flex-wrap -->
+                <div class="card">
+                    <div class="secao-titulo">📚 Bloco 5 — Box Model · Bloco 7 — Flexbox</div>
+                    <div class="card-body">
+                        <h2 class="h2-secao">Tópicos CSS estudados</h2>
+                        <p class="subtitulo">Cada card usa border-radius, box-shadow e padding do Box Model</p>
+                        <div class="cards-grid">
+                            <div class="card"><div class="card-img" style="background:linear-gradient(135deg,#667eea,#764ba2);">📄</div><div class="card-body"><h3>Introdução</h3><p>Como o CSS funciona, especificidade e herança.</p><span class="tag tag-css">CSS 01</span></div></div>
+                            <div class="card"><div class="card-img" style="background:linear-gradient(135deg,#f093fb,#f5576c);">🎯</div><div class="card-body"><h3>Seletores</h3><p>Classe, ID, atributo e pseudo-classes.</p><span class="tag tag-css">CSS 02</span></div></div>
+                            <div class="card"><div class="card-img" style="background:linear-gradient(135deg,#4facfe,#00f2fe);">🎨</div><div class="card-body"><h3>Cores e Fundo</h3><p>Hex, RGB, HSL, gradientes e background.</p><span class="tag tag-css">CSS 03</span></div></div>
+                            <div class="card"><div class="card-img" style="background:linear-gradient(135deg,#43e97b,#38f9d7);">🔤</div><div class="card-body"><h3>Tipografia</h3><p>Fontes, tamanhos, pesos e alinhamentos.</p><span class="tag tag-css">CSS 04</span></div></div>
+                            <div class="card"><div class="card-img" style="background:linear-gradient(135deg,#fa709a,#fee140);">📦</div><div class="card-body"><h3>Box Model</h3><p>Padding, margin, border e box-sizing.</p><span class="tag tag-css">CSS 05</span></div></div>
+                            <div class="card"><div class="card-img" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);">🖥️</div><div class="card-body"><h3>Display</h3><p>block, inline, flex, grid e none.</p><span class="tag tag-css">CSS 06</span></div></div>
+                            <div class="card"><div class="card-img" style="background:linear-gradient(135deg,#f6d365,#fda085);">⬛</div><div class="card-body"><h3>Flexbox</h3><p>Layouts em uma dimensão com flex.</p><span class="tag tag-css">CSS 07</span></div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+<hr class="divisor">
+
+<!-- CONTATO: Box Model + Display + Flexbox -->
+<div class="container">
+    <section class="secao" id="contato">
+        <div class="card">
+            <div class="secao-titulo">📬 Bloco 5 — Box Model · Bloco 6 — Display · Bloco 7 — Flexbox</div>
+            <div class="card-body">
+                <h2 class="h2-secao">Contato</h2>
+                <p class="subtitulo">Formulário usando Box Model e layout Flexbox</p>
+                <div class="badge-wrap" style="margin-bottom:24px;">
+                    <span class="badge badge-vermelho">HTML</span>
+                    <span class="badge badge-azul">CSS</span>
+                    <span class="badge badge-verde">Flexbox</span>
+                    <span class="badge badge-amarelo">Box Model</span>
+                    <span class="badge badge-cinza">Tipografia</span>
+                </div>
+                <form onsubmit="this.querySelector('.msg-ok').style.display='block'; return false;">
+                    <div class="form-linha">
+                        <div class="form-grupo"><label for="nome">Nome</label><input type="text" id="nome" placeholder="Seu nome completo"></div>
+                        <div class="form-grupo"><label for="email">E-mail</label><input type="email" id="email" placeholder="seu@email.com"></div>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="assunto">Assunto</label>
+                        <select id="assunto">
+                            <option value="">Selecione um assunto</option>
+                            <option>Dúvida sobre HTML</option>
+                            <option>Dúvida sobre CSS</option>
+                            <option>Dúvida sobre Flexbox</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo"><label for="mensagem">Mensagem</label><textarea id="mensagem" placeholder="Escreva sua mensagem..."></textarea></div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                        <button type="submit" class="btn btn-primario">Enviar mensagem</button>
+                        <button type="reset" class="btn btn-secundario">Limpar</button>
+                        <span class="msg-ok" style="display:none; color:#27ae60; font-weight:600;">✅ Mensagem enviada!</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- TIPOGRAFIA + CORES: footer -->
+<footer class="footer">
+    <p style="margin-bottom:6px;"><strong>Portfólio Web I</strong> — Projeto integrado CSS</p>
+    <p style="font-size:0.85rem; margin:0;">Tópicos: Introdução · Seletores · Cores · Tipografia · Box Model · Display · Flexbox</p>
+    <p style="font-size:0.8rem; margin-top:10px; color:rgba(255,255,255,0.45);">Análise e Desenvolvimento de Sistemas · RubensDutra/web-estudos</p>
+</footer>
+
+</body>
+</html>
