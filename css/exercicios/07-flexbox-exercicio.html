@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 07 - Flexbox</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #e74c3c; padding-bottom: 8px; }
+        h2 { color: #e74c3c; margin-top: 35px; }
+        .enunciado { background: #fef9e7; border-left: 4px solid #f39c12; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+        .dica { background: #eaf4fb; border-left: 4px solid #2980b9; padding: 8px 14px; margin: 10px 0; border-radius: 4px; font-size: 0.9em; }
+        .area { background: #fff; border: 2px dashed #ccc; padding: 15px; border-radius: 6px; margin-top: 12px; }
+        #rodape { margin-top: 50px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+
+        /* =============================================
+           EXERCÍCIO 1 — barra de navegação
+        ============================================= */
+        .ex1-nav {
+            background: #2c3e50;
+            padding: 14px 20px;
+            border-radius: 6px;
+
+            /* TODO: transforme em flex-container */
+            /* display: flex; */
+            /* justify-content: space-between; */
+            /* align-items: center; */
+        }
+        .ex1-logo { color: white; font-weight: bold; font-size: 1.1em; }
+        .ex1-links {
+            list-style: none; margin: 0; padding: 0;
+
+            /* TODO: deixe os links lado a lado */
+            /* display: flex; */
+            /* gap: 20px; */
+        }
+        .ex1-links a { color: #bdc3c7; text-decoration: none; }
+        .ex1-btn {
+            background: #e74c3c; color: white;
+            border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;
+        }
+
+        /* =============================================
+           EXERCÍCIO 2 — galeria de cards
+        ============================================= */
+        .ex2-galeria {
+            /* TODO: flex + wrap + gap 16px */
+            /* display: flex; */
+            /* flex-wrap: wrap; */
+            /* gap: 16px; */
+        }
+        .ex2-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+
+            /* TODO: base 200px, pode crescer e encolher */
+            /* flex: 1 1 200px; */
+        }
+        .ex2-card-icone { font-size: 2em; margin-bottom: 8px; }
+        .ex2-card h3 { margin: 0 0 6px; color: #2c3e50; font-size: 1em; }
+        .ex2-card p  { margin: 0; font-size: 0.85em; color: #666; }
+
+        /* =============================================
+           EXERCÍCIO 3 — layout sidebar + conteúdo
+        ============================================= */
+        .ex3-layout {
+            min-height: 220px;
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+
+            /* TODO: display flex */
+            /* display: flex; */
+        }
+        .ex3-sidebar {
+            background: #2c3e50;
+            color: white;
+            padding: 16px;
+            width: 200px;
+
+            /* TODO: não deixe a sidebar crescer nem encolher */
+            /* flex-shrink: 0; */
+        }
+        .ex3-main {
+            background: #ecf0f1;
+            padding: 16px;
+
+            /* TODO: ocupa o espaço restante */
+            /* flex: 1; */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Exercício 07 — Flexbox</h1>
+
+<!-- =========================================
+     EXERCÍCIO 1
+========================================= -->
+<h2>Exercício 1 — Barra de navegação com Flexbox</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Monte a navbar abaixo usando Flexbox.
+    <ol>
+        <li>No <code>.ex1-nav</code>: <code>display: flex</code>, <code>justify-content: space-between</code>, <code>align-items: center</code></li>
+        <li>No <code>.ex1-links</code>: <code>display: flex</code> e <code>gap: 20px</code> para os links ficarem lado a lado</li>
+    </ol>
+</div>
+<div class="dica">💡 Remova os comentários nas classes <code>.ex1-nav</code> e <code>.ex1-links</code></div>
+<div class="area">
+    <nav class="ex1-nav">
+        <span class="ex1-logo">🎓 Web I</span>
+        <ul class="ex1-links">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Aulas</a></li>
+            <li><a href="#">Exercícios</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+        <button class="ex1-btn">Entrar</button>
+    </nav>
+</div>
+
+<!-- =========================================
+     EXERCÍCIO 2
+========================================= -->
+<h2>Exercício 2 — Galeria de cards responsiva</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Crie uma galeria de cards que se adaptam ao espaço disponível.
+    <ol>
+        <li>No <code>.ex2-galeria</code>: <code>display: flex</code>, <code>flex-wrap: wrap</code>, <code>gap: 16px</code></li>
+        <li>Em cada <code>.ex2-card</code>: <code>flex: 1 1 200px</code> — cresce, encolhe, base de 200px</li>
+    </ol>
+</div>
+<div class="dica">💡 Redimensione a janela do navegador para ver os cards se reorganizando</div>
+<div class="area">
+    <div class="ex2-galeria">
+        <div class="ex2-card">
+            <div class="ex2-card-icone">🎨</div>
+            <h3>Design</h3>
+            <p>Criação visual e UX</p>
+        </div>
+        <div class="ex2-card">
+            <div class="ex2-card-icone">💻</div>
+            <h3>Desenvolvimento</h3>
+            <p>HTML, CSS, JavaScript</p>
+        </div>
+        <div class="ex2-card">
+            <div class="ex2-card-icone">📱</div>
+            <h3>Mobile</h3>
+            <p>Apps responsivos</p>
+        </div>
+        <div class="ex2-card">
+            <div class="ex2-card-icone">🚀</div>
+            <h3>Deploy</h3>
+            <p>Publicação na web</p>
+        </div>
+        <div class="ex2-card">
+            <div class="ex2-card-icone">🔒</div>
+            <h3>Segurança</h3>
+            <p>Proteção de dados</p>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================
+     EXERCÍCIO 3
+========================================= -->
+<h2>Exercício 3 — Layout sidebar + conteúdo principal</h2>
+<div class="enunciado">
+    <strong>Tarefa:</strong> Monte o layout clássico com sidebar fixa e área de conteúdo que cresce.
+    <ol>
+        <li>No <code>.ex3-layout</code>: <code>display: flex</code></li>
+        <li>Na <code>.ex3-sidebar</code>: <code>flex-shrink: 0</code> — não deixa a sidebar encolher</li>
+        <li>No <code>.ex3-main</code>: <code>flex: 1</code> — ocupa todo o espaço restante</li>
+    </ol>
+</div>
+<div class="dica">💡 Sem <code>flex-shrink: 0</code> na sidebar, ela encolheria junto com o conteúdo</div>
+<div class="area">
+    <div class="ex3-layout">
+        <aside class="ex3-sidebar">
+            <strong>Menu</strong>
+            <ul style="list-style:none; padding:0; margin:12px 0 0;">
+                <li style="padding:6px 0;">📌 Dashboard</li>
+                <li style="padding:6px 0;">👤 Perfil</li>
+                <li style="padding:6px 0;">⚙️ Configurações</li>
+                <li style="padding:6px 0;">🚪 Sair</li>
+            </ul>
+        </aside>
+        <main class="ex3-main">
+            <h3 style="margin-top:0; color:#2c3e50;">Conteúdo Principal</h3>
+            <p>Esta área deve crescer para preencher todo o espaço disponível ao lado da sidebar.</p>
+            <p>Com <code>flex: 1</code>, o main ocupa automaticamente o espaço que sobra.</p>
+        </main>
+    </div>
+</div>
+
+<div id="rodape">Exercício 07 — Flexbox | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
