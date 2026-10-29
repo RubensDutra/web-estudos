@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 07 - Flexbox</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #e74c3c; padding-bottom: 8px; }
+        h2 { color: #e74c3c; margin-top: 35px; }
+        h3 { color: #555; margin-top: 20px; }
+        .destaque { background: #fef9e7; border-left: 4px solid #f39c12; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+        .info    { background: #eaf4fb; border-left: 4px solid #2980b9; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+        pre { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-size: 0.88em; overflow-x: auto; }
+        code { background: #ecf0f1; color: #c0392b; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #e74c3c; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .secao { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        #rodape { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 0.85em; color: #888; text-align: center; }
+
+        /* ── demos gerais ── */
+        .demo { background: #fff3f3; border: 2px dashed #e74c3c; padding: 12px; border-radius: 6px; margin: 10px 0; }
+        .item { background: #e74c3c; color: white; padding: 12px 18px; border-radius: 4px; font-weight: bold; text-align: center; font-size: 0.9em; }
+        .item.alt { background: #c0392b; }
+        .item.sm  { padding: 8px 14px; font-size: 0.8em; }
+
+        /* ── 1. flex-direction ── */
+        .fd-row    { display: flex; flex-direction: row;            gap: 8px; }
+        .fd-col    { display: flex; flex-direction: column;         gap: 8px; width: 180px; }
+        .fd-rrev   { display: flex; flex-direction: row-reverse;    gap: 8px; }
+        .fd-crev   { display: flex; flex-direction: column-reverse; gap: 8px; width: 180px; }
+
+        /* ── 2. justify-content ── */
+        .jc { display: flex; gap: 8px; }
+        .jc-start   { justify-content: flex-start; }
+        .jc-end     { justify-content: flex-end; }
+        .jc-center  { justify-content: center; }
+        .jc-between { justify-content: space-between; }
+        .jc-around  { justify-content: space-around; }
+        .jc-evenly  { justify-content: space-evenly; }
+
+        /* ── 3. align-items ── */
+        .ai { display: flex; height: 90px; gap: 8px; }
+        .ai-start   { align-items: flex-start; }
+        .ai-end     { align-items: flex-end; }
+        .ai-center  { align-items: center; }
+        .ai-stretch { align-items: stretch; }
+        .ai-base    { align-items: baseline; }
+
+        /* ── 4. gap ── */
+        .gap-demo  { display: flex; flex-wrap: wrap; }
+        .gap-8     { gap: 8px; }
+        .gap-24    { gap: 24px; }
+        .gap-rc    { gap: 4px 24px; }
+
+        /* ── 5. flex nos filhos ── */
+        .flex-filhos { display: flex; gap: 8px; }
+        .f0  { flex: none; width: 80px; }
+        .f1  { flex: 1; }
+        .f2  { flex: 2; }
+        .fgrow  { flex-grow: 1; }
+        .fshrink { flex-shrink: 0; width: 200px; }
+        .fbasis { flex-basis: 150px; }
+    </style>
+</head>
+<body>
+
+<h1>Aula 07 — Flexbox</h1>
+<p>
+    O <strong>Flexbox</strong> (Flexible Box Layout) organiza elementos em <em>uma dimensão</em>
+    — linha ou coluna — distribuindo espaço e alinhando itens de forma inteligente.
+    É ativado com <code>display: flex</code> no elemento pai (container).
+</p>
+<div class="info">
+    <strong>Dois papéis no Flexbox:</strong><br>
+    • <strong>Container</strong> (pai) — recebe <code>display: flex</code> e controla o layout<br>
+    • <strong>Itens</strong> (filhos) — são organizados pelo container
+</div>
+
+<!-- ─────────────────────────────────────────
+     1. ATIVANDO O FLEXBOX
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>1. Ativando o Flexbox</h2>
+<pre>
+.container {
+    display: flex;   /* ativa o Flexbox — todos os filhos diretos viram flex-itens */
+}
+</pre>
+<p>Sem Flexbox: cada <code>&lt;div&gt;</code> ocupa sua própria linha (block).</p>
+<div class="demo">
+    <div style="background:#e74c3c;color:white;padding:10px;margin:4px 0;border-radius:4px;">Item 1 (block)</div>
+    <div style="background:#c0392b;color:white;padding:10px;margin:4px 0;border-radius:4px;">Item 2 (block)</div>
+    <div style="background:#e74c3c;color:white;padding:10px;margin:4px 0;border-radius:4px;">Item 3 (block)</div>
+</div>
+<p>Com <code>display: flex</code>: os itens ficam lado a lado automaticamente.</p>
+<div class="demo fd-row">
+    <div class="item">Item 1</div>
+    <div class="item alt">Item 2</div>
+    <div class="item">Item 3</div>
+</div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     2. FLEX-DIRECTION
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>2. flex-direction — direção dos itens</h2>
+<p>Define o <strong>eixo principal</strong>: a direção em que os itens são dispostos.</p>
+<pre>
+flex-direction: row;             /* → esquerda para direita (padrão) */
+flex-direction: row-reverse;     /* ← direita para esquerda */
+flex-direction: column;          /* ↓ cima para baixo */
+flex-direction: column-reverse;  /* ↑ baixo para cima */
+</pre>
+
+<table>
+    <tr><th>Valor</th><th>Eixo principal</th><th>Eixo cruzado</th></tr>
+    <tr><td><code>row</code></td><td>→ horizontal</td><td>↕ vertical</td></tr>
+    <tr><td><code>row-reverse</code></td><td>← horizontal invertido</td><td>↕ vertical</td></tr>
+    <tr><td><code>column</code></td><td>↓ vertical</td><td>↔ horizontal</td></tr>
+    <tr><td><code>column-reverse</code></td><td>↑ vertical invertido</td><td>↔ horizontal</td></tr>
+</table>
+
+<h3>row (padrão)</h3>
+<div class="demo fd-row">
+    <div class="item">1</div><div class="item alt">2</div><div class="item">3</div>
+</div>
+
+<h3>row-reverse</h3>
+<div class="demo fd-rrev">
+    <div class="item">1</div><div class="item alt">2</div><div class="item">3</div>
+</div>
+
+<h3>column</h3>
+<div class="demo fd-col">
+    <div class="item">1</div><div class="item alt">2</div><div class="item">3</div>
+</div>
+
+<h3>column-reverse</h3>
+<div class="demo fd-crev">
+    <div class="item">1</div><div class="item alt">2</div><div class="item">3</div>
+</div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     3. JUSTIFY-CONTENT
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>3. justify-content — alinhamento no eixo principal</h2>
+<p>Distribui os itens ao longo do <strong>eixo principal</strong> (horizontal em <code>row</code>).</p>
+<pre>
+justify-content: flex-start;    /* agrupa no início (padrão) */
+justify-content: flex-end;      /* agrupa no fim */
+justify-content: center;        /* centraliza */
+justify-content: space-between; /* espaço entre os itens */
+justify-content: space-around;  /* espaço ao redor de cada item */
+justify-content: space-evenly;  /* espaço igual entre todos */
+</pre>
+
+<h3>flex-start (padrão)</h3>
+<div class="demo jc jc-start">
+    <div class="item sm">A</div><div class="item sm alt">B</div><div class="item sm">C</div>
+</div>
+<h3>flex-end</h3>
+<div class="demo jc jc-end">
+    <div class="item sm">A</div><div class="item sm alt">B</div><div class="item sm">C</div>
+</div>
+<h3>center</h3>
+<div class="demo jc jc-center">
+    <div class="item sm">A</div><div class="item sm alt">B</div><div class="item sm">C</div>
+</div>
+<h3>space-between</h3>
+<div class="demo jc jc-between">
+    <div class="item sm">A</div><div class="item sm alt">B</div><div class="item sm">C</div>
+</div>
+<h3>space-around</h3>
+<div class="demo jc jc-around">
+    <div class="item sm">A</div><div class="item sm alt">B</div><div class="item sm">C</div>
+</div>
+<h3>space-evenly</h3>
+<div class="demo jc jc-evenly">
+    <div class="item sm">A</div><div class="item sm alt">B</div><div class="item sm">C</div>
+</div>
+
+<div class="destaque">
+    💡 <strong>space-between vs space-around vs space-evenly:</strong><br>
+    • <strong>between</strong>: espaço <em>entre</em> os itens (bordas coladas nas extremidades)<br>
+    • <strong>around</strong>: cada item tem metade do espaço nas laterais (extremidades menores)<br>
+    • <strong>evenly</strong>: espaços iguais em todos os lados, incluindo extremidades
+</div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     4. ALIGN-ITEMS
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>4. align-items — alinhamento no eixo cruzado</h2>
+<p>Alinha os itens no <strong>eixo cruzado</strong> (vertical em <code>row</code>).</p>
+<pre>
+align-items: stretch;     /* estica para preencher (padrão) */
+align-items: flex-start;  /* alinha no topo */
+align-items: flex-end;    /* alinha na base */
+align-items: center;      /* centraliza verticalmente */
+align-items: baseline;    /* alinha pela linha de base do texto */
+</pre>
+
+<h3>stretch (padrão) — itens esticam para preencher a altura</h3>
+<div class="demo ai ai-stretch">
+    <div class="item">A</div><div class="item alt">B<br>2 linhas</div><div class="item">C</div>
+</div>
+<h3>flex-start — alinha no topo</h3>
+<div class="demo ai ai-start">
+    <div class="item">A</div><div class="item alt">B<br>2 linhas</div><div class="item">C</div>
+</div>
+<h3>center — centraliza verticalmente</h3>
+<div class="demo ai ai-center">
+    <div class="item">A</div><div class="item alt">B<br>2 linhas</div><div class="item">C</div>
+</div>
+<h3>flex-end — alinha na base</h3>
+<div class="demo ai ai-end">
+    <div class="item">A</div><div class="item alt">B<br>2 linhas</div><div class="item">C</div>
+</div>
+<h3>baseline — alinha pela linha de base do texto</h3>
+<div class="demo ai ai-base">
+    <div class="item" style="font-size:0.8em;">A<br>pequeno</div>
+    <div class="item alt" style="font-size:1.4em;">B grande</div>
+    <div class="item" style="font-size:0.9em;">C médio</div>
+</div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     5. GAP
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>5. gap — espaço entre os itens</h2>
+<p>Adiciona espaço entre os flex-itens, sem afetar as bordas externas do container.</p>
+<pre>
+gap: 16px;       /* mesmo espaço em todas as direções */
+gap: 8px 24px;   /* gap-row gap-column (linha coluna) */
+row-gap: 8px;    /* só entre linhas */
+column-gap: 24px;/* só entre colunas */
+</pre>
+
+<h3>gap: 8px</h3>
+<div class="demo gap-demo gap-8 fd-row">
+    <div class="item">A</div><div class="item alt">B</div><div class="item">C</div><div class="item alt">D</div>
+</div>
+<h3>gap: 24px</h3>
+<div class="demo gap-demo gap-24 fd-row">
+    <div class="item">A</div><div class="item alt">B</div><div class="item">C</div><div class="item alt">D</div>
+</div>
+<h3>gap: 4px 24px (linha coluna)</h3>
+<div class="demo gap-demo gap-rc fd-row" style="flex-wrap:wrap; max-width:260px;">
+    <div class="item">A</div><div class="item alt">B</div><div class="item">C</div>
+    <div class="item alt">D</div><div class="item">E</div><div class="item alt">F</div>
+</div>
+<div class="destaque">
+    💡 Prefira <code>gap</code> a <code>margin</code> nos itens: gap não cria espaço nas bordas
+    externas e funciona automaticamente com <code>flex-wrap</code>.
+</div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     6. FLEX NOS FILHOS
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>6. flex — controle nos itens filhos</h2>
+<p>
+    A propriedade <code>flex</code> é um atalho para três propriedades que controlam
+    como cada item cresce, encolhe e qual é seu tamanho base.
+</p>
+<pre>
+/* flex: grow  shrink  basis */
+flex: 0    1      auto;   /* padrão */
+flex: 1;                  /* cresce para preencher (flex: 1 1 0) */
+flex: 2;                  /* cresce o dobro de flex:1 */
+flex: none;               /* tamanho fixo, não cresce nem encolhe */
+</pre>
+
+<h3>flex-grow — quanto o item cresce</h3>
+<pre>
+flex-grow: 0;  /* não cresce (padrão) */
+flex-grow: 1;  /* cresce igualmente com outros flex-grow:1 */
+flex-grow: 2;  /* cresce o dobro de um flex-grow:1 */
+</pre>
+<div class="demo flex-filhos">
+    <div class="item f0">fixo<br>80px</div>
+    <div class="item alt" style="flex-grow:1;">grow: 1</div>
+    <div class="item" style="flex-grow:2;">grow: 2</div>
+</div>
+
+<h3>flex-shrink — quanto o item encolhe</h3>
+<pre>
+flex-shrink: 1;  /* encolhe se necessário (padrão) */
+flex-shrink: 0;  /* não encolhe — mantém o tamanho mesmo com pouco espaço */
+</pre>
+<div class="demo flex-filhos" style="max-width:350px; overflow:hidden;">
+    <div class="item" style="flex-shrink:1; width:200px;">shrink: 1<br>encolhe</div>
+    <div class="item alt fshrink">shrink: 0<br>não encolhe</div>
+</div>
+
+<h3>flex-basis — tamanho base antes de crescer/encolher</h3>
+<pre>
+flex-basis: auto;   /* usa width/height do item (padrão) */
+flex-basis: 150px;  /* tamanho inicial: 150px */
+flex-basis: 0;      /* começa do zero — crescimento puramente proporcional */
+</pre>
+<div class="demo flex-filhos">
+    <div class="item" style="flex: 1 1 100px;">basis 100px</div>
+    <div class="item alt" style="flex: 1 1 200px;">basis 200px</div>
+    <div class="item" style="flex: 1 1 50px;">basis 50px</div>
+</div>
+
+<h3>Atalho flex — os mais usados</h3>
+<pre>
+flex: 1;      /* equivale a: flex-grow:1 flex-shrink:1 flex-basis:0 */
+flex: auto;   /* equivale a: flex-grow:1 flex-shrink:1 flex-basis:auto */
+flex: none;   /* equivale a: flex-grow:0 flex-shrink:0 flex-basis:auto */
+flex: 0 0 200px; /* tamanho fixo de 200px */
+</pre>
+<div class="demo flex-filhos">
+    <div class="item f0">none<br>80px</div>
+    <div class="item alt f1">flex: 1</div>
+    <div class="item f2">flex: 2</div>
+    <div class="item alt f1">flex: 1</div>
+</div>
+
+<div class="info">
+    <strong>Leitura dos valores acima:</strong><br>
+    O item <em>none</em> tem 80px fixos. O espaço restante é dividido em 4 partes (1+2+1).
+    O item <em>flex: 1</em> pega 1 parte, o <em>flex: 2</em> pega 2 partes.
+</div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     7. FLEX-WRAP
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>7. flex-wrap — quebra de linha</h2>
+<pre>
+flex-wrap: nowrap;   /* todos em uma linha (padrão) */
+flex-wrap: wrap;     /* quebra para próxima linha se necessário */
+</pre>
+<p>Com <code>wrap</code> e <code>flex: 1 1 150px</code>, os cards se ajustam automaticamente ao espaço disponível:</p>
+<div class="demo" style="display:flex; flex-wrap:wrap; gap:10px;">
+    <div class="item" style="flex:1 1 150px;">Card 1</div>
+    <div class="item alt" style="flex:1 1 150px;">Card 2</div>
+    <div class="item" style="flex:1 1 150px;">Card 3</div>
+    <div class="item alt" style="flex:1 1 150px;">Card 4</div>
+    <div class="item" style="flex:1 1 150px;">Card 5</div>
+</div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     8. EXEMPLO PRÁTICO
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>8. Exemplo prático — barra de navegação</h2>
+<pre>
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 24px;
+    background: #2c3e50;
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+</pre>
+<nav style="display:flex; justify-content:space-between; align-items:center;
+            gap:20px; padding:12px 24px; background:#2c3e50; border-radius:6px;">
+    <span style="color:white; font-weight:bold; font-size:1.1em;">🎓 Web I</span>
+    <ul style="display:flex; gap:20px; list-style:none; margin:0; padding:0;">
+        <li><a href="#" style="color:#bdc3c7; text-decoration:none;">Início</a></li>
+        <li><a href="#" style="color:#bdc3c7; text-decoration:none;">Aulas</a></li>
+        <li><a href="#" style="color:#bdc3c7; text-decoration:none;">Exercícios</a></li>
+    </ul>
+    <button style="background:#e74c3c; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Entrar</button>
+</nav>
+</div>
+
+<!-- ─────────────────────────────────────────
+     RESUMO
+───────────────────────────────────────── -->
+<div class="secao">
+<h2>Resumo das Propriedades</h2>
+<table>
+    <tr><th>Propriedade</th><th>Onde fica</th><th>O que faz</th></tr>
+    <tr><td><code>display: flex</code></td><td>Container</td><td>Ativa o Flexbox</td></tr>
+    <tr><td><code>flex-direction</code></td><td>Container</td><td>Define a direção (row / column)</td></tr>
+    <tr><td><code>justify-content</code></td><td>Container</td><td>Alinhamento no eixo principal</td></tr>
+    <tr><td><code>align-items</code></td><td>Container</td><td>Alinhamento no eixo cruzado</td></tr>
+    <tr><td><code>flex-wrap</code></td><td>Container</td><td>Permite quebrar em múltiplas linhas</td></tr>
+    <tr><td><code>gap</code></td><td>Container</td><td>Espaço entre os itens</td></tr>
+    <tr><td><code>flex</code></td><td>Item</td><td>Cresce, encolhe e tamanho base</td></tr>
+    <tr><td><code>flex-grow</code></td><td>Item</td><td>Quanto o item pode crescer</td></tr>
+    <tr><td><code>flex-shrink</code></td><td>Item</td><td>Quanto o item pode encolher</td></tr>
+    <tr><td><code>flex-basis</code></td><td>Item</td><td>Tamanho base do item</td></tr>
+</table>
+</div>
+
+<div id="rodape">Aula 07 — Flexbox | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
