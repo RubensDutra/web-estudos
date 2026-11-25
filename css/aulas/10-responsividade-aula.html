@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 10 - Responsividade</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:#f9f9f9;color:#333;}
+h1{color:#2c3e50;border-bottom:3px solid #16a085;padding-bottom:8px;}
+h2{color:#16a085;margin-top:35px;}
+h3{color:#555;margin-top:20px;}
+.info{background:#e8f8f5;border-left:4px solid #16a085;padding:10px 15px;margin:15px 0;border-radius:4px;}
+.dest{background:#fef9e7;border-left:4px solid #f39c12;padding:10px 15px;margin:15px 0;border-radius:4px;}
+pre{background:#2c3e50;color:#ecf0f1;padding:15px;border-radius:6px;font-size:.88em;overflow-x:auto;}
+code{background:#ecf0f1;color:#16a085;padding:2px 5px;border-radius:3px;font-family:monospace;}
+table{border-collapse:collapse;width:100%;margin:15px 0;}
+th,td{border:1px solid #ccc;padding:8px 12px;text-align:left;}
+th{background:#16a085;color:white;}
+tr:nth-child(even){background:#f9f9f9;}
+.secao{background:white;border:1px solid #e0e0e0;border-radius:8px;padding:20px;margin:20px 0;}
+#rodape{margin-top:40px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+
+/* demos responsivos DENTRO da página */
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:12px;background:#e8f8f5;border:2px dashed #16a085;border-radius:6px;margin:10px 0;}
+.di{background:#16a085;color:white;padding:14px;border-radius:4px;text-align:center;font-weight:bold;font-size:.9em;}
+.di.alt{background:#117a65;}
+</style>
+</head>
+<body>
+<h1>Aula 10 — Responsividade</h1>
+<p>Um site responsivo adapta seu layout a qualquer tamanho de tela: celular, tablet ou desktop. A base é a <strong>viewport meta tag</strong> e as <strong>media queries</strong>.</p>
+
+<div class="secao">
+<h2>1. Viewport meta tag — obrigatória!</h2>
+<pre>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</pre>
+<p>Essa tag diz ao navegador móvel para usar a largura real da tela em vez de simular um desktop. <strong>Sem ela, nada funciona no celular.</strong></p>
+</div>
+
+<div class="secao">
+<h2>2. Media Queries</h2>
+<p>Permitem aplicar estilos diferentes dependendo do tamanho da tela.</p>
+<pre>
+/* estilos base — mobile first */
+.container { padding: 16px; }
+
+/* tablet: 768px ou mais */
+@media (min-width: 768px) {
+    .container { padding: 24px; }
+}
+
+/* desktop: 1024px ou mais */
+@media (min-width: 1024px) {
+    .container { padding: 40px; max-width: 1200px; margin: 0 auto; }
+}
+</pre>
+<div class="info"><strong>Mobile First:</strong> comece pelos estilos do celular e vá adicionando com <code>min-width</code>. É a abordagem recomendada.</div>
+
+<h3>Sintaxe das media queries</h3>
+<pre>
+@media (min-width: 768px) { ... }   /* largura mínima — a partir de */
+@media (max-width: 767px) { ... }   /* largura máxima — até */
+@media (min-width: 480px) and (max-width: 767px) { ... } /* intervalo */
+@media (orientation: landscape) { ... } /* paisagem */
+@media print { ... }  /* impressão */
+</pre>
+</div>
+
+<div class="secao">
+<h2>3. Breakpoints comuns</h2>
+<table>
+<tr><th>Nome</th><th>Largura</th><th>Dispositivo típico</th></tr>
+<tr><td>Extra small</td><td>até 575px</td><td>Celulares pequenos</td></tr>
+<tr><td>Small</td><td>576px – 767px</td><td>Celulares grandes</td></tr>
+<tr><td>Medium</td><td>768px – 991px</td><td>Tablets</td></tr>
+<tr><td>Large</td><td>992px – 1199px</td><td>Desktops</td></tr>
+<tr><td>Extra large</td><td>1200px+</td><td>Desktops grandes</td></tr>
+</table>
+</div>
+
+<div class="secao">
+<h2>4. Layout responsivo com Flexbox</h2>
+<pre>
+/* mobile: empilhado */
+.cards { display: flex; flex-direction: column; gap: 16px; }
+
+/* tablet: 2 colunas */
+@media (min-width: 768px) {
+    .cards { flex-direction: row; flex-wrap: wrap; }
+    .cards .card { flex: 1 1 calc(50% - 8px); }
+}
+
+/* desktop: 3 colunas */
+@media (min-width: 1024px) {
+    .cards .card { flex: 1 1 calc(33.333% - 11px); }
+}
+</pre>
+</div>
+
+<div class="secao">
+<h2>5. Layout responsivo com Grid</h2>
+<pre>
+/* sem media query — grid automático */
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* com media query para controle fino */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* 1 coluna no mobile */
+}
+@media (min-width: 768px) {
+    .grid { grid-template-columns: 1fr 1fr; }  /* 2 colunas */
+}
+@media (min-width: 1024px) {
+    .grid { grid-template-columns: 1fr 1fr 1fr; } /* 3 colunas */
+}
+</pre>
+<h3>Grid auto-responsivo (sem media queries)</h3>
+<div class="demo-grid">
+<div class="di">Card 1</div><div class="di alt">Card 2</div>
+<div class="di">Card 3</div><div class="di alt">Card 4</div>
+<div class="di">Card 5</div><div class="di alt">Card 6</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>6. Unidades responsivas</h2>
+<table>
+<tr><th>Unidade</th><th>Significado</th><th>Uso típico</th></tr>
+<tr><td><code>%</code></td><td>Porcentagem do pai</td><td>Larguras de container</td></tr>
+<tr><td><code>vw</code></td><td>% da largura da viewport</td><td>Seções full-width</td></tr>
+<tr><td><code>vh</code></td><td>% da altura da viewport</td><td>Hero full-height</td></tr>
+<tr><td><code>rem</code></td><td>Relativo ao root (16px)</td><td>Fonte, espaçamentos</td></tr>
+<tr><td><code>em</code></td><td>Relativo ao pai</td><td>Padding interno</td></tr>
+<tr><td><code>clamp()</code></td><td>Entre mínimo e máximo</td><td>Fonte fluida</td></tr>
+</table>
+<pre>
+/* fonte fluida sem media query */
+h1 { font-size: clamp(1.5rem, 4vw, 3rem); }
+/* mínimo 1.5rem, cresce com a tela, máximo 3rem */
+
+/* largura que nunca ultrapassa 1200px */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; }
+</pre>
+</div>
+
+<div class="secao">
+<h2>7. Imagens responsivas</h2>
+<pre>
+/* regra global — nunca ultrapassa o container */
+img { max-width: 100%; height: auto; }
+
+/* imagem que cobre o container */
+.capa {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;      /* recorta mantendo proporção */
+    object-position: center;
+}
+</pre>
+</div>
+
+<div class="secao">
+<h2>8. Navbar responsiva — exemplo</h2>
+<pre>
+/* mobile: menu oculto */
+.nav-menu { display: none; flex-direction: column; }
+.nav-toggle { display: block; }  /* ícone hambúrguer */
+
+/* desktop: menu visível em linha */
+@media (min-width: 768px) {
+    .nav-menu   { display: flex; flex-direction: row; }
+    .nav-toggle { display: none; }
+}
+</pre>
+<div class="dest">💡 Em projetos reais, o toggle do menu mobile é controlado por JavaScript — mas a base do layout é sempre CSS.</div>
+</div>
+
+<div id="rodape">Aula 10 — Responsividade | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
