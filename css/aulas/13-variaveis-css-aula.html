@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 13 - Variáveis CSS</title>
+<style>
+/* ===== VARIÁVEIS NO :root ===== */
+:root {
+  --cor-primaria: #1abc9c;
+  --cor-secundaria: #16a085;
+  --cor-texto: #2c3e50;
+  --cor-fundo: #f9f9f9;
+  --espacamento-base: 16px;
+  --borda-raio: 6px;
+  --sombra: 0 2px 8px rgba(0,0,0,.12);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:var(--cor-fundo);color:var(--cor-texto);}
+h1{color:var(--cor-primaria);border-bottom:3px solid var(--cor-primaria);padding-bottom:8px;}
+h2{color:var(--cor-primaria);margin-top:35px;}
+h3{color:#555;margin-top:20px;}
+.info{background:#e8f8f5;border-left:4px solid var(--cor-primaria);padding:10px 15px;margin:15px 0;border-radius:var(--borda-raio);}
+pre{background:#2c3e50;color:#ecf0f1;padding:15px;border-radius:var(--borda-raio);font-size:.88em;overflow-x:auto;}
+code{background:#ecf0f1;color:var(--cor-primaria);padding:2px 5px;border-radius:3px;font-family:monospace;}
+table{border-collapse:collapse;width:100%;margin:15px 0;}
+th,td{border:1px solid #ccc;padding:8px 12px;text-align:left;}
+th{background:var(--cor-primaria);color:white;}
+tr:nth-child(even){background:#f9f9f9;}
+.secao{background:white;border:1px solid #e0e0e0;border-radius:var(--borda-raio);padding:20px;margin:20px 0;box-shadow:var(--sombra);}
+#rodape{margin-top:40px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+
+/* DEMOS */
+.demo{padding:var(--espacamento-base);background:#e8f8f5;border:2px dashed var(--cor-primaria);border-radius:var(--borda-raio);margin:14px 0;}
+
+/* cards usando variáveis */
+.cards-var{display:flex;gap:var(--espacamento-base);flex-wrap:wrap;margin:14px 0;}
+.card-var{flex:1 1 160px;padding:var(--espacamento-base);background:white;border-radius:var(--borda-raio);box-shadow:var(--sombra);border-top:4px solid var(--cor-primaria);text-align:center;}
+.card-var strong{color:var(--cor-primaria);}
+
+/* escopo local: um card com cor diferente */
+.card-var.destaque{--cor-primaria:#e74c3c;}
+
+/* tema escuro aplicado a um bloco */
+.tema-escuro{
+  --cor-primaria:#1abc9c;
+  --cor-fundo:#1a1a2e;
+  --cor-texto:#ecf0f1;
+  background:var(--cor-fundo);
+  color:var(--cor-texto);
+  padding:20px;
+  border-radius:var(--borda-raio);
+  margin:14px 0;
+}
+.tema-escuro .card-mini{background:#16213e;padding:12px;border-radius:4px;border-left:3px solid var(--cor-primaria);margin:8px 0;color:var(--cor-texto);}
+</style>
+</head>
+<body>
+<h1>Aula 13 — Variáveis CSS (Custom Properties)</h1>
+<p>Variáveis CSS permitem armazenar valores reutilizáveis — cores, tamanhos, sombras — e alterá-los em um só lugar, facilitando a manutenção e criação de temas.</p>
+
+<div class="secao">
+<h2>1. Declarando variáveis com :root</h2>
+<p><code>:root</code> é o elemento raiz do documento. Variáveis declaradas ali ficam disponíveis em <strong>qualquer lugar</strong> do CSS.</p>
+<pre>
+:root {
+    --cor-primaria:   #1abc9c;
+    --cor-texto:      #2c3e50;
+    --espacamento:    16px;
+    --borda-raio:     6px;
+    --sombra:         0 2px 8px rgba(0,0,0,.12);
+}
+</pre>
+<div class="info">O nome de uma variável CSS sempre começa com <code>--</code> (dois hífens). É case-sensitive: <code>--Cor</code> e <code>--cor</code> são variáveis diferentes.</div>
+</div>
+
+<div class="secao">
+<h2>2. Usando variáveis com var()</h2>
+<pre>
+/* var(nome-da-variável, valor-padrão-opcional) */
+h1    { color: var(--cor-primaria); }
+p     { color: var(--cor-texto); }
+.card { padding: var(--espacamento); border-radius: var(--borda-raio); }
+
+/* com fallback (padrão caso a variável não exista) */
+color: var(--cor-acento, #3498db);
+</pre>
+<div class="demo">
+  <div class="cards-var">
+    <div class="card-var"><strong>Card 1</strong><p>cor-primaria: #1abc9c</p></div>
+    <div class="card-var"><strong>Card 2</strong><p>Mesmo padrão</p></div>
+    <div class="card-var destaque"><strong>Destaque</strong><p>--cor-primaria: #e74c3c (local)</p></div>
+  </div>
+</div>
+</div>
+
+<div class="secao">
+<h2>3. Escopo — variáveis locais</h2>
+<p>Uma variável pode ser redefinida dentro de um seletor. Isso cria um <em>escopo local</em> que só afeta aquele elemento e seus filhos.</p>
+<pre>
+/* global — vale em todo o documento */
+:root { --cor-primaria: #1abc9c; }
+
+/* local — só o .destaque e seus filhos usam #e74c3c */
+.destaque { --cor-primaria: #e74c3c; }
+
+.card { border-top: 4px solid var(--cor-primaria); }
+/* resultado: .card normal = verde | .destaque .card = vermelho */
+</pre>
+</div>
+
+<div class="secao">
+<h2>4. Criando temas com variáveis</h2>
+<pre>
+/* tema claro (padrão) */
+:root {
+    --cor-fundo: #ffffff;
+    --cor-texto: #333333;
+    --cor-primaria: #1abc9c;
+}
+
+/* tema escuro — redefine as mesmas variáveis */
+[data-tema="escuro"] {
+    --cor-fundo: #1a1a2e;
+    --cor-texto: #ecf0f1;
+    --cor-primaria: #1abc9c;
+}
+
+body {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+/* todos os elementos que usam var() se adaptam automaticamente */
+</pre>
+<p>Exemplo do tema escuro aplicado (sobrescrevendo variáveis localmente):</p>
+<div class="tema-escuro">
+  <div class="card-mini">Item com cor-primaria verde no tema escuro</div>
+  <div class="card-mini">Outro item — fundo, texto e borda via variáveis</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>5. Usando variáveis com calc()</h2>
+<pre>
+:root {
+    --espacamento-base: 16px;
+}
+
+.container { padding: var(--espacamento-base); }
+.grande    { padding: calc(var(--espacamento-base) * 2); }  /* 32px */
+.pequeno   { padding: calc(var(--espacamento-base) / 2); }  /* 8px */
+</pre>
+<div class="info">Variáveis CSS funcionam com <code>calc()</code>, <code>clamp()</code>, <code>min()</code> e <code>max()</code> — ótimo para sistemas de espaçamento proporcionais.</div>
+</div>
+
+<div class="secao">
+<h2>6. Variáveis x Pré-processadores (SASS/LESS)</h2>
+<table>
+<tr><th>Aspecto</th><th>Variáveis CSS</th><th>SASS/LESS</th></tr>
+<tr><td>Suporte nativo</td><td>✅ Sim</td><td>❌ Precisa compilar</td></tr>
+<tr><td>Escopo dinâmico</td><td>✅ Muda em tempo real (JS)</td><td>❌ Estático</td></tr>
+<tr><td>Herança em cascata</td><td>✅ Sim</td><td>❌ Não</td></tr>
+<tr><td>DevTools</td><td>✅ Visível</td><td>❌ Compilado</td></tr>
+<tr><td>Funções avançadas</td><td>❌ Limitado</td><td>✅ Loops, mixins</td></tr>
+</table>
+</div>
+
+<div id="rodape">Aula 13 — Variáveis CSS | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
