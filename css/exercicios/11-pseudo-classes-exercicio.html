@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercício 11 - Pseudo-classes</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f4f4;color:#333;}
+header{background:#8e44ad;color:white;padding:14px 20px;}
+header h1{margin:0;font-size:1.3rem;}
+main{padding:20px;max-width:960px;margin:0 auto;}
+h2{color:#8e44ad;margin-top:30px;}
+.ex{background:white;border:1px solid #ddd;border-radius:8px;padding:20px;margin-bottom:30px;}
+.ex h3{margin-top:0;color:#2c3e50;}
+pre{background:#2c3e50;color:#ecf0f1;padding:14px;border-radius:5px;font-size:.85em;overflow-x:auto;}
+.badge-ok{background:#27ae60;color:white;padding:3px 10px;border-radius:12px;font-size:.8em;margin-left:8px;}
+
+/* ===================== EX 1 — menu com :hover e :not() ===================== */
+.menu{list-style:none;display:flex;gap:0;padding:0;margin:14px 0;background:#2c3e50;border-radius:6px;overflow:hidden;}
+.menu li a{display:block;padding:12px 20px;color:white;text-decoration:none;transition:background .25s;}
+.menu li a:hover{background:#8e44ad;}
+/* todos os itens menos o último recebem borda direita */
+.menu li:not(:last-child) a{border-right:1px solid #3d5166;}
+
+/* ===================== EX 2 — tabela zebrada + :first-child + :last-child ===================== */
+.tabela{border-collapse:collapse;width:100%;margin:14px 0;}
+.tabela th,.tabela td{padding:9px 14px;border:1px solid #ddd;text-align:left;}
+.tabela thead tr{background:#8e44ad;color:white;}
+.tabela tbody tr:nth-child(odd){background:#f5eef8;}
+.tabela tbody tr:nth-child(even){background:white;}
+.tabela tbody tr:first-child td{font-weight:bold;}
+.tabela tbody tr:last-child td{color:#888;font-style:italic;}
+.tabela tbody tr:hover{background:#e8daef;}
+
+footer{background:#2c3e50;color:#ecf0f1;text-align:center;padding:14px;margin-top:40px;font-size:.85em;}
+</style>
+</head>
+<body>
+<header><h1>Exercício 11 — Pseudo-classes</h1></header>
+<main>
+
+<!-- EX 1 -->
+<div class="ex">
+  <h3>Exercício 1 — Navbar com :hover e :not() <span class="badge-ok">✓</span></h3>
+  <p>Todos os links ficam roxos ao passar o mouse. Os separadores são adicionados em todos <strong>menos no último</strong> usando <code>:not(:last-child)</code>.</p>
+  <ul class="menu">
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Sobre</a></li>
+    <li><a href="#">Projetos</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contato</a></li>
+  </ul>
+  <pre>
+.menu li a:hover { background: #8e44ad; }
+
+/* separador em todos MENOS no último */
+.menu li:not(:last-child) a { border-right: 1px solid #3d5166; }
+  </pre>
+</div>
+
+<!-- EX 2 -->
+<div class="ex">
+  <h3>Exercício 2 — Tabela com :nth-child, :first-child, :last-child e :hover <span class="badge-ok">✓</span></h3>
+  <p>Linhas ímpares em lilás claro, pares em branco. Primeira linha em negrito, última linha em cinza itálico. Hover muda a linha.</p>
+  <table class="tabela">
+    <thead><tr><th>Nº</th><th>Nome</th><th>Nota</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Ana Lima</td><td>9.5</td><td>Aprovada</td></tr>
+      <tr><td>2</td><td>Bruno Melo</td><td>7.8</td><td>Aprovado</td></tr>
+      <tr><td>3</td><td>Carla Souza</td><td>8.2</td><td>Aprovada</td></tr>
+      <tr><td>4</td><td>Diego Costa</td><td>5.0</td><td>Recuperação</td></tr>
+      <tr><td>5</td><td>Eva Santos</td><td>3.5</td><td>Reprovada</td></tr>
+    </tbody>
+  </table>
+  <pre>
+.tabela tbody tr:nth-child(odd)  { background: #f5eef8; }
+.tabela tbody tr:nth-child(even) { background: white; }
+.tabela tbody tr:first-child td  { font-weight: bold; }
+.tabela tbody tr:last-child td   { color: #888; font-style: italic; }
+.tabela tbody tr:hover           { background: #e8daef; }
+  </pre>
+</div>
+
+</main>
+<footer>Exercício 11 — Pseudo-classes | ADS — Web I</footer>
+</body>
+</html>
