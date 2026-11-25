@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercício 09 - Posicionamento</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:#f9f9f9;color:#333;}
+h1{color:#2c3e50;border-bottom:3px solid #e67e22;padding-bottom:8px;}
+h2{color:#e67e22;margin-top:35px;}
+.enunciado{background:#fef5e7;border-left:4px solid #e67e22;padding:10px 15px;margin:15px 0;border-radius:4px;}
+.dica{background:#fef9e7;border-left:4px solid #f39c12;padding:8px 14px;margin:10px 0;border-radius:4px;font-size:.9em;}
+.area{background:#fff;border:2px dashed #ccc;padding:15px;border-radius:6px;margin-top:12px;position:relative;min-height:80px;}
+#rodape{margin-top:50px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+
+/* EX 1 — badge sobre card */
+.ex1-card{
+  background:white;
+  border:1px solid #ddd;
+  border-radius:8px;
+  overflow:hidden;
+  width:200px;
+  /* position: relative; */
+}
+.ex1-card-img{height:120px;background:linear-gradient(135deg,#e67e22,#f39c12);display:flex;align-items:center;justify-content:center;font-size:3em;}
+.ex1-card-body{padding:12px;}
+.ex1-badge{
+  background:#e74c3c;
+  color:white;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:.75em;
+  font-weight:bold;
+  /* position: absolute; */
+  /* top: 10px; */
+  /* right: 10px; */
+}
+
+/* EX 2 — botão voltar ao topo (simulado) */
+.ex2-container{background:#ecf0f1;padding:20px;border-radius:6px;min-height:150px;position:relative;}
+.ex2-btn{
+  background:#e67e22;
+  color:white;
+  padding:10px 14px;
+  border-radius:50%;
+  font-size:1.2em;
+  border:none;
+  cursor:pointer;
+  /* position: absolute; */  /* use fixed em produção */
+  /* bottom: 15px; */
+  /* right: 15px; */
+}
+
+/* EX 3 — tooltip */
+.ex3-wrap{
+  display:inline-block;
+  /* position: relative; */
+}
+.ex3-btn{background:#e67e22;color:white;padding:10px 20px;border-radius:4px;border:none;cursor:pointer;font-size:1em;}
+.ex3-tooltip{
+  background:#2c3e50;
+  color:white;
+  padding:6px 12px;
+  border-radius:4px;
+  font-size:.85em;
+  white-space:nowrap;
+  /* position: absolute; */
+  /* bottom: calc(100% + 8px); */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+}
+</style>
+</head>
+<body>
+<h1>Exercício 09 — Posicionamento</h1>
+
+<h2>Exercício 1 — Badge sobre um card</h2>
+<div class="enunciado">
+  <strong>Tarefa:</strong> Faça o badge "NOVO" aparecer sobre o card, no canto superior direito.
+  <ol>
+    <li>Adicione <code>position: relative</code> em <code>.ex1-card</code></li>
+    <li>Adicione <code>position: absolute; top: 10px; right: 10px</code> em <code>.ex1-badge</code></li>
+  </ol>
+</div>
+<div class="dica">💡 O <code>absolute</code> se posiciona em relação ao pai mais próximo com <code>position: relative</code></div>
+<div class="area" style="min-height:auto;">
+  <div class="ex1-card">
+    <div class="ex1-card-img">🍕</div>
+    <div class="ex1-card-body">
+      <span class="ex1-badge">NOVO</span>
+      <h3 style="margin:8px 0 4px;">Pizza Margherita</h3>
+      <p style="margin:0;color:#7f8c8d;font-size:.9em;">R$ 42,90</p>
+    </div>
+  </div>
+</div>
+
+<h2>Exercício 2 — Botão "voltar ao topo"</h2>
+<div class="enunciado">
+  <strong>Tarefa:</strong> Posicione o botão ↑ no canto inferior direito do container.
+  <ol>
+    <li>Adicione <code>position: absolute; bottom: 15px; right: 15px</code> em <code>.ex2-btn</code></li>
+    <li>(Em produção real, usaria <code>position: fixed</code> para ficar na tela inteira)</li>
+  </ol>
+</div>
+<div class="dica">💡 O <code>.ex2-container</code> já tem <code>position: relative</code></div>
+<div class="area" style="min-height:auto;padding:0;">
+  <div class="ex2-container">
+    <p style="margin:0;color:#7f8c8d;">Conteúdo da página...<br>Role para baixo...<br>O botão deve aparecer no canto inferior direito.</p>
+    <button class="ex2-btn">↑</button>
+  </div>
+</div>
+
+<h2>Exercício 3 — Tooltip (dica de texto)</h2>
+<div class="enunciado">
+  <strong>Tarefa:</strong> Faça o tooltip aparecer centralizado acima do botão.
+  <ol>
+    <li>Adicione <code>position: relative</code> em <code>.ex3-wrap</code></li>
+    <li>Adicione <code>position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%)</code> em <code>.ex3-tooltip</code></li>
+  </ol>
+</div>
+<div class="dica">💡 <code>calc(100% + 8px)</code> posiciona o tooltip logo acima do botão com 8px de espaço</div>
+<div class="area" style="display:flex;align-items:flex-end;justify-content:center;min-height:100px;">
+  <div class="ex3-wrap">
+    <div class="ex3-tooltip">Clique para salvar o documento</div>
+    <button class="ex3-btn">💾 Salvar</button>
+  </div>
+</div>
+
+<div id="rodape">Exercício 09 — Posicionamento | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
