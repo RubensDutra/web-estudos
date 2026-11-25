@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 09 - Posicionamento</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:#f9f9f9;color:#333;}
+h1{color:#2c3e50;border-bottom:3px solid #e67e22;padding-bottom:8px;}
+h2{color:#e67e22;margin-top:35px;}
+h3{color:#555;margin-top:20px;}
+.info{background:#fef5e7;border-left:4px solid #e67e22;padding:10px 15px;margin:15px 0;border-radius:4px;}
+.dest{background:#fef9e7;border-left:4px solid #f39c12;padding:10px 15px;margin:15px 0;border-radius:4px;}
+pre{background:#2c3e50;color:#ecf0f1;padding:15px;border-radius:6px;font-size:.88em;overflow-x:auto;}
+code{background:#ecf0f1;color:#e67e22;padding:2px 5px;border-radius:3px;font-family:monospace;}
+table{border-collapse:collapse;width:100%;margin:15px 0;}
+th,td{border:1px solid #ccc;padding:8px 12px;text-align:left;}
+th{background:#e67e22;color:white;}
+tr:nth-child(even){background:#f9f9f9;}
+.secao{background:white;border:1px solid #e0e0e0;border-radius:8px;padding:20px;margin:20px 0;}
+.demo-box{background:#fef5e7;border:2px dashed #e67e22;border-radius:6px;margin:10px 0;position:relative;}
+.caixa{background:#e67e22;color:white;padding:14px 18px;border-radius:4px;font-weight:bold;text-align:center;font-size:.9em;}
+.caixa.az{background:#3498db;}
+.caixa.vd{background:#27ae60;}
+#rodape{margin-top:40px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+</style>
+</head>
+<body>
+<h1>Aula 09 — Posicionamento</h1>
+<p>A propriedade <code>position</code> controla como um elemento é posicionado no documento. Os valores <code>top</code>, <code>right</code>, <code>bottom</code> e <code>left</code> só funcionam quando <code>position</code> não é <code>static</code>.</p>
+
+<div class="secao">
+<h2>1. position: static (padrão)</h2>
+<p>O elemento segue o fluxo normal. <code>top/right/bottom/left</code> não têm efeito.</p>
+<pre>
+.elemento {
+    position: static; /* padrão — nem precisa escrever */
+}
+</pre>
+<div class="demo-box" style="padding:12px;display:flex;gap:8px;">
+  <div class="caixa">Static 1</div>
+  <div class="caixa az">Static 2</div>
+  <div class="caixa vd">Static 3</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>2. position: relative</h2>
+<p>O elemento se move <strong>em relação à sua posição original</strong>, mas o espaço original é <strong>mantido</strong>.</p>
+<pre>
+.elemento {
+    position: relative;
+    top: 20px;   /* desce 20px da posição original */
+    left: 30px;  /* move 30px para a direita */
+}
+</pre>
+<div class="demo-box" style="padding:12px;display:flex;gap:8px;height:80px;align-items:flex-start;">
+  <div class="caixa">Normal</div>
+  <div class="caixa az" style="position:relative;top:20px;left:10px;">relative<br>top:20 left:10</div>
+  <div class="caixa vd">Normal</div>
+</div>
+<div class="dest">💡 O espaço que o elemento ocuparia ainda existe — os outros elementos não avançam para o lugar dele.</div>
+</div>
+
+<div class="secao">
+<h2>3. position: absolute</h2>
+<p>O elemento sai do fluxo e é posicionado em relação ao <strong>ancestral mais próximo com position diferente de static</strong>.</p>
+<pre>
+.pai {
+    position: relative; /* cria o contexto de posicionamento */
+}
+.filho {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+</pre>
+<div class="demo-box" style="height:120px;padding:12px;">
+  <div class="caixa" style="display:inline-block;">Pai (relative)</div>
+  <div class="caixa az" style="position:absolute;top:10px;right:10px;">absolute<br>top:10 right:10</div>
+  <div class="caixa vd" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);">absolute<br>bottom:10 center</div>
+</div>
+<div class="dest">⚠️ Sem um pai com <code>position: relative</code>, o elemento se posiciona em relação à página inteira (<code>body</code>).</div>
+</div>
+
+<div class="secao">
+<h2>4. position: fixed</h2>
+<p>O elemento sai do fluxo e fica fixo em relação à <strong>janela do navegador</strong> — não rola com a página.</p>
+<pre>
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+.botao-topo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+</pre>
+<div class="dest">💡 Use <code>fixed</code> para: navbars que ficam no topo, botões "voltar ao topo", chats flutuantes, cookies banner.</div>
+</div>
+
+<div class="secao">
+<h2>5. position: sticky</h2>
+<p>Comporta-se como <code>relative</code> até atingir um limite de rolagem, depois "gruda" como <code>fixed</code>.</p>
+<pre>
+.cabecalho-tabela {
+    position: sticky;
+    top: 0; /* gruda no topo ao rolar */
+    background: white;
+}
+</pre>
+<div class="dest">💡 Use <code>sticky</code> para: cabeçalhos de tabela, títulos de seção, filtros que ficam visíveis ao rolar.</div>
+</div>
+
+<div class="secao">
+<h2>6. z-index — camadas</h2>
+<p>Controla a ordem de empilhamento. Funciona apenas em elementos com <code>position</code> diferente de <code>static</code>.</p>
+<pre>
+.modal    { position: fixed; z-index: 1000; }
+.overlay  { position: fixed; z-index: 999; }
+.dropdown { position: absolute; z-index: 50; }
+.conteudo { position: relative; z-index: 1; }
+</pre>
+<div class="demo-box" style="height:100px;">
+  <div class="caixa" style="position:absolute;left:10px;top:10px;z-index:1;width:120px;opacity:.9;">z-index: 1</div>
+  <div class="caixa az" style="position:absolute;left:60px;top:30px;z-index:2;width:120px;opacity:.9;">z-index: 2</div>
+  <div class="caixa vd" style="position:absolute;left:110px;top:20px;z-index:3;width:120px;opacity:.9;">z-index: 3</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>7. Propriedades de deslocamento</h2>
+<table>
+<tr><th>Propriedade</th><th>O que faz</th></tr>
+<tr><td><code>top: 20px</code></td><td>Move 20px para baixo (do topo)</td></tr>
+<tr><td><code>bottom: 20px</code></td><td>Move 20px para cima (da base)</td></tr>
+<tr><td><code>left: 20px</code></td><td>Move 20px para a direita (da esquerda)</td></tr>
+<tr><td><code>right: 20px</code></td><td>Move 20px para a esquerda (da direita)</td></tr>
+</table>
+<pre>
+/* centralizar com absolute */
+.centrado {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+</pre>
+</div>
+
+<div class="secao">
+<h2>Resumo</h2>
+<table>
+<tr><th>Valor</th><th>Fluxo</th><th>Referência</th><th>Rola com página</th></tr>
+<tr><td><code>static</code></td><td>Normal</td><td>—</td><td>Sim</td></tr>
+<tr><td><code>relative</code></td><td>Normal (mantém espaço)</td><td>Posição original</td><td>Sim</td></tr>
+<tr><td><code>absolute</code></td><td>Sai do fluxo</td><td>Pai com position</td><td>Sim</td></tr>
+<tr><td><code>fixed</code></td><td>Sai do fluxo</td><td>Janela</td><td>Não</td></tr>
+<tr><td><code>sticky</code></td><td>Normal → fixo</td><td>Contêiner pai</td><td>Parcialmente</td></tr>
+</table>
+</div>
+
+<div id="rodape">Aula 09 — Posicionamento | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
