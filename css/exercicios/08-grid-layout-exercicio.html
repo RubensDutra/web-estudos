@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercício 08 - Grid Layout</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:#f9f9f9;color:#333;}
+h1{color:#2c3e50;border-bottom:3px solid #8e44ad;padding-bottom:8px;}
+h2{color:#8e44ad;margin-top:35px;}
+.enunciado{background:#f5eef8;border-left:4px solid #8e44ad;padding:10px 15px;margin:15px 0;border-radius:4px;}
+.dica{background:#fef9e7;border-left:4px solid #f39c12;padding:8px 14px;margin:10px 0;border-radius:4px;font-size:.9em;}
+.area{background:#fff;border:2px dashed #ccc;padding:15px;border-radius:6px;margin-top:12px;}
+.gi{background:#8e44ad;color:white;padding:14px;border-radius:4px;text-align:center;font-weight:bold;}
+.gi.alt{background:#6c3483;}
+#rodape{margin-top:50px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+
+/* EX 1 */
+.ex1-grid{
+  /* display: grid; */
+  /* grid-template-columns: repeat(3, 1fr); */
+  /* gap: 12px; */
+}
+/* EX 2 */
+.ex2-layout{
+  /* display: grid; */
+  /* grid-template-columns: 200px 1fr; */
+  /* grid-template-rows: auto 1fr auto; */
+  /* grid-template-areas: "hd hd" "sb mn" "ft ft"; */
+  /* gap: 8px; */
+  min-height:220px;
+}
+.ex2-hd{ /* grid-area: hd; */ background:#2c3e50;color:white;padding:14px;border-radius:4px;text-align:center;font-weight:bold;}
+.ex2-sb{ /* grid-area: sb; */ background:#7f8c8d;color:white;padding:14px;border-radius:4px;}
+.ex2-mn{ /* grid-area: mn; */ background:#ecf0f1;padding:14px;border-radius:4px;}
+.ex2-ft{ /* grid-area: ft; */ background:#2c3e50;color:white;padding:10px;border-radius:4px;text-align:center;font-size:.9em;}
+/* EX 3 */
+.ex3-galeria{
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); */
+  /* gap: 16px; */
+}
+.ex3-card{background:white;border:1px solid #ddd;border-radius:8px;overflow:hidden;}
+.ex3-card-img{height:100px;display:flex;align-items:center;justify-content:center;font-size:2em;}
+.ex3-card-body{padding:12px;}
+.ex3-card-body h3{margin:0 0 4px;font-size:1em;color:#2c3e50;}
+.ex3-card-body p{margin:0;font-size:.85em;color:#7f8c8d;}
+</style>
+</head>
+<body>
+<h1>Exercício 08 — Grid Layout</h1>
+
+<h2>Exercício 1 — Grade de 3 colunas</h2>
+<div class="enunciado">
+  <strong>Tarefa:</strong> Faça os itens se organizarem em 3 colunas iguais com gap de 12px.<br>
+  Aplique em <code>.ex1-grid</code>: <code>display: grid</code>, <code>grid-template-columns: repeat(3, 1fr)</code>, <code>gap: 12px</code>.
+</div>
+<div class="dica">💡 Remova os comentários em <code>.ex1-grid</code></div>
+<div class="area">
+  <div class="ex1-grid">
+    <div class="gi">1</div><div class="gi alt">2</div><div class="gi">3</div>
+    <div class="gi alt">4</div><div class="gi">5</div><div class="gi alt">6</div>
+  </div>
+</div>
+
+<h2>Exercício 2 — Layout com grid-template-areas</h2>
+<div class="enunciado">
+  <strong>Tarefa:</strong> Monte o layout header/sidebar/main/footer usando <code>grid-template-areas</code>.<br>
+  Descomente as propriedades em <code>.ex2-layout</code> e nos 4 filhos.
+</div>
+<div class="dica">💡 Cada string em <code>grid-template-areas</code> representa uma linha do grid</div>
+<div class="area">
+  <div class="ex2-layout">
+    <div class="ex2-hd">Header</div>
+    <div class="ex2-sb"><strong>Sidebar</strong><br>Menu<br>Links</div>
+    <div class="ex2-mn"><strong>Conteúdo principal</strong><p>Esta área deve crescer para preencher o espaço disponível.</p></div>
+    <div class="ex2-ft">Footer © 2025</div>
+  </div>
+</div>
+
+<h2>Exercício 3 — Galeria responsiva com auto-fill</h2>
+<div class="enunciado">
+  <strong>Tarefa:</strong> Crie uma galeria que se adapta automaticamente ao espaço sem media queries.<br>
+  Em <code>.ex3-galeria</code>: <code>display: grid</code>, <code>grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))</code>, <code>gap: 16px</code>.
+</div>
+<div class="dica">💡 Redimensione a janela — os cards se reorganizam sozinhos!</div>
+<div class="area">
+  <div class="ex3-galeria">
+    <div class="ex3-card"><div class="ex3-card-img" style="background:linear-gradient(135deg,#8e44ad,#3498db);">🎨</div><div class="ex3-card-body"><h3>Design</h3><p>UI e UX</p></div></div>
+    <div class="ex3-card"><div class="ex3-card-img" style="background:linear-gradient(135deg,#e74c3c,#f39c12);">💻</div><div class="ex3-card-body"><h3>Código</h3><p>HTML e CSS</p></div></div>
+    <div class="ex3-card"><div class="ex3-card-img" style="background:linear-gradient(135deg,#27ae60,#2ecc71);">📱</div><div class="ex3-card-body"><h3>Mobile</h3><p>Responsivo</p></div></div>
+    <div class="ex3-card"><div class="ex3-card-img" style="background:linear-gradient(135deg,#2980b9,#1abc9c);">🚀</div><div class="ex3-card-body"><h3>Deploy</h3><p>Publicação</p></div></div>
+    <div class="ex3-card"><div class="ex3-card-img" style="background:linear-gradient(135deg,#f39c12,#e74c3c);">⚡</div><div class="ex3-card-body"><h3>Performance</h3><p>Otimização</p></div></div>
+  </div>
+</div>
+
+<div id="rodape">Exercício 08 — Grid Layout | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
