@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 11 - Pseudo-classes</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:#f9f9f9;color:#333;}
+h1{color:#8e44ad;border-bottom:3px solid #8e44ad;padding-bottom:8px;}
+h2{color:#8e44ad;margin-top:35px;}
+h3{color:#555;margin-top:20px;}
+.info{background:#f5eef8;border-left:4px solid #8e44ad;padding:10px 15px;margin:15px 0;border-radius:4px;}
+pre{background:#2c3e50;color:#ecf0f1;padding:15px;border-radius:6px;font-size:.88em;overflow-x:auto;}
+code{background:#ecf0f1;color:#8e44ad;padding:2px 5px;border-radius:3px;font-family:monospace;}
+table{border-collapse:collapse;width:100%;margin:15px 0;}
+th,td{border:1px solid #ccc;padding:8px 12px;text-align:left;}
+th{background:#8e44ad;color:white;}
+tr:nth-child(even){background:#f9f9f9;}
+.secao{background:white;border:1px solid #e0e0e0;border-radius:8px;padding:20px;margin:20px 0;}
+#rodape{margin-top:40px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+
+/* DEMOS */
+.demo{padding:16px;background:#f5eef8;border:2px dashed #8e44ad;border-radius:6px;margin:14px 0;}
+
+/* :hover demo */
+.btn-demo{display:inline-block;background:#8e44ad;color:white;padding:10px 20px;border-radius:5px;cursor:pointer;transition:background .3s,transform .2s;}
+.btn-demo:hover{background:#6c3483;transform:scale(1.05);}
+
+/* :focus demo */
+.input-demo{padding:8px 12px;border:2px solid #ccc;border-radius:5px;font-size:1em;outline:none;transition:border-color .3s,box-shadow .3s;}
+.input-demo:focus{border-color:#8e44ad;box-shadow:0 0 0 3px rgba(142,68,173,.25);}
+
+/* nth-child demo */
+.lista-demo{list-style:none;padding:0;margin:0;}
+.lista-demo li{padding:8px 14px;border-bottom:1px solid #ddd;}
+.lista-demo li:nth-child(odd){background:#f5eef8;}
+.lista-demo li:nth-child(even){background:#e8daef;}
+.lista-demo li:first-child{font-weight:bold;color:#8e44ad;}
+.lista-demo li:last-child{color:#888;font-style:italic;}
+
+/* :not() demo */
+.botoes-demo button{padding:8px 16px;border:none;border-radius:4px;cursor:pointer;margin:4px;}
+.botoes-demo button{background:#8e44ad;color:white;}
+.botoes-demo button:not(.secundario){font-weight:bold;}
+.botoes-demo button.secundario{background:#d7bde2;color:#333;}
+
+/* :checked demo */
+.check-label{display:flex;align-items:center;gap:8px;margin:6px 0;cursor:pointer;}
+.check-demo{width:16px;height:16px;accent-color:#8e44ad;}
+</style>
+</head>
+<body>
+<h1>Aula 11 — Pseudo-classes CSS</h1>
+<p>Pseudo-classes selecionam elementos em <strong>estados específicos</strong> ou baseadas em sua <strong>posição</strong> na árvore HTML, sem precisar adicionar classes manualmente.</p>
+
+<div class="secao">
+<h2>1. :hover — ao passar o mouse</h2>
+<pre>
+a:hover      { color: red; }
+button:hover { background: darkblue; transform: scale(1.05); }
+.card:hover  { box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+</pre>
+<div class="demo">
+  <span class="btn-demo">Passe o mouse aqui!</span>
+</div>
+</div>
+
+<div class="secao">
+<h2>2. :focus — ao focar (teclado / clique)</h2>
+<p>Essencial para acessibilidade — indica ao usuário qual campo está ativo.</p>
+<pre>
+input:focus {
+    border-color: purple;
+    box-shadow: 0 0 0 3px rgba(128,0,128,.25);
+    outline: none; /* remove o padrão e substitui pelo box-shadow */
+}
+</pre>
+<div class="demo">
+  <input class="input-demo" type="text" placeholder="Clique aqui para focar...">
+</div>
+</div>
+
+<div class="secao">
+<h2>3. :nth-child() — filhos por posição</h2>
+<pre>
+li:nth-child(odd)  { background: #f5eef8; }  /* ímpares: 1,3,5... */
+li:nth-child(even) { background: #e8daef; }  /* pares: 2,4,6... */
+li:nth-child(3)    { color: red; }           /* somente o 3º */
+li:nth-child(3n)   { font-weight: bold; }    /* a cada 3: 3,6,9... */
+li:nth-child(2n+1) { ... }                   /* mesmo que odd */
+</pre>
+<div class="demo">
+  <ul class="lista-demo">
+    <li>Item 1 (first-child)</li>
+    <li>Item 2 (even)</li>
+    <li>Item 3 (odd)</li>
+    <li>Item 4 (even)</li>
+    <li>Item 5 (last-child + odd)</li>
+  </ul>
+</div>
+</div>
+
+<div class="secao">
+<h2>4. :first-child e :last-child</h2>
+<pre>
+li:first-child { font-weight: bold; }
+li:last-child  { border-bottom: none; }
+
+/* variações úteis */
+p:first-child  { margin-top: 0; }
+.card:last-child { margin-right: 0; }
+</pre>
+</div>
+
+<div class="secao">
+<h2>5. :not() — negação</h2>
+<p>Seleciona todos os elementos que <em>não</em> correspondem ao seletor dentro dos parênteses.</p>
+<pre>
+button:not(.secundario) { font-weight: bold; }
+li:not(:last-child) { border-bottom: 1px solid #ddd; }
+input:not([type="submit"]) { border: 2px solid purple; }
+</pre>
+<div class="demo botoes-demo">
+  <button>Principal</button>
+  <button>Principal</button>
+  <button class="secundario">Secundário</button>
+  <button class="secundario">Secundário</button>
+</div>
+</div>
+
+<div class="secao">
+<h2>6. :checked — caixas e rádios marcados</h2>
+<pre>
+input[type="checkbox"]:checked + label { font-weight: bold; color: purple; }
+input[type="radio"]:checked + label   { color: green; }
+</pre>
+<div class="demo">
+  <label class="check-label">
+    <input class="check-demo" type="checkbox"> Opção A
+  </label>
+  <label class="check-label">
+    <input class="check-demo" type="checkbox" checked> Opção B (marcada por padrão)
+  </label>
+  <label class="check-label">
+    <input class="check-demo" type="checkbox"> Opção C
+  </label>
+</div>
+</div>
+
+<div class="secao">
+<h2>7. Outras pseudo-classes úteis</h2>
+<table>
+<tr><th>Pseudo-classe</th><th>Significado</th></tr>
+<tr><td><code>:visited</code></td><td>Links já visitados</td></tr>
+<tr><td><code>:active</code></td><td>No momento do clique</td></tr>
+<tr><td><code>:disabled</code></td><td>Campos desabilitados</td></tr>
+<tr><td><code>:required</code></td><td>Campos obrigatórios</td></tr>
+<tr><td><code>:valid</code></td><td>Campo com valor válido</td></tr>
+<tr><td><code>:invalid</code></td><td>Campo com valor inválido</td></tr>
+<tr><td><code>:empty</code></td><td>Elemento sem filhos</td></tr>
+<tr><td><code>:root</code></td><td>Elemento raiz (html)</td></tr>
+<tr><td><code>:nth-last-child()</code></td><td>Contando do último</td></tr>
+</table>
+</div>
+
+<div class="info">
+<strong>Pseudo-classes vs Pseudo-elementos:</strong> pseudo-classes selecionam estados (<code>:hover</code>, <code>:focus</code>). Pseudo-elementos criam partes virtuais do DOM (<code>::before</code>, <code>::after</code>, <code>::first-line</code>).
+</div>
+
+<div id="rodape">Aula 11 — Pseudo-classes | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
