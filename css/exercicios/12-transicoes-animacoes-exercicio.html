@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercício 12 - Transições e Animações</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f4f4;color:#333;}
+header{background:#e67e22;color:white;padding:14px 20px;}
+header h1{margin:0;font-size:1.3rem;}
+main{padding:20px;max-width:960px;margin:0 auto;}
+h2{color:#e67e22;margin-top:30px;}
+.ex{background:white;border:1px solid #ddd;border-radius:8px;padding:20px;margin-bottom:30px;}
+.ex h3{margin-top:0;color:#2c3e50;}
+pre{background:#2c3e50;color:#ecf0f1;padding:14px;border-radius:5px;font-size:.85em;overflow-x:auto;}
+.badge-ok{background:#27ae60;color:white;padding:3px 10px;border-radius:12px;font-size:.8em;margin-left:8px;}
+.demo{padding:20px;background:#fef5ec;border:2px dashed #e67e22;border-radius:6px;margin:14px 0;}
+
+/* ===================== EX 1 — botão com transição ===================== */
+.btn-ex1{display:inline-block;background:#e67e22;color:white;padding:12px 28px;border-radius:6px;border:none;font-size:1rem;cursor:pointer;
+  transition:background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;}
+.btn-ex1:hover{background:#d35400;transform:translateY(-3px);box-shadow:0 6px 16px rgba(211,84,0,.35);}
+.btn-ex1:active{transform:translateY(0);box-shadow:none;}
+
+/* ===================== EX 2 — loader spinner ===================== */
+@keyframes girar{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.spinner{width:56px;height:56px;border:6px solid #fce9d4;border-top-color:#e67e22;border-radius:50%;animation:girar 0.9s linear infinite;}
+
+@keyframes piscar{0%,100%{opacity:1;}50%{opacity:0;}}
+.texto-load{margin-top:12px;color:#e67e22;font-weight:bold;animation:piscar 1.2s ease-in-out infinite;}
+
+footer{background:#2c3e50;color:#ecf0f1;text-align:center;padding:14px;margin-top:40px;font-size:.85em;}
+</style>
+</head>
+<body>
+<header><h1>Exercício 12 — Transições e Animações</h1></header>
+<main>
+
+<!-- EX 1 -->
+<div class="ex">
+  <h3>Exercício 1 — Botão com transition <span class="badge-ok">✓</span></h3>
+  <p>O botão sobe 3 px e ganha sombra no <code>:hover</code>. No <code>:active</code> (clique) volta ao lugar. Tudo com <code>transition</code>.</p>
+  <div class="demo">
+    <button class="btn-ex1">Clique em mim!</button>
+  </div>
+  <pre>
+.btn {
+    background: #e67e22;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.btn:hover {
+    background: #d35400;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(211,84,0,.35);
+}
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+  </pre>
+</div>
+
+<!-- EX 2 -->
+<div class="ex">
+  <h3>Exercício 2 — Spinner de carregamento com @keyframes <span class="badge-ok">✓</span></h3>
+  <p>Um spinner criado com bordas e <code>animation</code> + <code>@keyframes</code>. O texto pisca com outra animação.</p>
+  <div class="demo" style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+    <div class="spinner"></div>
+    <p class="texto-load">Carregando...</p>
+  </div>
+  <pre>
+@keyframes girar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.spinner {
+    width: 56px; height: 56px;
+    border: 6px solid #fce9d4;
+    border-top-color: #e67e22;
+    border-radius: 50%;
+    animation: girar 0.9s linear infinite;
+}
+
+@keyframes piscar {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+.texto { animation: piscar 1.2s ease-in-out infinite; }
+  </pre>
+</div>
+
+</main>
+<footer>Exercício 12 — Transições e Animações | ADS — Web I</footer>
+</body>
+</html>
