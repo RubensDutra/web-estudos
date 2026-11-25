@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 12 - Transições e Animações</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:#f9f9f9;color:#333;}
+h1{color:#e67e22;border-bottom:3px solid #e67e22;padding-bottom:8px;}
+h2{color:#e67e22;margin-top:35px;}
+h3{color:#555;margin-top:20px;}
+.info{background:#fef5ec;border-left:4px solid #e67e22;padding:10px 15px;margin:15px 0;border-radius:4px;}
+pre{background:#2c3e50;color:#ecf0f1;padding:15px;border-radius:6px;font-size:.88em;overflow-x:auto;}
+code{background:#ecf0f1;color:#e67e22;padding:2px 5px;border-radius:3px;font-family:monospace;}
+table{border-collapse:collapse;width:100%;margin:15px 0;}
+th,td{border:1px solid #ccc;padding:8px 12px;text-align:left;}
+th{background:#e67e22;color:white;}
+tr:nth-child(even){background:#fafafa;}
+.secao{background:white;border:1px solid #e0e0e0;border-radius:8px;padding:20px;margin:20px 0;}
+#rodape{margin-top:40px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+
+/* ========== DEMOS ========== */
+.demo{padding:20px;background:#fef5ec;border:2px dashed #e67e22;border-radius:6px;margin:14px 0;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+
+/* transition básica */
+.box-t{width:80px;height:80px;background:#e67e22;border-radius:6px;cursor:pointer;transition:all 0.4s ease;}
+.box-t:hover{background:#d35400;transform:scale(1.2) rotate(15deg);}
+
+/* transition só cor */
+.box-cor{width:80px;height:80px;background:#3498db;border-radius:6px;cursor:pointer;transition:background-color 0.5s ease;}
+.box-cor:hover{background:#e67e22;}
+
+/* timing functions */
+.box-ease{width:70px;height:70px;border-radius:4px;cursor:pointer;transition:transform 0.6s ease;}
+.box-ease:hover{transform:translateX(80px);}
+.box-linear{width:70px;height:70px;border-radius:4px;background:#27ae60;cursor:pointer;transition:transform 0.6s linear;}
+.box-linear:hover{transform:translateX(80px);}
+.box-bounce{width:70px;height:70px;border-radius:4px;background:#8e44ad;cursor:pointer;transition:transform 0.6s cubic-bezier(.68,-0.55,.27,1.55);}
+.box-bounce:hover{transform:translateX(80px);}
+
+/* @keyframes — pulsar */
+@keyframes pulsar {
+  0%   { transform: scale(1);   opacity: 1; }
+  50%  { transform: scale(1.3); opacity: 0.7; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+.box-pulsar{width:80px;height:80px;background:#e67e22;border-radius:50%;animation:pulsar 1.5s ease-in-out infinite;}
+
+/* @keyframes — deslizar */
+@keyframes deslizar {
+  from { transform: translateX(-60px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+.box-slide{width:80px;height:80px;background:#16a085;border-radius:6px;animation:deslizar 1s ease forwards;}
+
+/* @keyframes — girar */
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spinner{width:50px;height:50px;border:5px solid #ddd;border-top-color:#e67e22;border-radius:50%;animation:girar 0.8s linear infinite;}
+
+/* transform demos */
+.box-tf{width:80px;height:80px;background:#e74c3c;border-radius:6px;cursor:pointer;display:inline-block;margin:6px;transition:transform .3s;}
+.box-tf:hover{transform:translateY(-10px);}
+.box-tf.scale:hover{transform:scale(1.3);}
+.box-tf.rot:hover{transform:rotate(45deg);}
+.box-tf.skew:hover{transform:skewX(20deg);}
+</style>
+</head>
+<body>
+<h1>Aula 12 — Transições e Animações</h1>
+<p>CSS permite criar movimento e feedback visual sem JavaScript, usando <code>transition</code> para efeitos simples e <code>animation</code> + <code>@keyframes</code> para sequências complexas.</p>
+
+<div class="secao">
+<h2>1. transition</h2>
+<p>Suaviza a mudança de um estado CSS para outro (ex: normal → hover).</p>
+<pre>
+/* sintaxe completa */
+transition: propriedade  duração  timing-function  delay;
+
+/* exemplos */
+transition: all 0.3s ease;
+transition: background-color 0.5s ease-in-out;
+transition: transform 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+
+/* múltiplas propriedades */
+transition: background 0.3s ease, transform 0.4s ease;
+</pre>
+<div class="demo">
+  <div>
+    <p style="margin:0 0 6px;font-size:.85em">all (scale + rotate)</p>
+    <div class="box-t"></div>
+  </div>
+  <div>
+    <p style="margin:0 0 6px;font-size:.85em">só cor</p>
+    <div class="box-cor"></div>
+  </div>
+</div>
+
+<h3>Timing functions</h3>
+<table>
+<tr><th>Valor</th><th>Comportamento</th></tr>
+<tr><td><code>ease</code></td><td>Começa lento, acelera, termina lento (padrão)</td></tr>
+<tr><td><code>linear</code></td><td>Velocidade constante</td></tr>
+<tr><td><code>ease-in</code></td><td>Começa lento</td></tr>
+<tr><td><code>ease-out</code></td><td>Termina lento</td></tr>
+<tr><td><code>ease-in-out</code></td><td>Lento no início e no fim</td></tr>
+<tr><td><code>cubic-bezier()</code></td><td>Curva personalizada (efeito "bounce", etc.)</td></tr>
+</table>
+<div class="demo" style="flex-direction:column;align-items:flex-start;">
+  <div><span style="font-size:.8em;margin-right:8px">ease</span><div class="box-ease" style="background:#e67e22;width:70px;height:70px;border-radius:4px;"></div></div>
+  <div><span style="font-size:.8em;margin-right:8px">linear</span><div class="box-linear"></div></div>
+  <div><span style="font-size:.8em;margin-right:8px">bounce (cubic-bezier)</span><div class="box-bounce"></div></div>
+</div>
+</div>
+
+<div class="secao">
+<h2>2. @keyframes — definindo a animação</h2>
+<pre>
+@keyframes nome-da-animacao {
+    0%   { propriedade: valor-inicial; }
+    50%  { propriedade: valor-meio; }
+    100% { propriedade: valor-final; }
+}
+
+/* atalho */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</pre>
+</div>
+
+<div class="secao">
+<h2>3. animation — aplicando a animação</h2>
+<pre>
+/* sintaxe */
+animation: nome  duração  timing  delay  iterações  direção  fill-mode;
+
+/* exemplos */
+animation: pulsar 1.5s ease-in-out infinite;
+animation: aparecer 0.6s ease forwards;         /* forwards = mantém estado final */
+animation: girar 1s linear infinite;
+animation: piscar 0.5s ease-in-out 3 alternate; /* 3 vezes, vai e volta */
+</pre>
+<table>
+<tr><th>Propriedade</th><th>Valores comuns</th></tr>
+<tr><td><code>animation-iteration-count</code></td><td><code>1</code>, <code>3</code>, <code>infinite</code></td></tr>
+<tr><td><code>animation-direction</code></td><td><code>normal</code>, <code>reverse</code>, <code>alternate</code></td></tr>
+<tr><td><code>animation-fill-mode</code></td><td><code>none</code>, <code>forwards</code>, <code>backwards</code>, <code>both</code></td></tr>
+<tr><td><code>animation-play-state</code></td><td><code>running</code>, <code>paused</code></td></tr>
+</table>
+<div class="demo">
+  <div>
+    <p style="margin:0 0 6px;font-size:.85em">pulsar (infinite)</p>
+    <div class="box-pulsar"></div>
+  </div>
+  <div>
+    <p style="margin:0 0 6px;font-size:.85em">deslizar (forwards)</p>
+    <div class="box-slide"></div>
+  </div>
+  <div>
+    <p style="margin:0 0 6px;font-size:.85em">spinner (infinite)</p>
+    <div class="spinner"></div>
+  </div>
+</div>
+</div>
+
+<div class="secao">
+<h2>4. transform</h2>
+<p>Usado em conjunto com transitions e animations para mover, girar, escalar e distorcer elementos.</p>
+<pre>
+transform: translateX(50px);           /* move no eixo X */
+transform: translateY(-20px);          /* move no eixo Y */
+transform: translate(30px, -10px);     /* move em X e Y */
+transform: scale(1.5);                 /* aumenta 50% */
+transform: scale(0.8);                 /* diminui 20% */
+transform: rotate(45deg);             /* gira 45 graus */
+transform: skewX(20deg);              /* distorce no eixo X */
+
+/* combinados */
+transform: translateY(-8px) scale(1.05);
+</pre>
+<div class="demo">
+  <div>
+    <p style="font-size:.8em;margin:0 0 4px">translateY</p>
+    <div class="box-tf"></div>
+  </div>
+  <div>
+    <p style="font-size:.8em;margin:0 0 4px">scale</p>
+    <div class="box-tf scale" style="background:#8e44ad;"></div>
+  </div>
+  <div>
+    <p style="font-size:.8em;margin:0 0 4px">rotate</p>
+    <div class="box-tf rot" style="background:#27ae60;"></div>
+  </div>
+  <div>
+    <p style="font-size:.8em;margin:0 0 4px">skewX</p>
+    <div class="box-tf skew" style="background:#3498db;"></div>
+  </div>
+</div>
+</div>
+
+<div class="info">
+💡 <strong>Performance:</strong> prefira animar <code>transform</code> e <code>opacity</code> — o navegador as processa na GPU sem recalcular o layout. Evite animar <code>width</code>, <code>height</code>, <code>top</code> ou <code>left</code> em loops.
+</div>
+
+<div id="rodape">Aula 12 — Transições e Animações | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
