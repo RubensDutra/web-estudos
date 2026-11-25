@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 08 - Grid Layout</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:30px;background:#f9f9f9;color:#333;}
+h1{color:#2c3e50;border-bottom:3px solid #8e44ad;padding-bottom:8px;}
+h2{color:#8e44ad;margin-top:35px;}
+h3{color:#555;margin-top:20px;}
+.info{background:#f5eef8;border-left:4px solid #8e44ad;padding:10px 15px;margin:15px 0;border-radius:4px;}
+.dest{background:#fef9e7;border-left:4px solid #f39c12;padding:10px 15px;margin:15px 0;border-radius:4px;}
+pre{background:#2c3e50;color:#ecf0f1;padding:15px;border-radius:6px;font-size:.88em;overflow-x:auto;}
+code{background:#ecf0f1;color:#8e44ad;padding:2px 5px;border-radius:3px;font-family:monospace;}
+table{border-collapse:collapse;width:100%;margin:15px 0;}
+th,td{border:1px solid #ccc;padding:8px 12px;text-align:left;}
+th{background:#8e44ad;color:white;}
+tr:nth-child(even){background:#f9f9f9;}
+.secao{background:white;border:1px solid #e0e0e0;border-radius:8px;padding:20px;margin:20px 0;}
+#rodape{margin-top:40px;border-top:1px solid #ccc;padding-top:10px;font-size:.85em;color:#888;text-align:center;}
+
+/* demos */
+.g{display:grid;gap:8px;padding:12px;background:#f5eef8;border:2px dashed #8e44ad;border-radius:6px;margin:10px 0;}
+.gi{background:#8e44ad;color:white;padding:14px;border-radius:4px;text-align:center;font-weight:bold;font-size:.9em;}
+.gi.alt{background:#6c3483;}
+/* layouts demo */
+.g3{grid-template-columns:1fr 1fr 1fr;}
+.g2{grid-template-columns:2fr 1fr;}
+.grc{grid-template-columns:repeat(4,1fr);}
+.garea{
+  grid-template-columns:180px 1fr;
+  grid-template-rows:auto 1fr auto;
+  grid-template-areas:"hd hd" "sb mn" "ft ft";
+  min-height:200px;
+}
+.hd{grid-area:hd;background:#2c3e50;}
+.sb{grid-area:sb;background:#7f8c8d;}
+.mn{grid-area:mn;background:#bdc3c7;color:#333;}
+.ft{grid-area:ft;background:#2c3e50;}
+.span2col{grid-column:span 2;}
+.span2row{grid-row:span 2;}
+</style>
+</head>
+<body>
+<h1>Aula 08 — Grid Layout</h1>
+<p>O <strong>CSS Grid</strong> é um sistema de layout <em>bidimensional</em> — organiza elementos em linhas <em>e</em> colunas ao mesmo tempo. É ideal para estruturar páginas inteiras.</p>
+<div class="info"><strong>Grid vs Flexbox:</strong><br>
+Flexbox → <strong>1 dimensão</strong> (linha ou coluna). Use em componentes.<br>
+Grid → <strong>2 dimensões</strong> (linhas e colunas). Use no layout da página.</div>
+
+<div class="secao">
+<h2>1. Ativando o Grid</h2>
+<pre>
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 colunas iguais */
+    gap: 10px;
+}
+</pre>
+<div class="g g3">
+<div class="gi">1</div><div class="gi alt">2</div><div class="gi">3</div>
+<div class="gi alt">4</div><div class="gi">5</div><div class="gi alt">6</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>2. grid-template-columns</h2>
+<p>Define o número e tamanho das colunas.</p>
+<pre>
+grid-template-columns: 200px 1fr;        /* fixo + flexível */
+grid-template-columns: 1fr 1fr 1fr;      /* 3 colunas iguais */
+grid-template-columns: repeat(4, 1fr);   /* mesmo que 1fr 1fr 1fr 1fr */
+grid-template-columns: 2fr 1fr;          /* proporção 2:1 */
+</pre>
+<h3>repeat(4, 1fr)</h3>
+<div class="g grc">
+<div class="gi">A</div><div class="gi alt">B</div><div class="gi">C</div><div class="gi alt">D</div>
+</div>
+<h3>2fr 1fr</h3>
+<div class="g g2">
+<div class="gi">2fr (maior)</div><div class="gi alt">1fr</div>
+<div class="gi alt">2fr</div><div class="gi">1fr</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>3. grid-template-rows</h2>
+<pre>
+grid-template-rows: 80px 1fr 60px; /* 3 linhas: fixa, flexível, fixa */
+grid-template-rows: auto;          /* linha se ajusta ao conteúdo */
+</pre>
+<div class="g" style="grid-template-columns:1fr 1fr;grid-template-rows:60px auto 40px;">
+<div class="gi" style="background:#2ecc71;">linha 1 (60px)</div>
+<div class="gi alt" style="background:#27ae60;">linha 1</div>
+<div class="gi">linha 2 (auto)</div>
+<div class="gi alt">linha 2<br>mais conteúdo</div>
+<div class="gi" style="background:#2ecc71;">linha 3 (40px)</div>
+<div class="gi alt" style="background:#27ae60;">linha 3</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>4. gap</h2>
+<pre>
+gap: 16px;        /* mesmo espaço em todas as direções */
+gap: 10px 20px;   /* linha | coluna */
+row-gap: 10px;
+column-gap: 20px;
+</pre>
+<div class="g g3" style="gap:20px;">
+<div class="gi">1</div><div class="gi alt">2</div><div class="gi">3</div>
+<div class="gi alt">4</div><div class="gi">5</div><div class="gi alt">6</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>5. grid-template-areas — layout nomeado</h2>
+<pre>
+.container {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    grid-template-areas:
+        "header  header"
+        "sidebar main"
+        "footer  footer";
+}
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main    { grid-area: main; }
+.footer  { grid-area: footer; }
+</pre>
+<div class="g garea">
+<div class="gi hd">Header</div>
+<div class="gi sb">Sidebar</div>
+<div class="gi mn">Main Content</div>
+<div class="gi ft">Footer</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>6. Posicionamento de itens — grid-column e grid-row</h2>
+<pre>
+.item {
+    grid-column: 1 / 3;   /* da linha 1 até a linha 3 (ocupa 2 colunas) */
+    grid-column: span 2;  /* ocupa 2 colunas a partir da posição atual */
+    grid-row: span 2;     /* ocupa 2 linhas */
+}
+</pre>
+<div class="g" style="grid-template-columns:repeat(3,1fr);">
+<div class="gi span2col" style="background:#e74c3c;">span 2 colunas</div>
+<div class="gi alt">normal</div>
+<div class="gi">normal</div>
+<div class="gi span2row" style="grid-row:span 2;background:#3498db;">span 2 linhas</div>
+<div class="gi alt">normal</div>
+<div class="gi">normal</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>7. justify-items e align-items</h2>
+<pre>
+/* no container — alinha TODOS os itens */
+justify-items: start | center | end | stretch; /* eixo horizontal */
+align-items:   start | center | end | stretch; /* eixo vertical */
+
+/* no item individual */
+justify-self: center;
+align-self: end;
+</pre>
+<div class="g g3" style="height:100px;align-items:center;justify-items:center;">
+<div class="gi" style="width:80px;">centrado</div>
+<div class="gi alt" style="width:80px;">centrado</div>
+<div class="gi" style="width:80px;">centrado</div>
+</div>
+</div>
+
+<div class="secao">
+<h2>8. minmax() e auto-fill / auto-fit</h2>
+<pre>
+/* coluna com tamanho mínimo e máximo */
+grid-template-columns: repeat(3, minmax(150px, 1fr));
+
+/* grid responsivo automático — sem media queries! */
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+/* auto-fill: mantém colunas vazias */
+/* auto-fit: colapsa colunas vazias */
+</pre>
+<div class="g" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));">
+<div class="gi">Card 1</div><div class="gi alt">Card 2</div>
+<div class="gi">Card 3</div><div class="gi alt">Card 4</div>
+<div class="gi">Card 5</div>
+</div>
+<div class="dest">💡 <code>repeat(auto-fill, minmax(200px, 1fr))</code> cria grids responsivos sem precisar de media queries!</div>
+</div>
+
+<div class="secao">
+<h2>Resumo</h2>
+<table>
+<tr><th>Propriedade</th><th>Onde</th><th>O que faz</th></tr>
+<tr><td><code>display: grid</code></td><td>Container</td><td>Ativa o Grid</td></tr>
+<tr><td><code>grid-template-columns</code></td><td>Container</td><td>Define colunas</td></tr>
+<tr><td><code>grid-template-rows</code></td><td>Container</td><td>Define linhas</td></tr>
+<tr><td><code>grid-template-areas</code></td><td>Container</td><td>Layout nomeado</td></tr>
+<tr><td><code>gap</code></td><td>Container</td><td>Espaço entre células</td></tr>
+<tr><td><code>grid-column</code></td><td>Item</td><td>Posição/span nas colunas</td></tr>
+<tr><td><code>grid-row</code></td><td>Item</td><td>Posição/span nas linhas</td></tr>
+<tr><td><code>grid-area</code></td><td>Item</td><td>Nome da área do item</td></tr>
+</table>
+</div>
+
+<div id="rodape">Aula 08 — Grid Layout | Análise e Desenvolvimento de Sistemas</div>
+</body>
+</html>
