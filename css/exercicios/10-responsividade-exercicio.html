@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercício 10 - Responsividade</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f4f4;color:#333;}
+header{background:#16a085;color:white;padding:14px 20px;}
+header h1{margin:0;font-size:1.3rem;}
+main{padding:20px;max-width:960px;margin:0 auto;}
+h2{color:#16a085;margin-top:30px;}
+.ex{background:white;border:1px solid #ddd;border-radius:8px;padding:20px;margin-bottom:30px;}
+.ex h3{margin-top:0;color:#2c3e50;}
+pre{background:#2c3e50;color:#ecf0f1;padding:14px;border-radius:5px;font-size:.85em;overflow-x:auto;}
+.badge-ok{background:#27ae60;color:white;padding:3px 10px;border-radius:12px;font-size:.8em;margin-left:8px;}
+
+/* ===================== EX 1 — layout responsivo com media queries ===================== */
+.ex1-grid{display:grid;grid-template-columns:1fr;gap:12px;padding:14px;background:#f8f8f8;border-radius:6px;}
+@media(min-width:600px){.ex1-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.ex1-grid{grid-template-columns:1fr 1fr 1fr;}}
+.ex1-card{background:#16a085;color:white;padding:18px;border-radius:6px;text-align:center;font-weight:bold;}
+.ex1-card:nth-child(even){background:#117a65;}
+
+/* ===================== EX 2 — navbar responsiva ===================== */
+.ex2-nav{background:#2c3e50;padding:12px 20px;border-radius:6px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.ex2-brand{color:white;font-weight:bold;font-size:1.1em;}
+.ex2-links{display:flex;gap:16px;list-style:none;margin:0;padding:0;flex-wrap:wrap;}
+.ex2-links a{color:#ecf0f1;text-decoration:none;font-size:.9em;padding:4px 8px;border-radius:4px;transition:background .2s;}
+.ex2-links a:hover{background:#16a085;}
+/* em telas muito pequenas os links ficam abaixo do brand */
+@media(max-width:480px){
+  .ex2-nav{flex-direction:column;align-items:flex-start;}
+  .ex2-links{gap:8px;}
+}
+
+footer{background:#2c3e50;color:#ecf0f1;text-align:center;padding:14px;margin-top:40px;font-size:.85em;}
+</style>
+</head>
+<body>
+<header><h1>Exercício 10 — Responsividade</h1></header>
+<main>
+
+<!-- EX 1 -->
+<div class="ex">
+  <h3>Exercício 1 — Grid responsivo com media queries <span class="badge-ok">✓</span></h3>
+  <p>O grid abaixo começa com <strong>1 coluna</strong> (mobile), passa para <strong>2</strong> em ≥ 600 px e para <strong>3</strong> em ≥ 900 px. Redimensione a janela para ver o efeito.</p>
+  <div class="ex1-grid">
+    <div class="ex1-card">Card 1</div>
+    <div class="ex1-card">Card 2</div>
+    <div class="ex1-card">Card 3</div>
+    <div class="ex1-card">Card 4</div>
+    <div class="ex1-card">Card 5</div>
+    <div class="ex1-card">Card 6</div>
+  </div>
+  <pre>
+/* Mobile first */
+.ex1-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+@media (min-width: 600px) {
+    .ex1-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 900px) {
+    .ex1-grid { grid-template-columns: 1fr 1fr 1fr; }
+}</pre>
+</div>
+
+<!-- EX 2 -->
+<div class="ex">
+  <h3>Exercício 2 — Navbar responsiva <span class="badge-ok">✓</span></h3>
+  <p>Em telas ≤ 480 px os links ficam abaixo do nome da marca (flex-direction: column). Acima disso ficam na mesma linha.</p>
+  <nav class="ex2-nav">
+    <span class="ex2-brand">MeuSite</span>
+    <ul class="ex2-links">
+      <li><a href="#">Início</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Projetos</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+  <pre>
+.nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+
+@media (max-width: 480px) {
+    .nav { flex-direction: column; align-items: flex-start; }
+}</pre>
+</div>
+
+</main>
+<footer>Exercício 10 — Responsividade | ADS — Web I</footer>
+</body>
+</html>
